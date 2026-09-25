@@ -1,0 +1,799 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Özkal Gayrimenkul · Karşıyaka'da Satılık ve Kiralık Daireler</title>
+<meta name="description" content="Bostanlı, Mavişehir, Atakent, Donanmacı ve Karşıyaka merkezde satılık ve kiralık daireler. Özkal Gayrimenkul Danışmanlık, Karşıyaka / İzmir.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f7f4ef;
+    --paper-2: #efeae2;
+    --white: #ffffff;
+    --ink: #1d1c1a;
+    --ink-2: #3b3934;
+    --muted: #6e6960;
+    --line: #e2dcd2;
+    --line-2: #d3cbbe;
+    --brick: #a8382a;
+    --brick-dark: #8a2c20;
+    --brick-soft: #f4e4df;
+    --serif: "Newsreader", Georgia, "Times New Roman", serif;
+    --sans: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --wrap: 1240px;
+    --gut: 24px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font: 400 16px/1.6 var(--sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+  button, input, select, textarea { font: inherit; color: inherit; }
+  .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 var(--gut); }
+  .eyebrow {
+    font-size: 12px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--brick);
+  }
+  h1, h2, h3 { font-family: var(--serif); font-weight: 400; margin: 0; letter-spacing: -.01em; }
+  h2 { font-size: clamp(30px, 3.6vw, 44px); line-height: 1.1; }
+  .lead { color: var(--ink-2); font-size: 18px; line-height: 1.6; }
+
+  /* preview note */
+  .preview-note {
+    background: var(--ink); color: #d9d4ca; font-size: 13px; text-align: center; padding: 7px 16px;
+  }
+  .preview-note b { color: #fff; font-weight: 600; }
+
+  /* top bar */
+  .topbar { border-bottom: 1px solid var(--line); font-size: 13px; color: var(--muted); }
+  .topbar .wrap { display: flex; justify-content: space-between; gap: 16px; padding-top: 9px; padding-bottom: 9px; }
+  .topbar span + span::before { content: "·"; margin: 0 10px; color: var(--line-2); }
+  .topbar a:hover { color: var(--ink); }
+
+  /* header */
+  header.site {
+    position: sticky; top: 0; z-index: 40;
+    background: rgba(247, 244, 239, .94);
+    backdrop-filter: saturate(140%) blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  header.site .wrap { display: flex; align-items: center; justify-content: space-between; height: 72px; gap: 24px; }
+  .brand { display: flex; align-items: center; gap: 12px; }
+  .brand-mark {
+    width: 38px; height: 38px; background: var(--brick); color: #fff;
+    display: grid; place-items: center; font: 500 22px/1 var(--serif);
+  }
+  .brand-name { font: 500 24px/1 var(--serif); letter-spacing: -.01em; }
+  .brand-sub { display: block; font: 600 10.5px/1 var(--sans); letter-spacing: .16em; text-transform: uppercase; color: var(--muted); margin-top: 5px; }
+  nav.main { display: flex; gap: 28px; font-size: 15px; font-weight: 500; }
+  nav.main a { color: var(--ink-2); padding: 6px 0; border-bottom: 1.5px solid transparent; }
+  nav.main a:hover { color: var(--ink); border-bottom-color: var(--brick); }
+  .header-cta { display: flex; align-items: center; gap: 10px; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    height: 44px; padding: 0 20px; border: 1px solid transparent; border-radius: 2px;
+    font-weight: 600; font-size: 15px; cursor: pointer; white-space: nowrap;
+    transition: background .15s ease, border-color .15s ease, color .15s ease;
+  }
+  .btn-brick { background: var(--brick); color: #fff; }
+  .btn-brick:hover { background: var(--brick-dark); }
+  .btn-line { border-color: var(--line-2); background: transparent; }
+  .btn-line:hover { border-color: var(--ink); }
+  .btn svg { width: 17px; height: 17px; }
+  .menu-toggle { display: none; background: none; border: 1px solid var(--line-2); width: 44px; height: 44px; border-radius: 2px; cursor: pointer; }
+  .menu-toggle span { display: block; width: 18px; height: 1.5px; background: var(--ink); margin: 4px auto; }
+
+  /* hero */
+  .hero { padding: 56px 0 0; }
+  .hero-grid { display: grid; grid-template-columns: 5fr 7fr; gap: 56px; align-items: center; }
+  .hero-copy { padding-bottom: 108px; }
+  .hero h1 { font-size: clamp(40px, 5.2vw, 70px); line-height: 1.02; margin: 18px 0 22px; }
+  .hero h1 em { font-style: italic; color: var(--brick); }
+  .hero .lead { max-width: 440px; margin: 0 0 28px; }
+  .hero-contact { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 20px; font-size: 15px; color: var(--muted); }
+  .hero-contact a { color: var(--ink); font-weight: 600; border-bottom: 1px solid var(--line-2); }
+  .hero-photo { position: relative; }
+  .hero-photo img { width: 100%; height: auto; aspect-ratio: 4 / 3.1; object-fit: cover; object-position: 50% 78%; }
+  .hero-photo figcaption {
+    position: absolute; right: 0; top: 100%; margin-top: 8px;
+    font-size: 12px; color: var(--muted);
+  }
+
+  /* search */
+  .search {
+    position: relative; margin-top: -74px; z-index: 5;
+    background: var(--white); border: 1px solid var(--line);
+    box-shadow: 0 1px 0 rgba(0,0,0,.02), 0 18px 40px -24px rgba(40, 30, 20, .28);
+  }
+  .search-tabs { display: flex; border-bottom: 1px solid var(--line); }
+  .search-tabs button {
+    background: none; border: 0; padding: 14px 22px; font-weight: 600; font-size: 15px; color: var(--muted); cursor: pointer;
+    border-bottom: 2px solid transparent; margin-bottom: -1px;
+  }
+  .search-tabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--brick); }
+  .search-fields { display: grid; grid-template-columns: 1.2fr 1fr 1fr 1fr auto; }
+  .field { padding: 14px 20px; border-right: 1px solid var(--line); min-width: 0; }
+  .field label { display: block; font-size: 12px; font-weight: 600; color: var(--muted); margin-bottom: 2px; }
+  .field select {
+    width: 100%; border: 0; background: transparent; padding: 2px 18px 2px 0; font-size: 16px; font-weight: 500;
+    appearance: none; -webkit-appearance: none; cursor: pointer; outline: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%236e6960' stroke-width='1.4'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 2px center;
+  }
+  .search-submit { padding: 12px; display: flex; align-items: center; }
+  .search-submit .btn { height: 52px; padding: 0 28px; }
+  .quick { display: flex; flex-wrap: wrap; gap: 6px 18px; padding: 16px 0 0; font-size: 14px; color: var(--muted); }
+  .quick a { color: var(--ink-2); border-bottom: 1px solid var(--line-2); }
+  .quick a:hover { color: var(--brick); border-color: var(--brick); }
+
+  /* index strip */
+  .index { padding: 64px 0 0; }
+  .index ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(6, 1fr); border-top: 1px solid var(--ink); }
+  .index li { border-right: 1px solid var(--line); }
+  .index li:last-child { border-right: 0; }
+  .index a { display: block; padding: 18px 18px 18px 0; }
+  .index li + li a { padding-left: 18px; }
+  .index b { display: block; font: 400 34px/1 var(--serif); margin-bottom: 6px; }
+  .index span { font-size: 14px; color: var(--muted); }
+  .index a:hover b { color: var(--brick); }
+
+  /* section */
+  section.block { padding: 96px 0 0; }
+  .section-head { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 32px; flex-wrap: wrap; }
+  .section-head h2 { margin-top: 10px; }
+  .filters { display: flex; gap: 4px; background: var(--paper-2); padding: 4px; }
+  .filters button {
+    border: 0; background: transparent; padding: 8px 16px; font-size: 14px; font-weight: 600; color: var(--muted); cursor: pointer;
+  }
+  .filters button[aria-pressed="true"] { background: var(--white); color: var(--ink); box-shadow: 0 1px 2px rgba(0,0,0,.06); }
+
+  /* listings */
+  .listings { display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px 28px; }
+  .card { display: flex; flex-direction: column; }
+  .card-photo { position: relative; overflow: hidden; background: var(--paper-2); }
+  .card-photo img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; transition: transform .5s ease; }
+  .card:hover .card-photo img { transform: scale(1.03); }
+  .tag {
+    position: absolute; left: 12px; top: 12px; background: var(--white); color: var(--ink);
+    font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 5px 9px;
+  }
+  .tag.kiralik { background: var(--ink); color: #fff; }
+  .card-body { padding-top: 16px; }
+  .card-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+  .price { font: 400 26px/1.1 var(--serif); }
+  .price small { font: 500 14px var(--sans); color: var(--muted); }
+  .ref { font-size: 12px; color: var(--muted); white-space: nowrap; }
+  .card h3 { font: 600 16px/1.4 var(--sans); margin: 8px 0 3px; letter-spacing: 0; }
+  .loc { font-size: 14px; color: var(--muted); }
+  .specs { display: flex; flex-wrap: wrap; gap: 4px 0; margin: 12px 0 0; padding: 12px 0 0; border-top: 1px solid var(--line); font-size: 14px; color: var(--ink-2); list-style: none; }
+  .specs li + li::before { content: ""; display: inline-block; width: 1px; height: 12px; background: var(--line-2); margin: 0 10px; vertical-align: -1px; }
+
+  .card.featured { grid-column: span 2; grid-row: span 2; }
+  .card.featured .card-photo img { aspect-ratio: auto; height: 100%; min-height: 420px; }
+  .card.featured .card-photo { flex: 1; }
+  .card.featured .price { font-size: 34px; }
+  .card.featured h3 { font-size: 19px; }
+  .features { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .features span { font-size: 13px; padding: 4px 10px; border: 1px solid var(--line-2); color: var(--ink-2); }
+  .card[hidden] { display: none; }
+  .all-link { margin-top: 40px; text-align: center; }
+
+  /* neighborhoods */
+  .hoods { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
+  .hood img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; filter: saturate(.92); }
+  .hood img.low { object-position: 50% 62%; }
+  .hood h3 { font-size: 26px; margin: 16px 0 6px; display: flex; justify-content: space-between; align-items: baseline; }
+  .hood h3 small { font: 500 13px var(--sans); color: var(--brick); }
+  .hood p { margin: 0; font-size: 15px; color: var(--ink-2); }
+  .hood-more { display: flex; flex-wrap: wrap; gap: 8px 16px; margin-top: 32px; padding-top: 18px; border-top: 1px solid var(--line); font-size: 15px; color: var(--muted); }
+  .hood-more a { color: var(--ink-2); border-bottom: 1px solid var(--line-2); }
+  .hood-more a:hover { color: var(--brick); }
+
+  /* owners */
+  .owners { margin-top: 96px; background: var(--ink); color: #eae5dc; padding: 88px 0; }
+  .owners-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; }
+  .owners h2 { color: #fff; margin: 12px 0 18px; }
+  .owners .eyebrow { color: #e08f80; }
+  .owners .lead { color: #c9c3b8; margin: 0 0 36px; max-width: 480px; }
+  .steps { list-style: none; margin: 0; padding: 0; }
+  .steps li { display: grid; grid-template-columns: 56px 1fr; padding: 20px 0; border-top: 1px solid #3a3833; }
+  .steps li:last-child { border-bottom: 1px solid #3a3833; }
+  .steps b { font: 400 22px/1.2 var(--serif); color: #e08f80; }
+  .steps strong { display: block; font-weight: 600; color: #fff; margin-bottom: 2px; }
+  .steps span { font-size: 15px; color: #b9b3a8; }
+  .owner-form { background: var(--white); color: var(--ink); padding: 32px; }
+  .owner-form h3 { font-size: 26px; margin-bottom: 4px; }
+  .owner-form > p { margin: 0 0 22px; font-size: 14px; color: var(--muted); }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .form-grid .full { grid-column: 1 / -1; }
+  .fg label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; color: var(--ink-2); }
+  .fg input, .fg select, .fg textarea {
+    width: 100%; height: 46px; border: 1px solid var(--line-2); background: var(--white); padding: 0 12px; border-radius: 2px; outline: none;
+  }
+  .fg textarea { height: 92px; padding: 10px 12px; resize: vertical; }
+  .fg input:focus, .fg select:focus, .fg textarea:focus { border-color: var(--ink); }
+  .seg { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--line-2); border-radius: 2px; }
+  .seg label { position: relative; margin: 0; text-align: center; padding: 11px 0; font-size: 15px; font-weight: 600; color: var(--muted); cursor: pointer; }
+  .fg .seg input { position: absolute; inset: 0; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+  .seg input:checked + span { color: var(--ink); }
+  .seg label:has(input:checked) { background: var(--brick-soft); color: var(--brick-dark); }
+  .seg label + label { border-left: 1px solid var(--line-2); }
+  .drop {
+    display: flex; align-items: center; gap: 14px; border: 1px dashed var(--line-2); padding: 16px; cursor: pointer; font-size: 14px; color: var(--muted);
+  }
+  .drop:hover { border-color: var(--ink); }
+  .drop svg { width: 26px; height: 26px; flex: none; color: var(--brick); }
+  .drop strong { display: block; color: var(--ink); font-weight: 600; }
+  .form-note { font-size: 13px; color: var(--muted); margin: 14px 0 0; }
+  .form-foot { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 20px; flex-wrap: wrap; }
+  .form-done { display: none; padding: 16px; background: var(--brick-soft); color: var(--brick-dark); font-size: 15px; margin-top: 16px; }
+  .form-done.show { display: block; }
+
+  /* about */
+  .about-grid { display: grid; grid-template-columns: 7fr 5fr; gap: 64px; align-items: center; }
+  .about-photo img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; }
+  .about-photo figcaption { font-size: 12px; color: var(--muted); margin-top: 8px; }
+  .about h2 { margin: 12px 0 18px; }
+  .about p { color: var(--ink-2); margin: 0 0 16px; }
+  .promises { list-style: none; margin: 28px 0 0; padding: 0; }
+  .promises li { padding: 14px 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: 28px 1fr; font-size: 15px; }
+  .promises li:last-child { border-bottom: 1px solid var(--line); }
+  .promises b { font-weight: 600; }
+  .promises i { font: italic 400 18px/1.2 var(--serif); color: var(--brick); }
+
+  /* contact */
+  .contact-grid { display: grid; grid-template-columns: 5fr 7fr; gap: 0; border: 1px solid var(--line); background: var(--white); }
+  .contact-info { padding: 40px; }
+  .contact-info h2 { margin: 12px 0 28px; }
+  .contact-list { margin: 0; }
+  .contact-list div { display: grid; grid-template-columns: 110px 1fr; padding: 13px 0; border-top: 1px solid var(--line); font-size: 15px; }
+  .contact-list dt { color: var(--muted); }
+  .contact-list dd { margin: 0; font-weight: 500; }
+  .contact-list a:hover { color: var(--brick); }
+  .contact-actions { display: flex; gap: 10px; margin-top: 28px; flex-wrap: wrap; }
+  .map { min-height: 420px; border-left: 1px solid var(--line); background: var(--paper-2); }
+  .map iframe { width: 100%; height: 100%; border: 0; display: block; filter: grayscale(.35) contrast(1.02); }
+
+  /* footer */
+  footer.site { margin-top: 96px; border-top: 1px solid var(--ink); padding: 48px 0 110px; font-size: 14px; color: var(--muted); }
+  .foot-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 32px; }
+  .foot-grid h4 { margin: 0 0 12px; font-size: 13px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--ink); }
+  .foot-grid ul { list-style: none; margin: 0; padding: 0; }
+  .foot-grid li { margin-bottom: 7px; }
+  .foot-grid a:hover { color: var(--ink); }
+  .foot-bottom { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--line); font-size: 12.5px; }
+  .credits { max-width: 760px; }
+
+  /* mobile bar */
+  .mbar { display: none; }
+
+  /* mobile menu */
+  .mnav { display: none; }
+
+  @media (max-width: 1080px) {
+    nav.main { display: none; }
+    .menu-toggle { display: block; }
+    .header-cta .btn-line { display: none; }
+    .hero-grid { grid-template-columns: 1fr; gap: 32px; }
+    .hero-copy { padding-bottom: 0; }
+    .hero-photo figcaption { position: static; text-align: right; }
+    .search { margin-top: 24px; }
+    .search-fields { grid-template-columns: 1fr 1fr; }
+    .field:nth-child(2n) { border-right: 0; }
+    .field { border-bottom: 1px solid var(--line); }
+    .search-submit { grid-column: 1 / -1; }
+    .search-submit .btn { width: 100%; }
+    .index ul { grid-template-columns: repeat(3, 1fr); }
+    .index li:nth-child(3) { border-right: 0; }
+    .index li:nth-child(n+4) { border-top: 1px solid var(--line); }
+    .index li:nth-child(4) a { padding-left: 0; }
+    .listings { grid-template-columns: 1fr 1fr; }
+    .card.featured { grid-column: 1 / -1; grid-row: auto; }
+    .card.featured .card-photo img { min-height: 0; aspect-ratio: 16 / 10; height: auto; }
+    .hoods { grid-template-columns: 1fr 1fr; }
+    .owners-grid, .about-grid { grid-template-columns: 1fr; gap: 48px; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .map { border-left: 0; border-top: 1px solid var(--line); min-height: 320px; }
+    .foot-grid { grid-template-columns: 1fr 1fr; }
+    .mnav.open {
+      display: block; position: fixed; inset: 72px 0 0; z-index: 39; background: var(--paper); padding: 16px var(--gut);
+      border-top: 1px solid var(--line);
+    }
+    .mnav a { display: block; padding: 16px 0; border-bottom: 1px solid var(--line); font: 400 26px var(--serif); }
+  }
+  @media (max-width: 640px) {
+    :root { --gut: 16px; }
+    .topbar { display: none; }
+    .preview-note { font-size: 12px; }
+    header.site .wrap { height: 64px; }
+    .mnav.open { inset: 64px 0 0; }
+    .brand-sub { display: none; }
+    .header-cta .btn-brick { display: none; }
+    .hero { padding-top: 32px; }
+    .hero .lead { font-size: 17px; }
+    .search-tabs button { flex: 1; }
+    .search-fields { grid-template-columns: 1fr; }
+    .field { border-right: 0; }
+    .index { padding-top: 48px; }
+    .index ul { grid-template-columns: 1fr 1fr; }
+    .index li { border-right: 0; }
+    .index li:nth-child(odd) { border-right: 1px solid var(--line); }
+    .index li:nth-child(n+3) { border-top: 1px solid var(--line); }
+    .index li:nth-child(odd) a { padding-left: 0; }
+    .index li:nth-child(even) a { padding-left: 16px; }
+    .index b { font-size: 28px; }
+    section.block { padding-top: 72px; }
+    .listings { grid-template-columns: 1fr; }
+    .card.featured .price { font-size: 28px; }
+    .hoods { grid-template-columns: 1fr 1fr; gap: 20px; }
+    .hood h3 { font-size: 21px; flex-direction: column; gap: 2px; }
+    .hood p { font-size: 14px; }
+    .owners { padding: 64px 0; margin-top: 72px; }
+    .owner-form { padding: 22px 18px; }
+    .form-grid { grid-template-columns: 1fr; }
+    .contact-info { padding: 28px 20px; }
+    .contact-list div { grid-template-columns: 96px 1fr; }
+    .foot-grid { grid-template-columns: 1fr; }
+    .mbar {
+      display: grid; grid-template-columns: 1fr 1fr; position: fixed; left: 0; right: 0; bottom: 0; z-index: 50;
+      background: var(--white); border-top: 1px solid var(--line); padding: 10px 12px calc(10px + env(safe-area-inset-bottom)); gap: 10px;
+    }
+    .mbar .btn { height: 48px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="preview-note"><b>Önizleme</b> · Bu sayfa tasarım taslağıdır, ilanlar ve metinler örnek içeriktir.</div>
+
+<div class="topbar">
+  <div class="wrap">
+    <div><span>Bostanlı Mah., Karşıyaka / İzmir</span><span>Pazartesi – Cumartesi, 09.00 – 19.00</span></div>
+    <div><span><a href="tel:+902323309911">0232 330 99 11</a></span><span><a href="tel:+905322864617">0532 286 46 17</a></span></div>
+  </div>
+</div>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="#" aria-label="Özkal Gayrimenkul ana sayfa">
+      <span class="brand-mark">Ö</span>
+      <span><span class="brand-name">Özkal</span><span class="brand-sub">Gayrimenkul Danışmanlık</span></span>
+    </a>
+    <nav class="main" aria-label="Ana menü">
+      <a href="#ilanlar" data-filter-link="satilik">Satılık</a>
+      <a href="#ilanlar" data-filter-link="kiralik">Kiralık</a>
+      <a href="#semtler">Semtler</a>
+      <a href="#evinizi-verin">Evinizi Verin</a>
+      <a href="#hakkimizda">Hakkımızda</a>
+      <a href="#iletisim">İletişim</a>
+    </nav>
+    <div class="header-cta">
+      <a class="btn btn-line" href="#evinizi-verin">Evinizi verin</a>
+      <a class="btn btn-brick" href="tel:+902323309911">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>
+        Bizi arayın
+      </a>
+      <button class="menu-toggle" aria-label="Menüyü aç" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<nav class="mnav" aria-label="Mobil menü">
+  <a href="#ilanlar" data-filter-link="satilik">Satılık</a>
+  <a href="#ilanlar" data-filter-link="kiralik">Kiralık</a>
+  <a href="#semtler">Semtler</a>
+  <a href="#evinizi-verin">Evinizi Verin</a>
+  <a href="#hakkimizda">Hakkımızda</a>
+  <a href="#iletisim">İletişim</a>
+</nav>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">Karşıyaka · İzmir</div>
+          <h1>Bostanlı'dan Mavişehir'e, Karşıyaka'nın <em>her köşesinde.</em></h1>
+          <p class="lead">Satılık ve kiralık dairelerden iş yerine, semti sokak sokak bilen bir ofisten doğru fiyat ve doğru bilgi.</p>
+          <div class="hero-contact">
+            <a href="#iletisim">Ofisimize uğrayın</a>
+            <span>ya da arayın: <a href="tel:+902323309911">0232 330 99 11</a></span>
+          </div>
+        </div>
+        <figure class="hero-photo" style="margin:0">
+          <img src="img/hero-bostanli-barinak.jpg" alt="Bostanlı Balıkçı Barınağı'nda gün batımı" width="1800" height="1201" fetchpriority="high">
+          <figcaption>Bostanlı Balıkçı Barınağı</figcaption>
+        </figure>
+      </div>
+
+      <form class="search" id="search" role="search" aria-label="İlan arama">
+        <div class="search-tabs" role="tablist">
+          <button type="button" role="tab" aria-selected="true" data-type="satilik">Satılık</button>
+          <button type="button" role="tab" aria-selected="false" data-type="kiralik">Kiralık</button>
+        </div>
+        <div class="search-fields">
+          <div class="field">
+            <label for="s-semt">Semt</label>
+            <select id="s-semt">
+              <option>Tüm Karşıyaka</option>
+              <option>Bostanlı</option><option>Mavişehir</option><option>Atakent</option>
+              <option>Donanmacı</option><option>Karşıyaka Merkez</option><option>Yalı</option>
+              <option>Şemikler</option><option>Demirköprü</option><option>Alaybey</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="s-tip">Emlak tipi</label>
+            <select id="s-tip">
+              <option>Daire</option><option>Müstakil ev</option><option>Villa</option>
+              <option>İş yeri</option><option>Arsa</option><option>Komple bina</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="s-oda">Oda sayısı</label>
+            <select id="s-oda">
+              <option>Fark etmez</option><option>1+1</option><option>2+1</option><option>3+1</option><option>4+1 ve üzeri</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="s-fiyat">En fazla</label>
+            <select id="s-fiyat" data-satilik='["Sınır yok","5.000.000 ₺","7.500.000 ₺","10.000.000 ₺","15.000.000 ₺","20.000.000 ₺"]' data-kiralik='["Sınır yok","20.000 ₺ / ay","25.000 ₺ / ay","30.000 ₺ / ay","40.000 ₺ / ay","60.000 ₺ / ay"]'>
+              <option>Sınır yok</option><option>5.000.000 ₺</option><option>7.500.000 ₺</option><option>10.000.000 ₺</option><option>15.000.000 ₺</option><option>20.000.000 ₺</option>
+            </select>
+          </div>
+          <div class="search-submit">
+            <button class="btn btn-brick" type="submit">İlanları göster</button>
+          </div>
+        </div>
+      </form>
+      <div class="quick">
+        <span>Sık arananlar:</span>
+        <a href="#ilanlar">Bostanlı'da denize yakın</a>
+        <a href="#ilanlar">Mavişehir site içi</a>
+        <a href="#ilanlar" data-filter-link="kiralik">Çarşıya yakın kiralık</a>
+        <a href="#ilanlar">Bahçeli müstakil</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="index" aria-label="Portföy özeti">
+    <div class="wrap">
+      <ul>
+        <li><a href="#ilanlar" data-filter-link="satilik"><b>20</b><span>Satılık daire</span></a></li>
+        <li><a href="#ilanlar" data-filter-link="kiralik"><b>6</b><span>Kiralık daire</span></a></li>
+        <li><a href="#ilanlar"><b>3</b><span>Satılık iş yeri</span></a></li>
+        <li><a href="#ilanlar"><b>2</b><span>Kiralık iş yeri</span></a></li>
+        <li><a href="#ilanlar"><b>4</b><span>Müstakil ve villa</span></a></li>
+        <li><a href="#ilanlar"><b>2</b><span>Arsa</span></a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block" id="ilanlar">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Portföy</div>
+          <h2>Bu hafta öne çıkanlar</h2>
+        </div>
+        <div class="filters" role="group" aria-label="İlan filtresi">
+          <button type="button" aria-pressed="true" data-filter="tumu">Tümü</button>
+          <button type="button" aria-pressed="false" data-filter="satilik">Satılık</button>
+          <button type="button" aria-pressed="false" data-filter="kiralik">Kiralık</button>
+        </div>
+      </div>
+
+      <div class="listings">
+        <article class="card featured" data-type="satilik">
+          <a class="card-photo" href="#">
+            <img src="img/ilan-bostanli-deniz.jpg" alt="Deniz manzaralı salon, Bostanlı" loading="lazy">
+            <span class="tag">Satılık</span>
+          </a>
+          <div class="card-body">
+            <div class="card-top"><div class="price">14.750.000 <small>₺</small></div><span class="ref">İlan no 1042</span></div>
+            <h3>Denize ikinci parsel, geniş balkonlu 3+1</h3>
+            <div class="loc">Bostanlı · Cemal Gürsel Caddesi'ne 2 dk</div>
+            <ul class="specs"><li>145 m²</li><li>3+1</li><li>3. kat</li><li>8 yaşında</li><li>Doğalgaz kombi</li></ul>
+            <div class="features"><span>Deniz manzarası</span><span>Asansör</span><span>Kapalı otopark</span><span>Ebeveyn banyosu</span></div>
+          </div>
+        </article>
+
+        <article class="card" data-type="satilik">
+          <a class="card-photo" href="#">
+            <img src="img/ilan-mavisehir.jpg" alt="Aydınlık salon, Mavişehir" loading="lazy">
+            <span class="tag">Satılık</span>
+          </a>
+          <div class="card-body">
+            <div class="card-top"><div class="price">8.450.000 <small>₺</small></div><span class="ref">1038</span></div>
+            <h3>Havuzlu site içinde 2+1</h3>
+            <div class="loc">Mavişehir</div>
+            <ul class="specs"><li>105 m²</li><li>2+1</li><li>7. kat</li><li>15 yaşında</li></ul>
+          </div>
+        </article>
+
+        <article class="card" data-type="kiralik">
+          <a class="card-photo" href="#">
+            <img src="img/ilan-carsi-kiralik.jpg" alt="Eşyasız kiralık daire, Karşıyaka Merkez" loading="lazy">
+            <span class="tag kiralik">Kiralık</span>
+          </a>
+          <div class="card-body">
+            <div class="card-top"><div class="price">32.000 <small>₺ / ay</small></div><span class="ref">1051</span></div>
+            <h3>Çarşıya 3 dakika, eşyasız 2+1</h3>
+            <div class="loc">Karşıyaka Merkez</div>
+            <ul class="specs"><li>95 m²</li><li>2+1</li><li>2. kat</li><li>Depozito 2 kira</li></ul>
+          </div>
+        </article>
+
+        <article class="card" data-type="satilik">
+          <a class="card-photo" href="#">
+            <img src="img/ilan-atakent.jpg" alt="Güney cepheli salon, Atakent" loading="lazy">
+            <span class="tag">Satılık</span>
+          </a>
+          <div class="card-body">
+            <div class="card-top"><div class="price">11.900.000 <small>₺</small></div><span class="ref">1029</span></div>
+            <h3>Güney cephe, gün boyu güneş alan 3+1</h3>
+            <div class="loc">Atakent</div>
+            <ul class="specs"><li>130 m²</li><li>3+1</li><li>5. kat</li><li>12 yaşında</li></ul>
+          </div>
+        </article>
+
+        <article class="card" data-type="satilik">
+          <a class="card-photo" href="#">
+            <img src="img/ilan-semikler.jpg" alt="Bahçeli müstakil ev, Şemikler" loading="lazy">
+            <span class="tag">Satılık</span>
+          </a>
+          <div class="card-body">
+            <div class="card-top"><div class="price">16.500.000 <small>₺</small></div><span class="ref">1017</span></div>
+            <h3>300 m² arsa içinde bahçeli müstakil</h3>
+            <div class="loc">Şemikler</div>
+            <ul class="specs"><li>220 m²</li><li>4+1</li><li>2 katlı</li><li>Otopark</li></ul>
+          </div>
+        </article>
+
+        <article class="card" data-type="kiralik">
+          <a class="card-photo" href="#">
+            <img src="img/ilan-donanmaci.jpg" alt="Eşyalı 1+1 kiralık, Donanmacı" loading="lazy">
+            <span class="tag kiralik">Kiralık</span>
+          </a>
+          <div class="card-body">
+            <div class="card-top"><div class="price">22.500 <small>₺ / ay</small></div><span class="ref">1055</span></div>
+            <h3>İskeleye yürüme mesafesinde eşyalı 1+1</h3>
+            <div class="loc">Donanmacı</div>
+            <ul class="specs"><li>60 m²</li><li>1+1</li><li>1. kat</li><li>Eşyalı</li></ul>
+          </div>
+        </article>
+      </div>
+
+      <div class="all-link"><a class="btn btn-line" href="#ilanlar">Tüm ilanları görün (37)</a></div>
+    </div>
+  </section>
+
+  <section class="block" id="semtler">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Semtler</div>
+          <h2>Hangi sokakta ne var, biliyoruz.</h2>
+        </div>
+        <p class="lead" style="max-width:440px;margin:0;font-size:16px">Ev bakarken sadece daireye değil, sokağa, okula, iskeleye ve pazara da bakarsınız. Biz de öyle anlatırız.</p>
+      </div>
+      <div class="hoods">
+        <a class="hood" href="#ilanlar">
+          <img src="img/semt-bostanli.jpg" alt="Bostanlı sahil yolu ve apartmanlar" loading="lazy">
+          <h3>Bostanlı <small>12 ilan</small></h3>
+          <p>Sahil yürüyüş yolu, vapur iskelesi ve semt pazarı. Denize yakın oturmak isteyenlerin ilk tercihi.</p>
+        </a>
+        <a class="hood" href="#ilanlar">
+          <img src="img/semt-carsi.jpg" alt="Karşıyaka Çarşı" loading="lazy">
+          <h3>Karşıyaka Merkez <small>9 ilan</small></h3>
+          <p>Çarşı, İZBAN ve iskele yürüme mesafesinde. Kiralıkta en hareketli bölge.</p>
+        </a>
+        <a class="hood" href="#ilanlar">
+          <img class="low" src="img/semt-donanmaci.jpg" alt="Denizden Donanmacı sahili" loading="lazy">
+          <h3>Donanmacı <small>6 ilan</small></h3>
+          <p>Sahile paralel sakin sokaklar, eski Karşıyaka dokusu. Ara sokaklarda uygun fırsatlar.</p>
+        </a>
+        <a class="hood" href="#ilanlar">
+          <img src="img/semt-mavisehir.jpg" alt="Bostanlı sahilinden Mavişehir, akşam" loading="lazy">
+          <h3>Mavişehir <small>8 ilan</small></h3>
+          <p>Havuzlu siteler, geniş daireler ve İZBAN. Aileler için planlı, düzenli bir yaşam.</p>
+        </a>
+      </div>
+      <div class="hood-more">
+        <span>Diğer semtler:</span>
+        <a href="#ilanlar">Atakent</a><a href="#ilanlar">Yalı</a><a href="#ilanlar">Şemikler</a><a href="#ilanlar">Demirköprü</a><a href="#ilanlar">Alaybey</a><a href="#ilanlar">Tersane</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="owners" id="evinizi-verin">
+    <div class="wrap owners-grid">
+      <div>
+        <div class="eyebrow">Ev sahipleri için</div>
+        <h2>Evinizi satmak ya da kiraya vermek mi istiyorsunuz?</h2>
+        <p class="lead">Bilgileri buradan gönderin. İnceleyip sizi arıyoruz, evi yerinde görüyoruz. Onayımızdan sonra ilanınız sitede yayına giriyor.</p>
+        <ol class="steps">
+          <li><b>01</b><div><strong>Bilgileri gönderin</strong><span>Konum, metrekare, fiyat beklentisi ve birkaç fotoğraf yeterli.</span></div></li>
+          <li><b>02</b><div><strong>Arayıp yerinde görüyoruz</strong><span>Semtteki benzer ilanlara göre gerçekçi bir fiyat konuşuyoruz.</span></div></li>
+          <li><b>03</b><div><strong>Onaylanınca yayında</strong><span>İlanınız kontrol edildikten sonra sitede ve portföyümüzde yer alır.</span></div></li>
+        </ol>
+      </div>
+
+      <form class="owner-form" id="owner-form">
+        <h3>İlan bilgileri</h3>
+        <p>Gönderdiğiniz ilan incelendikten sonra yayına alınır.</p>
+        <div class="form-grid">
+          <div class="fg full">
+            <div class="seg" role="radiogroup" aria-label="İşlem türü">
+              <label><input type="radio" name="islem" value="sat" checked><span>Satmak istiyorum</span></label>
+              <label><input type="radio" name="islem" value="kira"><span>Kiraya vermek</span></label>
+            </div>
+          </div>
+          <div class="fg"><label for="o-ad">Adınız soyadınız</label><input id="o-ad" required autocomplete="name"></div>
+          <div class="fg"><label for="o-tel">Telefon</label><input id="o-tel" type="tel" required placeholder="05xx xxx xx xx" autocomplete="tel"></div>
+          <div class="fg"><label for="o-semt">Semt</label>
+            <select id="o-semt"><option>Bostanlı</option><option>Mavişehir</option><option>Atakent</option><option>Donanmacı</option><option>Karşıyaka Merkez</option><option>Yalı</option><option>Şemikler</option><option>Diğer</option></select>
+          </div>
+          <div class="fg"><label for="o-tip">Emlak tipi</label>
+            <select id="o-tip"><option>Daire</option><option>Müstakil ev</option><option>Villa</option><option>İş yeri</option><option>Arsa</option></select>
+          </div>
+          <div class="fg"><label for="o-m2">Brüt m²</label><input id="o-m2" inputmode="numeric" placeholder="Örn. 120"></div>
+          <div class="fg"><label for="o-oda">Oda sayısı</label>
+            <select id="o-oda"><option>1+1</option><option selected>2+1</option><option>3+1</option><option>4+1</option><option>5+1 ve üzeri</option></select>
+          </div>
+          <div class="fg full"><label for="o-fiyat">Fiyat beklentiniz</label><input id="o-fiyat" inputmode="numeric" placeholder="Örn. 9.500.000 ₺"></div>
+          <div class="fg full">
+            <label class="drop" for="o-foto">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1"/><circle cx="9" cy="10" r="1.8"/><path d="M21 16l-5-5-8 8"/></svg>
+              <span><strong id="foto-text">Fotoğraf ekleyin</strong>En fazla 10 fotoğraf, telefonunuzdan çektikleriniz de olur.</span>
+            </label>
+            <input id="o-foto" type="file" accept="image/*" multiple hidden>
+          </div>
+          <div class="fg full"><label for="o-not">Eklemek istedikleriniz</label><textarea id="o-not" placeholder="Kat, cephe, aidat, ne zaman boşalacağı gibi bilgiler"></textarea></div>
+        </div>
+        <div class="form-foot">
+          <button class="btn btn-brick" type="submit">Bilgileri gönder</button>
+          <a href="https://wa.me/905322864617" style="font-size:14px;color:var(--muted);border-bottom:1px solid var(--line-2)">WhatsApp'tan yazmayı tercih ederim</a>
+        </div>
+        <div class="form-done" id="form-done" role="status">Teşekkürler. Bilgileriniz bize ulaştı, en kısa sürede sizi arayacağız. İlanınız onaylandıktan sonra yayına alınacak.</div>
+      </form>
+    </div>
+  </section>
+
+  <section class="block about" id="hakkimizda">
+    <div class="wrap about-grid">
+      <figure class="about-photo" style="margin:0">
+        <img src="img/ofis-sahil.jpg" alt="Bostanlı sahili" loading="lazy">
+        <figcaption>Bostanlı sahili, ofisimize birkaç dakika</figcaption>
+      </figure>
+      <div>
+        <div class="eyebrow">Hakkımızda</div>
+        <h2>Karşıyaka'da, Karşıyakalılarla.</h2>
+        <p>Özkal Gayrimenkul, Bostanlı'daki ofisinden Karşıyaka'nın dört bir yanında ev alan, satan ve kiralayanlarla çalışıyor.</p>
+        <p>İlanlarımızı kendimiz görüp fotoğraflıyoruz, fiyatı semtteki gerçek satışlara göre konuşuyoruz. Tapu gününe kadar da yanınızdayız.</p>
+        <ul class="promises">
+          <li><i>a.</i><span><b>Gerçek fotoğraf, gerçek fiyat.</b> Gördüğünüz ev, gideceğiniz ev.</span></li>
+          <li><i>b.</i><span><b>Randevuyla yerinde gösterim.</b> Size uyan saatte, hafta sonu dahil.</span></li>
+          <li><i>c.</i><span><b>Tapuya kadar süreç takibi.</b> Evrak, ekspertiz ve tapu randevusu bizde.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="iletisim">
+    <div class="wrap">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <div class="eyebrow">İletişim</div>
+          <h2>Ofisimize bekleriz.</h2>
+          <dl class="contact-list">
+            <div><dt>Adres</dt><dd>Bostanlı Mah., Karşıyaka / İzmir</dd></div>
+            <div><dt>Telefon</dt><dd><a href="tel:+902323309911">0232 330 99 11</a></dd></div>
+            <div><dt>Cep</dt><dd><a href="tel:+905322864617">0532 286 46 17</a></dd></div>
+            <div><dt>Saatler</dt><dd>Pzt – Cmt, 09.00 – 19.00</dd></div>
+          </dl>
+          <div class="contact-actions">
+            <a class="btn btn-brick" href="https://wa.me/905322864617">WhatsApp'tan yazın</a>
+            <a class="btn btn-line" href="https://maps.google.com/?q=Bostanl%C4%B1+Kar%C5%9F%C4%B1yaka+%C4%B0zmir">Yol tarifi</a>
+          </div>
+        </div>
+        <div class="map">
+          <iframe title="Ofis konumu" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps?q=Bostanl%C4%B1%2C%20Kar%C5%9F%C4%B1yaka%2C%20%C4%B0zmir&z=14&output=embed"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="#"><span class="brand-mark">Ö</span><span><span class="brand-name">Özkal</span><span class="brand-sub">Gayrimenkul Danışmanlık</span></span></a>
+        <p style="max-width:320px;margin:18px 0 0">Karşıyaka'da satılık ve kiralık konut, iş yeri ve arsa.</p>
+      </div>
+      <div>
+        <h4>İlanlar</h4>
+        <ul><li><a href="#ilanlar">Satılık daire</a></li><li><a href="#ilanlar">Kiralık daire</a></li><li><a href="#ilanlar">İş yeri</a></li><li><a href="#ilanlar">Müstakil ve villa</a></li></ul>
+      </div>
+      <div>
+        <h4>Semtler</h4>
+        <ul><li><a href="#semtler">Bostanlı</a></li><li><a href="#semtler">Mavişehir</a></li><li><a href="#semtler">Atakent</a></li><li><a href="#semtler">Donanmacı</a></li></ul>
+      </div>
+      <div>
+        <h4>Ofis</h4>
+        <ul><li><a href="#hakkimizda">Hakkımızda</a></li><li><a href="#evinizi-verin">Evinizi verin</a></li><li><a href="#iletisim">İletişim</a></li></ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Özkal Gayrimenkul Danışmanlık · Önizleme: <a href="https://himbel.com" style="border-bottom:1px solid var(--line-2)">Himbel</a></span>
+      <span class="credits">Semt fotoğrafları Wikimedia Commons: sorkin (CC BY 2.0), Dosseman (CC BY-SA 4.0), Michael_ksk (CC BY-SA 3.0), BSRF (CC BY-SA 4.0), ilker arslantürk (CC BY 3.0). İç mekan fotoğrafları Unsplash, örnek amaçlıdır.</span>
+    </div>
+  </div>
+</footer>
+
+<div class="mbar">
+  <a class="btn btn-line" href="tel:+902323309911">Ara</a>
+  <a class="btn btn-brick" href="https://wa.me/905322864617">WhatsApp</a>
+</div>
+
+<script>
+  // listing filter
+  const cards = [...document.querySelectorAll('.listings .card')];
+  const filterBtns = [...document.querySelectorAll('.filters button')];
+  function applyFilter(type) {
+    filterBtns.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.filter === type)));
+    cards.forEach(c => { c.hidden = type !== 'tumu' && c.dataset.type !== type; });
+  }
+  filterBtns.forEach(b => b.addEventListener('click', () => applyFilter(b.dataset.filter)));
+  document.querySelectorAll('[data-filter-link]').forEach(a =>
+    a.addEventListener('click', () => { applyFilter(a.dataset.filterLink); closeMenu(); }));
+
+  // search tabs + price options
+  const tabs = [...document.querySelectorAll('.search-tabs button')];
+  const priceSel = document.getElementById('s-fiyat');
+  let searchType = 'satilik';
+  tabs.forEach(t => t.addEventListener('click', () => {
+    searchType = t.dataset.type;
+    tabs.forEach(x => x.setAttribute('aria-selected', String(x === t)));
+    priceSel.innerHTML = JSON.parse(priceSel.dataset[searchType]).map(v => `<option>${v}</option>`).join('');
+  }));
+  document.getElementById('search').addEventListener('submit', e => {
+    e.preventDefault();
+    applyFilter(searchType);
+    document.getElementById('ilanlar').scrollIntoView({ behavior: 'smooth' });
+  });
+
+  // owner form (preview only)
+  const foto = document.getElementById('o-foto');
+  foto.addEventListener('change', () => {
+    document.getElementById('foto-text').textContent = foto.files.length ? `${foto.files.length} fotoğraf seçildi` : 'Fotoğraf ekleyin';
+  });
+  document.getElementById('owner-form').addEventListener('submit', e => {
+    e.preventDefault();
+    document.getElementById('form-done').classList.add('show');
+  });
+
+  // mobile menu
+  const toggle = document.querySelector('.menu-toggle');
+  const mnav = document.querySelector('.mnav');
+  function closeMenu() { mnav.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); }
+  toggle.addEventListener('click', () => {
+    const open = mnav.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', String(open));
+  });
+  mnav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+</script>
+</body>
+</html>
