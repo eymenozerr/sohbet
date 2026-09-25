@@ -130,18 +130,6 @@
   .card:hover h3 { color: var(--o-text); }
   .more { display: flex; justify-content: center; margin-top: 44px; }
 
-  /* about */
-  .about { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: 80px; align-items: center; }
-  .about-ph { aspect-ratio: 4 / 5; border-radius: 14px; background: var(--g1); border: 1px dashed #cfcfca; display: grid; place-content: center; justify-items: center; gap: 6px; padding: 24px; text-align: center; color: var(--g5); font-size: 14px; }
-  .about-ph .ico { width: 28px; height: 28px; margin-bottom: 6px; }
-  .about-ph b { color: var(--g6); font-weight: 600; font-size: 15px; }
-  .about .quote { margin: 0 0 22px; max-width: 640px; color: var(--k); font-size: 30px; line-height: 1.25; font-weight: 600; letter-spacing: -.025em; }
-  .about p { margin: 0 0 30px; max-width: 580px; color: var(--g6); font-size: 17px; }
-  .sign { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; padding-top: 24px; border-top: 1px solid var(--g2); }
-  .sign b { display: block; }
-  .sign span { font-size: 14px; color: var(--g5); }
-  .sign .btn { margin-left: auto; }
-
   /* areas */
   .areas { list-style: none; margin: 24px 0 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); column-gap: 32px; }
   .areas a { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; padding: 16px 0; border-bottom: 1px solid var(--g2); }
@@ -200,8 +188,6 @@
     .contact { grid-template-columns: minmax(0, 1fr); }
     .map { border-left: 0; border-top: 1px solid var(--g2); min-height: 340px; }
     .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .about { grid-template-columns: minmax(0, 1fr); gap: 40px; }
-    .about-ph { aspect-ratio: 16 / 9; }
     .areas { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .foot-top { grid-template-columns: 1fr 1fr; }
   }
@@ -238,9 +224,6 @@
     .sort select { max-width: 100%; padding: 0 26px 0 10px; background-position: right 10px center; font-size: 14px; }
     .seg button { padding: 0 10px; font-size: 14px; }
     .grid { grid-template-columns: minmax(0, 1fr); gap: 32px; }
-    .about .quote { font-size: 23px; }
-    .about p { font-size: 16px; }
-    .sign .btn { margin-left: 0; width: 100%; }
     .areas { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 20px; }
     .foot { margin-top: 72px; }
     .foot-top { grid-template-columns: minmax(0, 1fr); gap: 28px; padding: 40px 0 32px; }
@@ -393,18 +376,6 @@
     </div>
   </section>
 
-  <!-- ABOUT -->
-  <section class="block" id="hakkimizda">
-    <div class="wrap about">
-      <div class="about-ph"><svg class="ico"><use href="#i-cam"/></svg><b>Yusuf Bey'in fotoğrafı</b>Ofiste çekilmiş doğal bir kare buraya gelecek</div>
-      <div>
-        <p class="quote">“Bir evi beğenmediyseniz size onu satmaya çalışmam. İyisini de kötüsünü de gördüğüm gibi söylerim.”</p>
-        <p>Ofisimiz Bostanlı'da. Karşıyaka başta olmak üzere İzmir'in birçok semtinde satılık ve kiralık ev, iş yeri ve arsa ile ilgileniyoruz. Evleri randevuyla, sizin uygun olduğunuz saatte birlikte geziyoruz.</p>
-        <div class="sign"><span><b>Yusuf Ö.</b>Özkal Emlak</span><a class="btn btn-line" href="tel:+905322864617"><svg class="ico"><use href="#i-phone"/></svg>0532 286 46 17</a></div>
-      </div>
-    </div>
-  </section>
-
   <!-- AREAS -->
   <section class="block" id="semtler">
     <div class="wrap">
@@ -430,7 +401,7 @@
       <div class="contact">
         <div class="contact-info">
           <h2>Ofisimize bekleriz</h2>
-          <p>Uğramadan önce arayın, sizi bekleyelim.</p>
+          <p>Bostanlı'daki ofisimizden İzmir genelinde çalışıyoruz. Uğramadan önce arayın, sizi bekleyelim.</p>
           <div class="cl">
             <div><span class="ci"><svg class="ico"><use href="#i-pin"/></svg></span><span><small>Adres</small>Bostanlı Mah., Karşıyaka / İzmir</span></div>
             <div><span class="ci"><svg class="ico"><use href="#i-phone"/></svg></span><span><small>Telefon</small><a href="tel:+902323309911">0232 330 99 11</a> · <a href="tel:+905322864617">0532 286 46 17</a></span></div>
