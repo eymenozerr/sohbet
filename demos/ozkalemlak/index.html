@@ -3,103 +3,178 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Özkal Emlak · Karşıyaka Satılık ve Kiralık Daireler</title>
+<title>Özkal Emlak · Karşıyaka Satılık ve Kiralık İlanlar</title>
 <meta name="description" content="Bostanlı, Mavişehir, Atakent, Donanmacı ve Karşıyaka merkezde satılık ve kiralık daire, iş yeri ve arsa ilanları.">
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --o: #e8672a; --o-hover: #d4571c; --o-light: #fff3ec;
-    --k: #121212; --g7: #474747; --g5: #7a7a7a; --g3: #d9d9d9; --g2: #ebebeb; --g1: #f6f6f5;
-    --wrap: 1240px; --gut: 32px;
+    --o: #e8672a; --o-hover: #d4571c; --o-light: #fff2ea; --o-text: #b94a14;
+    --k: #111; --g8: #2e2e2e; --g6: #5c5c5c; --g5: #7b7b7b; --g3: #d7d7d7; --g2: #e9e9e9; --g1: #f5f5f4;
+    --wrap: 1280px; --gut: 32px;
   }
   * { box-sizing: border-box; }
-  body { margin: 0; background: #fff; color: var(--k); font: 400 16px/1.55 "Onest", system-ui, -apple-system, "Segoe UI", sans-serif; -webkit-font-smoothing: antialiased; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: #fff; color: var(--k); font: 400 15px/1.5 "Schibsted Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif; -webkit-font-smoothing: antialiased; font-feature-settings: "tnum" 0; }
   a { color: inherit; text-decoration: none; }
   img { display: block; max-width: 100%; }
   button, input, select { font: inherit; color: inherit; }
+  button { cursor: pointer; }
   .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 var(--gut); }
+  .num { font-variant-numeric: tabular-nums; }
 
-  /* nav */
-  .nav { position: sticky; top: 0; z-index: 20; background: rgba(255,255,255,.96); backdrop-filter: blur(8px); border-bottom: 1px solid var(--g2); }
-  .nav .wrap { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; height: 72px; }
-  .logo { justify-self: start; font-size: 23px; letter-spacing: -.03em; line-height: 1; }
-  .logo b { font-weight: 700; }
-  .logo span { font-weight: 400; color: var(--o); }
-  .links { display: flex; gap: 30px; }
-  .links a { font-size: 15px; font-weight: 500; color: var(--g7); position: relative; padding: 6px 0; }
-  .links a:hover { color: var(--k); }
-  .links a.on { color: var(--k); }
-  .links a.on::after { content: ""; position: absolute; left: 0; right: 0; bottom: -2px; height: 2px; border-radius: 2px; background: var(--o); }
-  .nav-right { justify-self: end; display: flex; align-items: center; gap: 20px; }
-  .tel { display: flex; align-items: center; gap: 7px; font-size: 15px; font-weight: 600; }
-  .tel svg { width: 16px; height: 16px; color: var(--o); }
-  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 42px; padding: 0 18px; border: 0; border-radius: 8px; font-weight: 600; font-size: 15px; cursor: pointer; white-space: nowrap; transition: background-color .15s; }
+  /* ---------- nav ---------- */
+  .nav { position: sticky; top: 0; z-index: 30; background: #fff; border-bottom: 1px solid var(--g2); }
+  .nav .wrap { display: flex; align-items: center; height: 68px; gap: 40px; }
+  .logo { display: flex; align-items: center; gap: 10px; flex: none; }
+  .mark { width: 32px; height: 32px; border-radius: 8px; background: var(--k); display: grid; place-items: center; }
+  .mark svg { width: 20px; height: 20px; }
+  .wordmark { font-size: 20px; letter-spacing: -.02em; line-height: 1; }
+  .wordmark b { font-weight: 700; }
+  .wordmark span { color: var(--o); font-weight: 500; }
+  .links { display: flex; gap: 4px; }
+  .links a { padding: 8px 12px; border-radius: 8px; font-weight: 500; color: var(--g6); }
+  .links a:hover { background: var(--g1); color: var(--k); }
+  .links a.on { color: var(--k); background: var(--g1); }
+  .nav-right { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+  .tel { display: flex; align-items: center; gap: 8px; padding: 0 12px; height: 40px; font-weight: 600; }
+  .tel small { display: block; font-size: 11.5px; font-weight: 500; color: var(--g5); line-height: 1.1; }
+  .tel-ico { width: 32px; height: 32px; border-radius: 50%; background: var(--o-light); display: grid; place-items: center; color: var(--o); }
+  .tel-ico svg { width: 15px; height: 15px; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 40px; padding: 0 16px; border-radius: 8px; border: 1px solid transparent; font-weight: 600; white-space: nowrap; transition: background-color .15s, border-color .15s; }
   .btn-o { background: var(--o); color: #fff; }
   .btn-o:hover { background: var(--o-hover); }
-  .burger { display: none; justify-self: end; width: 42px; height: 42px; border: 1px solid var(--g3); border-radius: 8px; background: #fff; cursor: pointer; }
-  .burger span { display: block; width: 18px; height: 2px; background: var(--k); margin: 4px auto; border-radius: 1px; }
+  .btn-line { border-color: var(--g3); background: #fff; }
+  .btn-line:hover { border-color: var(--k); }
+  .btn svg { width: 16px; height: 16px; }
+  .burger { display: none; margin-left: auto; width: 40px; height: 40px; border: 1px solid var(--g3); border-radius: 8px; background: #fff; }
+  .burger span { display: block; width: 16px; height: 1.8px; background: var(--k); margin: 3.5px auto; border-radius: 1px; }
 
-  /* hero */
-  .hero { padding: 64px 0 72px; }
-  .hero .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 72px; align-items: center; }
-  .hero h1 { margin: 0 0 14px; font-size: 52px; line-height: 1.05; font-weight: 600; letter-spacing: -.04em; }
-  .hero .sub { margin: 0 0 32px; font-size: 18px; color: var(--g5); }
-  .sbar { display: flex; height: 58px; border: 1px solid var(--g3); border-radius: 12px; padding: 5px; background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.04); }
-  .sbar:focus-within { border-color: var(--k); }
-  .sbar select {
-    border: 0; border-right: 1px solid var(--g2); padding: 0 36px 0 12px; font-weight: 600; font-size: 15px; outline: 0; cursor: pointer;
-    appearance: none; -webkit-appearance: none;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23121212' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat right 14px center;
-  }
-  .sbar input { flex: 1; min-width: 0; border: 0; padding: 0 14px; font-size: 16px; outline: 0; background: transparent; }
-  .sbar input::placeholder { color: var(--g5); }
-  .sbar .btn { height: auto; padding: 0 22px; }
-  .semts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
-  .semts a { font-size: 14px; color: var(--g7); padding: 6px 12px; border-radius: 999px; background: var(--g1); }
-  .semts a:hover { background: var(--o-light); color: var(--o-hover); }
+  /* ---------- page head ---------- */
+  .head { padding: 40px 0 0; }
+  .head-row { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; }
+  .crumb { font-size: 13px; color: var(--g5); margin-bottom: 10px; }
+  .crumb a:hover { color: var(--k); }
+  .crumb i { font-style: normal; margin: 0 6px; color: var(--g3); }
+  h1 { margin: 0; font-size: 36px; line-height: 1.12; font-weight: 600; letter-spacing: -.03em; }
+  h1 em { font-style: normal; color: var(--g5); font-weight: 500; }
+  .updated { display: flex; align-items: center; gap: 8px; font-size: 13.5px; color: var(--g5); white-space: nowrap; padding-bottom: 6px; }
+  .live { width: 7px; height: 7px; border-radius: 50%; background: #1f9d55; box-shadow: 0 0 0 3px #e3f4ea; }
 
-  /* featured */
-  .feat { position: relative; }
-  .feat-photo { position: relative; display: block; border-radius: 16px; overflow: hidden; aspect-ratio: 5 / 4; background: var(--g1); }
-  .feat-photo img { width: 100%; height: 100%; object-fit: cover; transition: opacity .3s ease; }
-  .feat-tag { position: absolute; left: 16px; top: 16px; background: #fff; font-size: 13px; font-weight: 600; padding: 6px 10px; border-radius: 6px; }
-  .feat-bar { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; padding: 18px 4px 0; }
-  .feat-title { font-size: 17px; font-weight: 600; }
-  .feat-meta { font-size: 14px; color: var(--g5); margin-top: 1px; }
-  .feat-price { font-size: 20px; font-weight: 600; letter-spacing: -.02em; margin-top: 6px; }
-  .feat-price small { font-size: 14px; font-weight: 500; color: var(--g5); letter-spacing: 0; }
-  .feat-nav { display: flex; gap: 8px; }
-  .feat-nav button { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--g3); background: #fff; cursor: pointer; display: grid; place-items: center; }
-  .feat-nav button:hover { border-color: var(--k); }
-  .feat-nav svg { width: 16px; height: 16px; }
-  .dots { position: absolute; right: 16px; top: 18px; display: flex; gap: 5px; }
-  .dots i { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,.55); }
-  .dots i.on { background: #fff; }
+  /* ---------- filter bar ---------- */
+  .filters { position: sticky; top: 68px; z-index: 20; background: #fff; margin-top: 24px; border-bottom: 1px solid var(--g2); }
+  .filters .wrap { display: flex; align-items: center; gap: 8px; height: 64px; }
+  .seg { display: inline-flex; padding: 3px; background: var(--g1); border-radius: 9px; flex: none; }
+  .seg button { border: 0; background: none; height: 34px; padding: 0 14px; border-radius: 7px; font-weight: 600; color: var(--g5); }
+  .seg button[aria-pressed="true"] { background: #fff; color: var(--k); box-shadow: 0 1px 2px rgba(0,0,0,.08), 0 0 0 1px rgba(0,0,0,.04); }
+  .vr { width: 1px; height: 24px; background: var(--g2); margin: 0 6px; flex: none; }
+  .pill { display: inline-flex; align-items: center; gap: 6px; height: 40px; padding: 0 12px 0 14px; border: 1px solid var(--g3); border-radius: 999px; background: #fff; font-weight: 500; color: var(--g8); white-space: nowrap; flex: none; }
+  .pill:hover { border-color: var(--k); }
+  .pill svg { width: 14px; height: 14px; color: var(--g5); }
+  .pill.active { border-color: var(--o); background: var(--o-light); color: var(--o-text); }
+  .pill.active svg { color: var(--o-text); }
+  .filters-right { margin-left: auto; display: flex; align-items: center; gap: 8px; flex: none; }
+  .sort { display: flex; align-items: center; gap: 6px; font-size: 14px; color: var(--g5); }
+  .sort select { border: 0; font-weight: 600; color: var(--k); background: transparent; padding: 4px 18px 4px 2px; appearance: none; -webkit-appearance: none; outline: 0;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23111' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat right 2px center; cursor: pointer; }
+  .view { display: inline-flex; border: 1px solid var(--g3); border-radius: 8px; overflow: hidden; }
+  .view button { width: 38px; height: 36px; border: 0; background: #fff; display: grid; place-items: center; color: var(--g5); }
+  .view button + button { border-left: 1px solid var(--g3); }
+  .view button.on { background: var(--k); color: #fff; }
+  .view svg { width: 16px; height: 16px; }
 
-  .preview-note { position: fixed; left: 16px; bottom: 16px; z-index: 30; background: var(--k); color: #fff; font-size: 12.5px; padding: 7px 11px; border-radius: 6px; opacity: .88; }
+  /* ---------- listings ---------- */
+  .results { padding: 28px 0 0; }
+  .count { font-size: 14px; color: var(--g5); margin-bottom: 18px; }
+  .count b { color: var(--k); font-weight: 600; }
+  .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px 24px; }
+  .card { position: relative; display: flex; flex-direction: column; }
+  .card[hidden] { display: none; }
+  .ph { position: relative; border-radius: 10px; overflow: hidden; background: var(--g1); aspect-ratio: 4 / 3; }
+  .ph img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s cubic-bezier(.2,.7,.2,1); }
+  .card:hover .ph img { transform: scale(1.035); }
+  .badges { position: absolute; left: 12px; top: 12px; display: flex; gap: 6px; }
+  .badge { font-size: 12px; font-weight: 600; padding: 4px 8px; border-radius: 6px; background: #fff; color: var(--k); }
+  .badge.new { background: var(--o); color: #fff; }
+  .badge.drop { background: #fff; color: #1f7a44; }
+  .badge.rent { background: var(--k); color: #fff; }
+  .save { position: absolute; right: 12px; top: 12px; width: 34px; height: 34px; border-radius: 50%; border: 0; background: rgba(255,255,255,.92); display: grid; place-items: center; color: var(--k); }
+  .save svg { width: 17px; height: 17px; }
+  .save[aria-pressed="true"] { color: var(--o); }
+  .save[aria-pressed="true"] svg { fill: currentColor; }
+  .photos { position: absolute; right: 12px; bottom: 12px; display: flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 600; color: #fff; background: rgba(17,17,17,.62); padding: 3px 8px; border-radius: 6px; }
+  .photos svg { width: 13px; height: 13px; }
+  .info { padding-top: 14px; }
+  .price-row { display: flex; align-items: baseline; gap: 8px; }
+  .price { font-size: 21px; font-weight: 700; letter-spacing: -.02em; }
+  .price small { font-size: 14px; font-weight: 500; color: var(--g5); letter-spacing: 0; }
+  .old { font-size: 14px; color: var(--g5); text-decoration: line-through; }
+  .title { margin: 4px 0 0; font-size: 15.5px; font-weight: 500; color: var(--g8); }
+  .specs { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .specs span { font-size: 13px; color: var(--g6); background: var(--g1); padding: 3px 8px; border-radius: 5px; }
+  .foot { display: flex; justify-content: space-between; gap: 8px; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--g2); font-size: 13px; color: var(--g5); }
+  .loc { display: flex; align-items: center; gap: 5px; color: var(--g6); }
+  .loc svg { width: 14px; height: 14px; color: var(--g5); }
 
-  @media (max-width: 1080px) {
+  .card.big { grid-column: span 2; grid-row: span 2; }
+  .card.big .ph { aspect-ratio: auto; flex: 1; min-height: 360px; }
+  .card.big .price { font-size: 26px; }
+  .card.big .title { font-size: 17px; }
+
+  .more { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 44px; }
+  .more p { margin: 0; font-size: 13.5px; color: var(--g5); }
+  .more .btn { height: 46px; padding: 0 24px; }
+
+  /* ---------- owner band ---------- */
+  .band { margin: 72px 0 0; }
+  .band-in { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 32px; padding: 36px 40px; border-radius: 14px; background: var(--g1); }
+  .band h2 { margin: 0 0 6px; font-size: 24px; font-weight: 600; letter-spacing: -.02em; }
+  .band p { margin: 0; color: var(--g6); max-width: 620px; }
+  .band-actions { display: flex; gap: 8px; }
+  .band .btn { height: 46px; padding: 0 20px; }
+
+  /* ---------- footer ---------- */
+  .footer { margin-top: 72px; border-top: 1px solid var(--g2); padding: 32px 0 40px; font-size: 13.5px; color: var(--g5); }
+  .footer .wrap { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+  .footer a:hover { color: var(--k); }
+  .footer .sep { margin: 0 10px; color: var(--g3); }
+
+  .preview-note { position: fixed; left: 16px; bottom: 16px; z-index: 40; background: var(--k); color: #fff; font-size: 12.5px; padding: 7px 11px; border-radius: 6px; opacity: .88; }
+
+  @media (max-width: 1120px) {
     .links, .tel { display: none; }
-    .nav .wrap { grid-template-columns: 1fr auto auto; gap: 10px; }
-    .burger { display: block; }
-    .hero .wrap { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+    .nav-right { margin-left: auto; }
+    .burger { display: block; margin-left: 0; }
+    .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .card.big { grid-row: auto; }
+    .card.big .ph { aspect-ratio: 16 / 9; min-height: 0; flex: none; }
+    .sort span { display: none; }
   }
-  @media (max-width: 640px) {
+  @media (max-width: 720px) {
     :root { --gut: 16px; }
-    .nav .wrap { height: 62px; }
-    .logo { font-size: 21px; }
-    .nav-right .btn { height: 40px; padding: 0 14px; font-size: 14px; }
-    .hero { padding: 32px 0 48px; }
-    .hero h1 { font-size: 34px; }
-    .hero .sub { font-size: 16px; margin-bottom: 22px; }
-    .sbar { height: 54px; }
-    .sbar select { padding: 0 30px 0 8px; background-position: right 10px center; }
-    .sbar input { padding: 0 10px; font-size: 15px; }
-    .sbar .btn { padding: 0 16px; }
-    .feat-photo { border-radius: 12px; }
+    .nav .wrap { height: 60px; gap: 12px; }
+    .nav-right .btn-line { display: none; }
+    .nav-right .btn-o { height: 38px; padding: 0 12px; font-size: 14px; }
+    .wordmark { font-size: 19px; }
+    .mark { width: 30px; height: 30px; }
+    .head { padding-top: 24px; }
+    .head-row { flex-direction: column; align-items: flex-start; gap: 10px; }
+    h1 { font-size: 27px; }
+    h1 em { display: none; }
+    .updated { padding: 0; }
+    .filters { top: 60px; margin-top: 18px; }
+    .filters .wrap { overflow-x: auto; scrollbar-width: none; height: 60px; }
+    .filters .wrap::-webkit-scrollbar { display: none; }
+    .filters-right { margin-left: 8px; }
+    .view { display: none; }
+    .grid { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+    .card.big { grid-column: auto; }
+    .card.big .ph { aspect-ratio: 4 / 3; }
+    .card.big .price { font-size: 22px; }
+    .band-in { grid-template-columns: minmax(0, 1fr); padding: 24px 20px; }
+    .band-actions { flex-wrap: wrap; }
     .preview-note { display: none; }
   }
 </style>
@@ -108,16 +183,23 @@
 
 <header class="nav">
   <div class="wrap">
-    <a class="logo" href="#" aria-label="Özkal Emlak ana sayfa"><b>Özkal</b> <span>Emlak</span></a>
+    <a class="logo" href="#" aria-label="Özkal Emlak ana sayfa">
+      <span class="mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5 12 6l8 6.5" stroke="#e8672a" stroke-width="2.4"/><path d="M7.5 12v6h9v-6" stroke="#fff" stroke-width="2"/></svg></span>
+      <span class="wordmark"><b>Özkal</b> <span>Emlak</span></span>
+    </a>
     <nav class="links" aria-label="Ana menü">
-      <a class="on" href="#">Satılık</a>
-      <a href="#">Kiralık</a>
+      <a class="on" href="#">İlanlar</a>
       <a href="#">Semtler</a>
+      <a href="#">Evinizi verin</a>
       <a href="#">Hakkımızda</a>
       <a href="#">İletişim</a>
     </nav>
     <div class="nav-right">
-      <a class="tel" href="tel:+902323309911"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>0232 330 99 11</a>
+      <a class="tel" href="tel:+902323309911">
+        <span class="tel-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></span>
+        <span><small>Hemen arayın</small>0232 330 99 11</span>
+      </a>
+      <a class="btn btn-line" href="https://wa.me/905322864617">WhatsApp</a>
       <a class="btn btn-o" href="#">Evinizi verin</a>
     </div>
     <button class="burger" aria-label="Menü"><span></span><span></span><span></span></button>
@@ -125,69 +207,225 @@
 </header>
 
 <main>
-  <section class="hero">
+  <section class="head">
     <div class="wrap">
-      <div>
-        <h1>Karşıyaka'da<br>ev arıyorsanız.</h1>
-        <p class="sub">Satılık ve kiralık 37 ilan, semti bilen bir ofisten.</p>
-        <form class="sbar" role="search" onsubmit="return false">
-          <select aria-label="İlan türü"><option>Satılık</option><option>Kiralık</option></select>
-          <input placeholder="Semt, mahalle veya ilan no" data-short="Semt veya ilan no" aria-label="Semt, mahalle veya ilan no">
-          <button class="btn btn-o" type="submit">Ara</button>
-        </form>
-        <div class="semts"><a href="#">Bostanlı</a><a href="#">Mavişehir</a><a href="#">Atakent</a><a href="#">Donanmacı</a><a href="#">Çarşı</a></div>
+      <div class="crumb"><a href="#">İzmir</a><i>/</i><a href="#">Karşıyaka</a><i>/</i>Tüm ilanlar</div>
+      <div class="head-row">
+        <h1>Karşıyaka'da satılık ve kiralık evler <em>· Bostanlı, Mavişehir, Atakent</em></h1>
+        <div class="updated"><span class="live" aria-hidden="true"></span>Portföy bugün güncellendi</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="filters">
+    <div class="wrap">
+      <div class="seg" role="group" aria-label="İlan türü">
+        <button type="button" aria-pressed="true" data-f="tumu">Tümü</button>
+        <button type="button" aria-pressed="false" data-f="satilik">Satılık</button>
+        <button type="button" aria-pressed="false" data-f="kiralik">Kiralık</button>
+      </div>
+      <span class="vr" aria-hidden="true"></span>
+      <button class="pill active" type="button">Karşıyaka <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+      <button class="pill" type="button">Oda sayısı <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+      <button class="pill" type="button">Fiyat <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+      <button class="pill" type="button">Emlak tipi <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+      <button class="pill" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M7 12h10M10 18h4"/></svg> Diğer filtreler</button>
+      <div class="filters-right">
+        <label class="sort"><span>Sırala:</span>
+          <select aria-label="Sıralama"><option>En yeni</option><option>Fiyat artan</option><option>Fiyat azalan</option><option>Metrekare</option></select>
+        </label>
+        <div class="view" role="group" aria-label="Görünüm">
+          <button class="on" type="button" aria-label="Izgara"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg></button>
+          <button type="button" aria-label="Harita"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2z"/><path d="M9 4v14M15 6v14"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="results">
+    <div class="wrap">
+      <div class="count"><b id="count">37 ilan</b> içinden en yeniler gösteriliyor</div>
+
+      <div class="grid" id="grid">
+        <article class="card big" data-t="satilik">
+          <a class="ph" href="#">
+            <img src="img/ilan-bostanli-deniz.jpg" alt="Bostanlı'da deniz manzaralı salon">
+            <span class="badges"><span class="badge new">Yeni</span><span class="badge">Deniz manzaralı</span></span>
+            <span class="photos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="3"/></svg>18</span>
+          </a>
+          <button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></button>
+          <div class="info">
+            <div class="price-row"><span class="price num">14.750.000 TL</span></div>
+            <h3 class="title">Denize ikinci parsel, geniş balkonlu 3+1</h3>
+            <div class="specs"><span>3+1</span><span>145 m²</span><span>3. kat</span><span>8 yaşında</span><span>Kapalı otopark</span></div>
+            <div class="foot"><span class="loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-6-5.3-6-11a6 6 0 0 1 12 0c0 5.7-6 11-6 11z"/><circle cx="12" cy="10" r="2"/></svg>Bostanlı, Karşıyaka</span><span class="num">İlan no 1042 · Bugün</span></div>
+          </div>
+        </article>
+
+        <article class="card" data-t="satilik">
+          <a class="ph" href="#">
+            <img src="img/ilan-mavisehir.jpg" alt="Mavişehir'de aydınlık salon" loading="lazy">
+            <span class="badges"><span class="badge drop">Fiyat düştü</span></span>
+            <span class="photos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="3"/></svg>12</span>
+          </a>
+          <button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></button>
+          <div class="info">
+            <div class="price-row"><span class="price num">8.450.000 TL</span><span class="old num">8.900.000 TL</span></div>
+            <h3 class="title">Havuzlu site içinde 2+1</h3>
+            <div class="specs"><span>2+1</span><span>105 m²</span><span>7. kat</span></div>
+            <div class="foot"><span class="loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-6-5.3-6-11a6 6 0 0 1 12 0c0 5.7-6 11-6 11z"/><circle cx="12" cy="10" r="2"/></svg>Mavişehir</span><span class="num">1038 · 2 gün önce</span></div>
+          </div>
+        </article>
+
+        <article class="card" data-t="kiralik">
+          <a class="ph" href="#">
+            <img src="img/ilan-carsi-kiralik.jpg" alt="Karşıyaka merkezde kiralık daire" loading="lazy">
+            <span class="badges"><span class="badge rent">Kiralık</span></span>
+            <span class="photos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="3"/></svg>9</span>
+          </a>
+          <button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></button>
+          <div class="info">
+            <div class="price-row"><span class="price num">32.000 TL <small>/ ay</small></span></div>
+            <h3 class="title">Çarşıya 3 dakika, eşyasız 2+1</h3>
+            <div class="specs"><span>2+1</span><span>95 m²</span><span>2. kat</span><span>Aidat 900 TL</span></div>
+            <div class="foot"><span class="loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-6-5.3-6-11a6 6 0 0 1 12 0c0 5.7-6 11-6 11z"/><circle cx="12" cy="10" r="2"/></svg>Karşıyaka Merkez</span><span class="num">1051 · 3 gün önce</span></div>
+          </div>
+        </article>
+
+        <article class="card" data-t="satilik">
+          <a class="ph" href="#">
+            <img src="img/ilan-atakent.jpg" alt="Atakent'te güney cepheli salon" loading="lazy">
+            <span class="photos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="3"/></svg>14</span>
+          </a>
+          <button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></button>
+          <div class="info">
+            <div class="price-row"><span class="price num">11.900.000 TL</span></div>
+            <h3 class="title">Güney cephe, gün boyu güneş alan 3+1</h3>
+            <div class="specs"><span>3+1</span><span>130 m²</span><span>5. kat</span></div>
+            <div class="foot"><span class="loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-6-5.3-6-11a6 6 0 0 1 12 0c0 5.7-6 11-6 11z"/><circle cx="12" cy="10" r="2"/></svg>Atakent</span><span class="num">1029 · 5 gün önce</span></div>
+          </div>
+        </article>
+
+        <article class="card" data-t="satilik">
+          <a class="ph" href="#">
+            <img src="img/ilan-semikler.jpg" alt="Şemikler'de bahçeli müstakil ev" loading="lazy">
+            <span class="badges"><span class="badge">Müstakil</span></span>
+            <span class="photos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="3"/></svg>22</span>
+          </a>
+          <button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></button>
+          <div class="info">
+            <div class="price-row"><span class="price num">16.500.000 TL</span></div>
+            <h3 class="title">300 m² arsa içinde bahçeli müstakil</h3>
+            <div class="specs"><span>4+1</span><span>220 m²</span><span>2 katlı</span></div>
+            <div class="foot"><span class="loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-6-5.3-6-11a6 6 0 0 1 12 0c0 5.7-6 11-6 11z"/><circle cx="12" cy="10" r="2"/></svg>Şemikler</span><span class="num">1017 · 1 hafta önce</span></div>
+          </div>
+        </article>
+
+        <article class="card" data-t="kiralik">
+          <a class="ph" href="#">
+            <img src="img/ilan-donanmaci.jpg" alt="Donanmacı'da eşyalı kiralık daire" loading="lazy">
+            <span class="badges"><span class="badge rent">Kiralık</span><span class="badge">Eşyalı</span></span>
+            <span class="photos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="3"/></svg>8</span>
+          </a>
+          <button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></button>
+          <div class="info">
+            <div class="price-row"><span class="price num">22.500 TL <small>/ ay</small></span></div>
+            <h3 class="title">İskeleye yürüme mesafesinde 1+1</h3>
+            <div class="specs"><span>1+1</span><span>60 m²</span><span>1. kat</span></div>
+            <div class="foot"><span class="loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-6-5.3-6-11a6 6 0 0 1 12 0c0 5.7-6 11-6 11z"/><circle cx="12" cy="10" r="2"/></svg>Donanmacı</span><span class="num">1055 · 1 hafta önce</span></div>
+          </div>
+        </article>
+
+        <article class="card" data-t="satilik">
+          <a class="ph" href="#">
+            <img src="img/ilan-mavisehir-4.jpg" alt="Mavişehir'de geniş 4+1" loading="lazy">
+            <span class="photos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="3"/></svg>16</span>
+          </a>
+          <button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></button>
+          <div class="info">
+            <div class="price-row"><span class="price num">13.250.000 TL</span></div>
+            <h3 class="title">Geniş salonlu, ebeveyn banyolu 4+1</h3>
+            <div class="specs"><span>4+1</span><span>175 m²</span><span>9. kat</span></div>
+            <div class="foot"><span class="loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-6-5.3-6-11a6 6 0 0 1 12 0c0 5.7-6 11-6 11z"/><circle cx="12" cy="10" r="2"/></svg>Mavişehir</span><span class="num">1011 · 2 hafta önce</span></div>
+          </div>
+        </article>
+
+        <article class="card" data-t="satilik">
+          <a class="ph" href="#">
+            <img src="img/ilan-alaybey.jpg" alt="Alaybey'de yenilenmiş mutfak" loading="lazy">
+            <span class="badges"><span class="badge drop">Fiyat düştü</span></span>
+            <span class="photos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="3"/></svg>11</span>
+          </a>
+          <button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></button>
+          <div class="info">
+            <div class="price-row"><span class="price num">6.950.000 TL</span><span class="old num">7.300.000 TL</span></div>
+            <h3 class="title">Mutfağı yenilenmiş, bakımlı 2+1</h3>
+            <div class="specs"><span>2+1</span><span>90 m²</span><span>3. kat</span></div>
+            <div class="foot"><span class="loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-6-5.3-6-11a6 6 0 0 1 12 0c0 5.7-6 11-6 11z"/><circle cx="12" cy="10" r="2"/></svg>Alaybey</span><span class="num">1008 · 2 hafta önce</span></div>
+          </div>
+        </article>
+        <article class="card" data-t="satilik">
+          <a class="ph" href="#">
+            <img src="img/semt-bostanli.jpg" alt="Bostanlı'da sahil yolundaki apartmanlar" loading="lazy">
+            <span class="badges"><span class="badge">Sahile yakın</span></span>
+            <span class="photos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="3"/></svg>15</span>
+          </a>
+          <button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></button>
+          <div class="info">
+            <div class="price-row"><span class="price num">12.400.000 TL</span></div>
+            <h3 class="title">Sahil yoluna bir sokak, asansörlü 3+1</h3>
+            <div class="specs"><span>3+1</span><span>125 m²</span><span>4. kat</span></div>
+            <div class="foot"><span class="loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-6-5.3-6-11a6 6 0 0 1 12 0c0 5.7-6 11-6 11z"/><circle cx="12" cy="10" r="2"/></svg>Bostanlı</span><span class="num">1004 · 3 hafta önce</span></div>
+          </div>
+        </article>
       </div>
 
-      <div class="feat" aria-label="Öne çıkan ilanlar">
-        <a class="feat-photo" href="#">
-          <img id="feat-img" src="img/ilan-mavisehir.jpg" alt="">
-          <span class="feat-tag" id="feat-tag">Yeni ilan</span>
-          <span class="dots" id="dots"><i class="on"></i><i></i><i></i><i></i></span>
-        </a>
-        <div class="feat-bar">
-          <a href="#">
-            <div class="feat-title" id="feat-title">Havuzlu site içinde 2+1</div>
-            <div class="feat-meta" id="feat-meta">Mavişehir · 105 m² · 7. kat</div>
-            <div class="feat-price" id="feat-price">8.450.000 ₺</div>
-          </a>
-          <div class="feat-nav">
-            <button type="button" id="prev" aria-label="Önceki ilan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 5l-7 7 7 7"/></svg></button>
-            <button type="button" id="next" aria-label="Sonraki ilan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg></button>
-          </div>
+      <div class="more">
+        <a class="btn btn-line" href="#">Tüm ilanları göster</a>
+        <p class="num">37 ilandan 9'u gösteriliyor</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap">
+      <div class="band-in">
+        <div>
+          <h2>Evinizi satmak ya da kiraya vermek mi istiyorsunuz?</h2>
+          <p>Bilgileri gönderin, evi yerinde görüp fiyatı birlikte belirleyelim. Onaydan sonra ilanınız burada yayına girer.</p>
+        </div>
+        <div class="band-actions">
+          <a class="btn btn-line" href="https://wa.me/905322864617">WhatsApp'tan yazın</a>
+          <a class="btn btn-o" href="#">İlan bilgilerini gönderin</a>
         </div>
       </div>
     </div>
   </section>
 </main>
 
+<footer class="footer">
+  <div class="wrap">
+    <span>© 2026 Özkal Emlak<span class="sep">·</span>Bostanlı Mah., Karşıyaka / İzmir<span class="sep">·</span>Bostanlı fotoğrafı: Dosseman, CC BY-SA 4.0</span>
+    <span><a href="tel:+902323309911">0232 330 99 11</a><span class="sep">·</span><a href="tel:+905322864617">0532 286 46 17</a></span>
+  </div>
+</footer>
+
 <div class="preview-note">Önizleme · ilanlar örnektir</div>
 
 <script>
-  const q = document.querySelector('.sbar input');
-  if (matchMedia('(max-width: 640px)').matches) q.placeholder = q.dataset.short;
-
-  const items = [
-    { img: 'img/ilan-mavisehir.jpg', tag: 'Yeni ilan', title: 'Havuzlu site içinde 2+1', meta: 'Mavişehir · 105 m² · 7. kat', price: '8.450.000 ₺' },
-    { img: 'img/ilan-bostanli-deniz.jpg', tag: 'Satılık', title: 'Denize ikinci parsel, balkonlu 3+1', meta: 'Bostanlı · 145 m² · 3. kat', price: '14.750.000 ₺' },
-    { img: 'img/ilan-carsi-kiralik.jpg', tag: 'Kiralık', title: 'Çarşıya 3 dakika, eşyasız 2+1', meta: 'Karşıyaka Merkez · 95 m² · 2. kat', price: '32.000 ₺ <small>/ ay</small>' },
-    { img: 'img/ilan-semikler.jpg', tag: 'Satılık', title: 'Bahçeli müstakil ev', meta: 'Şemikler · 220 m² · 300 m² arsa', price: '16.500.000 ₺' }
-  ];
-  let i = 0;
-  const $ = id => document.getElementById(id);
-  const dots = [...$('dots').children];
-  function show(n) {
-    i = (n + items.length) % items.length;
-    const it = items[i];
-    $('feat-img').style.opacity = 0;
-    setTimeout(() => { $('feat-img').src = it.img; $('feat-img').style.opacity = 1; }, 160);
-    $('feat-tag').textContent = it.tag;
-    $('feat-title').textContent = it.title;
-    $('feat-meta').textContent = it.meta;
-    $('feat-price').innerHTML = it.price;
-    dots.forEach((d, k) => d.classList.toggle('on', k === i));
-  }
-  $('prev').addEventListener('click', () => show(i - 1));
-  $('next').addEventListener('click', () => show(i + 1));
+  const cards = [...document.querySelectorAll('.card')];
+  const segBtns = [...document.querySelectorAll('.seg button')];
+  const count = document.getElementById('count');
+  const totals = { tumu: 37, satilik: 29, kiralik: 8 };
+  segBtns.forEach(b => b.addEventListener('click', () => {
+    const f = b.dataset.f;
+    segBtns.forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+    cards.forEach(c => { c.hidden = f !== 'tumu' && c.dataset.t !== f; });
+    count.textContent = totals[f] + ' ilan';
+  }));
+  document.querySelectorAll('.save').forEach(s => s.addEventListener('click', () => {
+    s.setAttribute('aria-pressed', String(s.getAttribute('aria-pressed') !== 'true'));
+  }));
 </script>
 </body>
 </html>
