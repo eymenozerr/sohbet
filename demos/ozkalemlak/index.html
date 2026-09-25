@@ -127,6 +127,13 @@
   .loc { display: block; font-size: 14px; color: var(--g5); }
   .g4 .price { font-size: 19px; }
 
+  /* owner band */
+  .owner { display: flex; align-items: center; justify-content: space-between; gap: 32px; padding: 44px 48px; background: var(--o-light); border-radius: var(--r-lg); }
+  .owner h2 { margin: 0 0 8px; font-size: 28px; line-height: 1.15; font-weight: 700; letter-spacing: -.025em; }
+  .owner p { margin: 0; max-width: 560px; color: var(--g6); }
+  .owner .btn { height: 52px; padding: 0 26px; }
+  .owner .btn:hover .ico { transform: translateX(3px); }
+
   /* areas */
   .areas { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); column-gap: 32px; }
   .areas a { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 18px 0; border-bottom: 1px solid var(--g2); }
@@ -231,6 +238,9 @@
     .rail .card { scroll-snap-align: start; }
     .areas { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 20px; }
     .areas .ico { display: none; }
+    .owner { flex-direction: column; align-items: flex-start; gap: 22px; padding: 30px 22px; border-radius: 18px; }
+    .owner h2 { font-size: 23px; }
+    .owner .btn { width: 100%; }
     .contact-info { padding: 28px 20px; border-radius: 18px; }
     .map { border-radius: 18px; }
     .footer { margin: 72px 6px 6px; border-radius: 18px; }
@@ -413,6 +423,18 @@
           <button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg class="ico" aria-hidden="true"><use href="#i-heart"/></svg></button>
           <a class="cb" href="#"><span class="price">4.200.000 TL</span><h3>Yola cepheli, konut imarlı arsa</h3><span class="spec">Arsa · 1.250 m² · İmarlı</span><span class="loc">Seyrek, Menemen</span></a>
         </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="owner">
+        <div>
+          <h2>Evinizi satmak ya da kiraya vermek mi istiyorsunuz?</h2>
+          <p>Evinizi yerinde görelim, bölgedeki benzer ilanlara bakarak fiyatını birlikte belirleyelim.</p>
+        </div>
+        <a class="btn btn-o" href="#">Evinizi verin <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </div>
     </div>
   </section>
