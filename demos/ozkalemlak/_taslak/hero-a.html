@@ -1,0 +1,52 @@
+<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Özkal Gayrimenkul</title>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css">
+<style>
+.hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);min-height:640px;border-bottom:1px solid var(--g2)}
+.hl{display:flex;flex-direction:column;justify-content:center;padding:64px 72px 64px max(40px,calc((100vw - 1320px)/2 + 40px))}
+.kicker{font-size:15px;color:var(--g5);margin:0 0 22px}
+.kicker b{color:var(--k);font-weight:600}
+h1{font-size:52px;line-height:1.06;letter-spacing:-.035em;font-weight:600;margin:0 0 36px;max-width:560px}
+.sbar{display:flex;border:1.5px solid var(--k);border-radius:8px;height:60px;max-width:580px;overflow:hidden;background:#fff}
+.sbar select{border:0;border-right:1px solid var(--g2);padding:0 38px 0 18px;font-weight:600;appearance:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23111' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat right 16px center;outline:0;cursor:pointer}
+.sbar input{flex:1;border:0;padding:0 18px;font-size:16px;outline:0;min-width:0}
+.sbar input::placeholder{color:var(--g5)}
+.sbar .btn{height:auto;border-radius:0;padding:0 26px}
+.semts{margin-top:22px;font-size:14px;color:var(--g5);line-height:2}
+.semts a{color:var(--g7);text-decoration:underline;text-decoration-color:var(--g3);text-underline-offset:4px;margin-right:14px}
+.semts a:hover{color:var(--o);text-decoration-color:var(--o)}
+.hr{position:relative;background:var(--g1)}
+.hr img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.feat{position:absolute;left:32px;bottom:32px;background:#fff;padding:18px 20px;border-radius:8px;min-width:300px;box-shadow:0 8px 24px -10px rgba(0,0,0,.25)}
+.feat small{display:block;font-size:12.5px;color:var(--o);font-weight:600;margin-bottom:6px}
+.feat strong{display:block;font-size:17px;font-weight:600}
+.feat span{display:block;font-size:14px;color:var(--g5);margin-top:2px}
+.feat em{font-style:normal;display:block;font-size:22px;font-weight:600;margin-top:10px;letter-spacing:-.02em}
+</style></head><body>
+<div class="util"><div class="wrap">
+  <div>Bostanlı Mah., Karşıyaka / İzmir<span class="sep">|</span>Pazartesi – Cumartesi 09.00 – 19.00</div>
+  <div><a href="tel:+902323309911">0232 330 99 11</a><span class="sep">|</span><a href="tel:+905322864617">0532 286 46 17</a></div>
+</div></div>
+<header class="nav"><div class="wrap">
+  <a class="logo" href="#"><b>Özkal<i>.</i></b><span>GAYRİMENKUL</span></a>
+  <nav class="links"><a class="on" href="#">Satılık</a><a href="#">Kiralık</a><a href="#">Semtler</a><a href="#">Hakkımızda</a><a href="#">İletişim</a></nav>
+  <div class="cta"><a class="btn btn-o" href="#">Evinizi bize verin</a></div>
+</div></header>
+<section class="hero">
+  <div class="hl">
+    <p class="kicker">Karşıyaka'da <b>37 aktif ilan</b> · Bu hafta 4 yeni</p>
+    <h1>Bostanlı'dan Mavişehir'e, Karşıyaka'nın her köşesinde.</h1>
+    <form class="sbar" onsubmit="return false">
+      <select aria-label="İlan türü"><option>Satılık</option><option>Kiralık</option></select>
+      <input placeholder="Semt, mahalle veya ilan no" aria-label="Arama">
+      <button class="btn btn-o">Ara</button>
+    </form>
+    <div class="semts">Semtler: <a href="#">Bostanlı</a><a href="#">Mavişehir</a><a href="#">Atakent</a><a href="#">Donanmacı</a><a href="#">Çarşı</a><a href="#">Şemikler</a></div>
+  </div>
+  <div class="hr">
+    <img src="../img/ilan-mavisehir.jpg" alt="">
+    <a class="feat" href="#"><small>Yeni ilan</small><strong>Havuzlu site içinde 2+1</strong><span>Mavişehir · 105 m² · 7. kat</span><em>8.450.000 ₺</em></a>
+  </div>
+</section>
+</body></html>

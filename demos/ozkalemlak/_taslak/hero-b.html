@@ -1,0 +1,52 @@
+<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Özkal Gayrimenkul</title>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css">
+<style>
+.top{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:64px;align-items:end;padding:64px 0 40px}
+h1{font-size:58px;line-height:1.04;letter-spacing:-.04em;font-weight:600;margin:0}
+.side p{margin:0 0 20px;color:var(--g7);font-size:17px;max-width:440px}
+.sbar{display:flex;gap:8px}
+.sbar .box{flex:1;display:flex;border:1px solid var(--g3);border-radius:6px;height:52px;overflow:hidden}
+.sbar .box:focus-within{border-color:var(--k)}
+.sbar select{border:0;border-right:1px solid var(--g2);padding:0 34px 0 14px;font-weight:600;appearance:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23111' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat right 12px center;outline:0}
+.sbar input{flex:1;border:0;padding:0 14px;outline:0;min-width:0}
+.sbar .btn{height:52px}
+.photo{position:relative}
+.photo img{width:100%;height:520px;object-fit:cover;object-position:50% 70%;border-radius:4px}
+.under{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--g2)}
+.under a{padding:22px 0;display:flex;justify-content:space-between;align-items:baseline;border-right:1px solid var(--g2);padding-right:24px}
+.under a+a{padding-left:24px}.under a:last-child{border-right:0}
+.under b{font-weight:600}.under span{color:var(--g5);font-size:14px}
+.under a:hover b{color:var(--o)}
+.cap{position:absolute;left:16px;bottom:14px;color:#fff;font-size:12.5px;text-shadow:0 1px 3px rgba(0,0,0,.5)}
+</style></head><body>
+<div class="util"><div class="wrap">
+  <div>Bostanlı Mah., Karşıyaka / İzmir<span class="sep">|</span>Pazartesi – Cumartesi 09.00 – 19.00</div>
+  <div><a href="tel:+902323309911">0232 330 99 11</a><span class="sep">|</span><a href="tel:+905322864617">0532 286 46 17</a></div>
+</div></div>
+<header class="nav"><div class="wrap">
+  <a class="logo" href="#"><b>Özkal<i>.</i></b><span>GAYRİMENKUL</span></a>
+  <nav class="links"><a class="on" href="#">Satılık</a><a href="#">Kiralık</a><a href="#">Semtler</a><a href="#">Hakkımızda</a><a href="#">İletişim</a></nav>
+  <div class="cta"><a class="btn btn-o" href="#">Evinizi bize verin</a></div>
+</div></header>
+<main class="wrap">
+  <div class="top">
+    <h1>Bostanlı'dan Mavişehir'e, Karşıyaka'nın her köşesinde.</h1>
+    <div class="side">
+      <p>Satılık ve kiralık daire, iş yeri ve arsa. Semti sokak sokak bilen bir ofisten.</p>
+      <form class="sbar" onsubmit="return false">
+        <div class="box"><select aria-label="İlan türü"><option>Satılık</option><option>Kiralık</option></select><input placeholder="Semt, mahalle veya ilan no" aria-label="Arama"></div>
+        <button class="btn btn-o">Ara</button>
+      </form>
+    </div>
+  </div>
+  <div class="photo"><img src="../img/hero-bostanli-barinak.jpg" alt="Bostanlı Balıkçı Barınağı"><span class="cap">Bostanlı Balıkçı Barınağı</span></div>
+  <div class="under">
+    <a href="#"><b>Satılık daire</b><span>20 ilan</span></a>
+    <a href="#"><b>Kiralık daire</b><span>6 ilan</span></a>
+    <a href="#"><b>İş yeri</b><span>5 ilan</span></a>
+    <a href="#"><b>Müstakil, villa, arsa</b><span>6 ilan</span></a>
+  </div>
+</main>
+</body></html>
