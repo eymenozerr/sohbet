@@ -4,363 +4,592 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Özkal Emlak · Karşıyaka Satılık ve Kiralık İlanlar</title>
-<meta name="description" content="Bostanlı, Mavişehir, Atakent, Donanmacı ve Karşıyaka merkezde satılık ve kiralık daire, iş yeri ve arsa ilanları.">
+<meta name="description" content="Bostanlı, Mavişehir, Atakent, Donanmacı ve Karşıyaka merkezde satılık ve kiralık daire, iş yeri ve arsa ilanları. Özkal Emlak, Bostanlı / Karşıyaka.">
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --o: #e8672a; --o-hover: #d4571c; --o-light: #fff2ea; --o-text: #b94a14;
-    --k: #111; --g8: #2c2c2c; --g6: #5c5c5c; --g5: #7b7b7b; --g3: #dadada; --g2: #ebebeb; --g1: #f5f5f4;
+    --o: #e8672a; --o-hover: #d2561b; --o-light: #fff2ea; --o-text: #b64a15;
+    --k: #111; --g8: #2b2b2b; --g6: #595959; --g5: #787878; --g3: #d9d9d9; --g2: #eaeaea; --g1: #f5f5f3;
+    --r: 10px; --r-lg: 16px;
     --wrap: 1240px; --gut: 32px;
   }
   * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body { margin: 0; background: #fff; color: var(--k); font: 400 15.5px/1.5 "Schibsted Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif; -webkit-font-smoothing: antialiased; }
+  html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+  body { margin: 0; background: #fff; color: var(--k); font: 400 16px/1.55 "Schibsted Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif; -webkit-font-smoothing: antialiased; }
   a { color: inherit; text-decoration: none; }
   img { display: block; max-width: 100%; }
-  button, input, select { font: inherit; color: inherit; }
+  button, input, select, textarea { font: inherit; color: inherit; }
   button { cursor: pointer; }
   .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 var(--gut); }
+  .ico { width: 18px; height: 18px; flex: none; }
 
-  /* ---------- buttons (all pill) ---------- */
-  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 44px; padding: 0 22px; border-radius: 999px; border: 1px solid transparent; font-weight: 600; white-space: nowrap; transition: background-color .15s, border-color .15s, color .15s; }
-  .btn svg { width: 16px; height: 16px; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 46px; padding: 0 20px; border-radius: var(--r); border: 1px solid transparent; font-weight: 600; font-size: 15px; white-space: nowrap; transition: background-color .15s, border-color .15s, color .15s; }
+  .btn .ico { width: 17px; height: 17px; }
   .btn-o { background: var(--o); color: #fff; }
   .btn-o:hover { background: var(--o-hover); }
   .btn-k { background: var(--k); color: #fff; }
-  .btn-k:hover { background: #2a2a2a; }
-  .btn-line { border-color: var(--g3); background: #fff; }
+  .btn-k:hover { background: #2b2b2b; }
+  .btn-line { border-color: var(--g3); background: #fff; color: var(--k); }
   .btn-line:hover { border-color: var(--k); }
-  .btn-white { background: #fff; color: var(--k); }
 
-  /* ---------- floating nav ---------- */
-  .nav { position: fixed; top: 20px; left: 0; right: 0; z-index: 50; pointer-events: none; }
-  .nav-bar {
-    pointer-events: auto; max-width: 1180px; margin: 0 auto; height: 64px; padding: 0 8px 0 22px;
-    display: flex; align-items: center; gap: 24px;
-    background: rgba(255,255,255,.94); backdrop-filter: saturate(160%) blur(14px); -webkit-backdrop-filter: saturate(160%) blur(14px);
-    border-radius: 999px; border: 1px solid rgba(0,0,0,.06);
-    transition: box-shadow .25s ease;
-  }
-  .nav.scrolled .nav-bar { box-shadow: 0 10px 30px -12px rgba(0,0,0,.18); }
-  .logo { display: flex; align-items: center; gap: 9px; font-size: 19px; letter-spacing: -.02em; flex: none; }
-  .logo-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--o); box-shadow: 0 0 0 4px var(--o-light); }
-  .logo b { font-weight: 700; }
-  .logo span { font-weight: 500; color: var(--g5); }
-  .links { display: flex; gap: 2px; margin: 0 auto; }
-  .links a { padding: 9px 15px; border-radius: 999px; font-weight: 500; color: var(--g6); transition: background-color .15s, color .15s; }
-  .links a:hover { color: var(--k); background: var(--g1); }
-  .links a.on { color: var(--k); background: var(--g1); }
-  .nav-right { display: flex; align-items: center; gap: 6px; flex: none; }
-  .nav-tel { display: flex; align-items: center; gap: 8px; height: 48px; padding: 0 16px; border-radius: 999px; font-weight: 600; }
-  .nav-tel:hover { background: var(--g1); }
-  .nav-tel svg { width: 16px; height: 16px; color: var(--o); }
-  .nav-right .btn { height: 48px; padding: 0 22px; }
-  .round { display: none; width: 44px; height: 44px; border-radius: 50%; border: 0; background: var(--g1); place-items: center; }
-  .round svg { width: 18px; height: 18px; }
-  .round.tel svg { color: var(--o); }
+  /* ============ NAV ============ */
+  .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; color: #fff; transition: background-color .25s, color .25s, border-color .25s, box-shadow .25s; border-bottom: 1px solid transparent; }
+  .nav .wrap { display: flex; align-items: center; height: 84px; max-width: 1320px; transition: height .25s; }
+  .nav.solid { background: rgba(255,255,255,.97); color: var(--k); border-bottom-color: var(--g2); backdrop-filter: blur(10px); }
+  .nav.solid .wrap { height: 70px; }
+  .logo { display: flex; align-items: center; gap: 10px; margin-right: 44px; }
+  .logo-mark { position: relative; width: 30px; height: 30px; border-radius: 8px; background: var(--o); flex: none; }
+  .logo-mark::before { content: ""; position: absolute; left: 7px; top: 9px; width: 12px; height: 12px; border-left: 2.5px solid #fff; border-top: 2.5px solid #fff; transform: translate(1px, 1px) rotate(45deg); }
+  .logo-mark::after { content: ""; position: absolute; left: 9px; right: 9px; bottom: 7px; height: 2.5px; background: #fff; border-radius: 2px; }
+  .logo-text { font-size: 20px; line-height: 1; letter-spacing: -.02em; }
+  .logo-text b { font-weight: 700; }
+  .logo-text span { font-weight: 400; opacity: .75; }
+  .menu { display: flex; gap: 32px; }
+  .menu a { font-size: 15px; font-weight: 500; opacity: .86; transition: opacity .15s; }
+  .menu a:hover { opacity: 1; }
+  .nav-right { margin-left: auto; display: flex; align-items: center; gap: 22px; }
+  .nav-tel { display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 15px; }
+  .nav-tel .ico { width: 16px; height: 16px; }
+  .nav .btn { height: 42px; }
+  .nav:not(.solid) .btn-line { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.4); color: #fff; }
+  .nav:not(.solid) .btn-line:hover { background: #fff; color: var(--k); }
+  .nav-mobile { display: none; margin-left: auto; gap: 8px; }
+  .nav-mobile a, .nav-mobile button { width: 42px; height: 42px; border-radius: var(--r); display: grid; place-items: center; border: 1px solid rgba(255,255,255,.4); background: rgba(255,255,255,.12); color: inherit; }
+  .nav.solid .nav-mobile a, .nav.solid .nav-mobile button { border-color: var(--g3); background: #fff; }
+  .drawer { display: none; }
 
-  /* ---------- hero ---------- */
-  .hero { padding: 12px 12px 0; }
-  .hero-media { position: relative; height: min(88vh, 800px); min-height: 620px; border-radius: 28px; overflow: hidden; background: #cfd8de; }
-  .hero-media > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; }
-  .hero-media::after {
-    content: ""; position: absolute; inset: 0; pointer-events: none;
-    background:
-      linear-gradient(180deg, rgba(0,0,0,.22) 0%, rgba(0,0,0,0) 22%),
-      linear-gradient(0deg, rgba(8,12,16,.72) 0%, rgba(8,12,16,.38) 34%, rgba(8,12,16,0) 58%);
-  }
-  .hero-content { position: absolute; left: 0; right: 0; bottom: 56px; z-index: 1; text-align: center; color: #fff; padding: 0 24px; }
-  .hero h1 { margin: 0 0 12px; font-size: 64px; line-height: 1.02; font-weight: 700; letter-spacing: -.04em; }
-  .hero-sub { margin: 0 auto 32px; max-width: 560px; font-size: 18px; color: rgba(255,255,255,.88); }
-  .hero-cap { position: absolute; right: 24px; bottom: 18px; z-index: 1; font-size: 12px; color: rgba(255,255,255,.7); }
+  /* ============ HERO ============ */
+  .hero { padding: 10px 10px 0; }
+  .hero-media { position: relative; min-height: 720px; height: 92vh; max-height: 860px; border-radius: 20px; overflow: hidden; background: #b9c4cc; display: flex; flex-direction: column; justify-content: flex-end; }
+  .hero-media > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 42%; }
+  .hero-media::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(180deg, rgba(0,0,0,.42) 0%, rgba(0,0,0,0) 20%), linear-gradient(90deg, rgba(10,12,14,.45) 0%, rgba(10,12,14,.15) 45%, rgba(10,12,14,0) 70%), linear-gradient(0deg, rgba(10,12,14,.8) 0%, rgba(10,12,14,.5) 32%, rgba(10,12,14,0) 62%); }
+  .hero-inner { position: relative; z-index: 2; width: 100%; max-width: 1320px; margin: 0 auto; padding: 0 var(--gut) 44px; color: #fff; }
+  .hero h1 { margin: 0 0 14px; max-width: 1000px; font-size: 66px; line-height: 1; font-weight: 700; letter-spacing: -.045em; }
+  .hero-sub { margin: 0 0 32px; max-width: 620px; font-size: 18px; color: rgba(255,255,255,.85); }
 
-  /* search pill */
-  .search {
-    display: flex; align-items: center; max-width: 900px; margin: 0 auto; height: 76px; padding: 8px;
-    background: #fff; border-radius: 999px; color: var(--k); text-align: left;
-    box-shadow: 0 20px 50px -20px rgba(0,0,0,.45);
-  }
-  .toggle { display: flex; background: var(--g1); border-radius: 999px; padding: 4px; margin-right: 6px; flex: none; }
-  .toggle button { height: 52px; padding: 0 20px; border: 0; border-radius: 999px; background: none; font-weight: 600; color: var(--g5); }
-  .toggle button[aria-pressed="true"] { background: #fff; color: var(--k); box-shadow: 0 1px 3px rgba(0,0,0,.1); }
-  .sf { position: relative; flex: 1; min-width: 0; height: 60px; padding: 10px 22px; border-radius: 999px; display: flex; flex-direction: column; justify-content: center; }
-  .sf:hover { background: var(--g1); }
-  .sf + .sf::before { content: ""; position: absolute; left: 0; top: 16px; bottom: 16px; width: 1px; background: var(--g2); }
-  .sf:hover::before, .sf:hover + .sf::before { opacity: 0; }
-  .sf label { font-size: 12.5px; font-weight: 600; color: var(--k); }
-  .sf select { border: 0; background: transparent; padding: 0; font-size: 15px; color: var(--g5); outline: 0; appearance: none; -webkit-appearance: none; cursor: pointer; width: 100%; }
-  .go { flex: none; width: 60px; height: 60px; border-radius: 50%; border: 0; background: var(--o); color: #fff; display: grid; place-items: center; transition: background-color .15s; }
-  .go:hover { background: var(--o-hover); }
-  .go svg { width: 22px; height: 22px; }
-  .go-text { display: none; }
+  /* search */
+  .finder { max-width: 1040px; }
+  .finder-tabs { display: flex; gap: 2px; }
+  .finder-tabs button { white-space: nowrap; height: 44px; padding: 0 20px; border: 0; border-radius: var(--r) var(--r) 0 0; background: rgba(255,255,255,.18); color: #fff; font-weight: 600; backdrop-filter: blur(8px); }
+  .finder-tabs button:hover { background: rgba(255,255,255,.28); }
+  .finder-tabs button[aria-selected="true"] { background: #fff; color: var(--k); }
+  .finder-box { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr auto; background: #fff; color: var(--k); border-radius: 0 var(--r-lg) var(--r-lg) var(--r-lg); padding: 10px; gap: 0; box-shadow: 0 24px 60px -24px rgba(0,0,0,.5); }
+  .ff { position: relative; padding: 10px 18px; border-right: 1px solid var(--g2); min-width: 0; }
+  .ff:nth-last-child(2) { border-right: 0; }
+  .ff label { display: block; font-size: 12.5px; font-weight: 600; color: var(--g5); margin-bottom: 3px; }
+  .ff input, .ff select { width: 100%; border: 0; padding: 0; background: transparent; outline: 0; font-size: 16px; font-weight: 500; color: var(--k); appearance: none; -webkit-appearance: none; }
+  .ff input::placeholder { color: var(--g5); font-weight: 400; }
+  .ff select { cursor: pointer; padding-right: 18px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23787878' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat right 0 center; }
+  .finder-box .btn { height: 100%; min-height: 58px; padding: 0 28px; font-size: 16px; border-radius: var(--r); }
+  .suggest { position: absolute; left: 8px; right: -40px; top: calc(100% + 14px); background: #fff; border-radius: var(--r); box-shadow: 0 18px 40px -12px rgba(0,0,0,.3); border: 1px solid var(--g2); padding: 6px; display: none; z-index: 5; }
+  .suggest.open { display: block; }
+  .suggest button { display: flex; justify-content: space-between; align-items: center; width: 100%; border: 0; background: none; padding: 10px 12px; border-radius: 8px; font-size: 15px; text-align: left; }
+  .suggest button:hover, .suggest button.hi { background: var(--g1); }
+  .suggest small { color: var(--g5); font-size: 13px; }
+  .suggest .head { padding: 8px 12px 6px; font-size: 12px; font-weight: 600; color: var(--g5); }
+  .hero-foot { display: flex; align-items: center; gap: 22px; margin-top: 20px; font-size: 14px; color: rgba(255,255,255,.82); }
+  .hero-foot b { color: #fff; font-weight: 600; }
+  .hero-foot .dot { width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,.5); }
 
-  /* ---------- sections ---------- */
-  section.block { padding: 88px 0 0; }
-  .sec-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: 28px; }
-  .sec-head h2 { margin: 0; font-size: 34px; line-height: 1.1; font-weight: 700; letter-spacing: -.03em; }
-  .sec-head p { margin: 8px 0 0; color: var(--g5); }
-  .tabs { display: flex; gap: 6px; }
-  .tabs button { height: 40px; padding: 0 18px; border-radius: 999px; border: 1px solid var(--g3); background: #fff; font-weight: 600; color: var(--g6); }
-  .tabs button:hover { border-color: var(--k); color: var(--k); }
-  .tabs button[aria-pressed="true"] { background: var(--k); border-color: var(--k); color: #fff; }
+  /* ============ SECTIONS ============ */
+  section.block { padding: 104px 0 0; }
+  .sec-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: 32px; }
+  .sec-head h2 { margin: 0; font-size: 38px; line-height: 1.08; font-weight: 700; letter-spacing: -.035em; }
+  .sec-head p { margin: 10px 0 0; color: var(--g5); max-width: 520px; }
+  .link-more { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; white-space: nowrap; }
+  .link-more:hover { color: var(--o-text); }
+  .link-more .ico { width: 16px; height: 16px; transition: transform .2s; }
+  .link-more:hover .ico { transform: translateX(3px); }
 
-  /* listing cards */
-  .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px 24px; }
+  /* tabs */
+  .seg { display: inline-flex; gap: 4px; background: var(--g1); padding: 4px; border-radius: 12px; }
+  .seg button { border: 0; background: none; height: 38px; padding: 0 16px; border-radius: 9px; font-weight: 600; font-size: 14.5px; color: var(--g5); }
+  .seg button[aria-pressed="true"] { background: #fff; color: var(--k); box-shadow: 0 1px 2px rgba(0,0,0,.08); }
+  .list-tools { display: flex; align-items: center; gap: 20px; }
+
+  /* cards */
+  .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 44px 24px; }
   .card { position: relative; }
   .card[hidden] { display: none; }
-  .ph { position: relative; display: block; border-radius: 18px; overflow: hidden; aspect-ratio: 4 / 3; background: var(--g1); }
-  .ph img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s cubic-bezier(.2,.7,.2,1); }
+  .ph { position: relative; display: block; border-radius: 12px; overflow: hidden; aspect-ratio: 4 / 3; background: var(--g1); }
+  .ph img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s cubic-bezier(.2,.7,.2,1); }
   .card:hover .ph img { transform: scale(1.04); }
-  .tag { position: absolute; left: 14px; top: 14px; height: 28px; padding: 0 12px; border-radius: 999px; background: #fff; font-size: 12.5px; font-weight: 600; display: inline-flex; align-items: center; }
-  .tag.rent { background: var(--k); color: #fff; }
-  .tag.new { background: var(--o); color: #fff; }
-  .save { position: absolute; right: 14px; top: 14px; width: 36px; height: 36px; border-radius: 50%; border: 0; background: rgba(255,255,255,.94); display: grid; place-items: center; }
-  .save svg { width: 17px; height: 17px; }
+  .tags { position: absolute; left: 12px; top: 12px; display: flex; gap: 6px; }
+  .tag { height: 26px; padding: 0 10px; border-radius: 999px; background: #fff; font-size: 12.5px; font-weight: 600; display: inline-flex; align-items: center; }
+  .tag.o { background: var(--o); color: #fff; }
+  .tag.k { background: var(--k); color: #fff; }
+  .save { position: absolute; right: 12px; top: 12px; width: 36px; height: 36px; border-radius: 50%; border: 0; background: rgba(255,255,255,.94); display: grid; place-items: center; color: var(--k); }
+  .save .ico { width: 17px; height: 17px; }
   .save[aria-pressed="true"] { color: var(--o); }
-  .save[aria-pressed="true"] svg { fill: currentColor; }
-  .card-body { padding: 16px 4px 0; }
-  .row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
-  .price { font-size: 21px; font-weight: 700; letter-spacing: -.02em; }
+  .save[aria-pressed="true"] .ico { fill: currentColor; }
+  .card-b { padding-top: 16px; }
+  .card-top { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+  .price { font-size: 22px; font-weight: 700; letter-spacing: -.025em; }
   .price small { font-size: 14px; font-weight: 500; color: var(--g5); letter-spacing: 0; }
-  .place { font-size: 14px; color: var(--g5); white-space: nowrap; }
-  .card h3 { margin: 4px 0 6px; font-size: 16px; font-weight: 500; color: var(--g8); }
-  .meta { font-size: 14px; color: var(--g5); }
-  .meta span + span::before { content: "·"; margin: 0 7px; color: var(--g3); }
-  .center { display: flex; justify-content: center; margin-top: 48px; }
+  .old { font-size: 14px; color: var(--g5); text-decoration: line-through; margin-left: 6px; font-weight: 400; letter-spacing: 0; }
+  .ref { font-size: 12.5px; color: var(--g5); white-space: nowrap; }
+  .card h3 { margin: 4px 0 10px; font-size: 16px; font-weight: 500; color: var(--g8); }
+  .facts { display: flex; gap: 18px; font-size: 14px; color: var(--g6); padding-top: 12px; border-top: 1px solid var(--g2); }
+  .facts span { display: flex; align-items: center; gap: 6px; }
+  .facts .ico { width: 16px; height: 16px; color: var(--g5); }
+  .facts .where { margin-left: auto; color: var(--g5); }
 
   /* neighborhoods */
-  .hoods { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
-  .hood { position: relative; display: block; border-radius: 22px; overflow: hidden; aspect-ratio: 3 / 4; }
-  .hood img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s cubic-bezier(.2,.7,.2,1); }
-  .hood:hover img { transform: scale(1.05); }
-  .hood::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,0) 45%); }
-  .hood-label { position: absolute; left: 20px; right: 20px; bottom: 18px; z-index: 1; color: #fff; display: flex; justify-content: space-between; align-items: flex-end; }
-  .hood-label b { font-size: 22px; font-weight: 700; letter-spacing: -.02em; }
-  .hood-label span { white-space: nowrap; font-size: 13px; font-weight: 600; background: rgba(255,255,255,.2); backdrop-filter: blur(6px); padding: 5px 11px; border-radius: 999px; }
+  .hoods { display: grid; grid-template-columns: 1.4fr 1fr 1fr; grid-template-rows: 260px 260px; gap: 16px; }
+  .hood { position: relative; display: block; border-radius: var(--r-lg); overflow: hidden; background: var(--g1); }
+  .hood:first-child { grid-row: span 2; }
+  .hood img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s cubic-bezier(.2,.7,.2,1); }
+  .hood:hover img { transform: scale(1.04); }
+  .hood::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(0,0,0,.62) 0%, rgba(0,0,0,0) 50%); }
+  .hood-t { position: absolute; left: 22px; right: 22px; bottom: 20px; z-index: 1; color: #fff; }
+  .hood-t b { display: block; font-size: 24px; font-weight: 700; letter-spacing: -.02em; }
+  .hood-t span { font-size: 14px; color: rgba(255,255,255,.85); }
+  .hood:first-child .hood-t b { font-size: 32px; }
+  .hood-all { background: var(--g1); padding: 22px 24px; display: flex; flex-direction: column; }
+  .hood-all::after { display: none; }
+  .hood-all b { font-size: 18px; font-weight: 700; letter-spacing: -.01em; margin-bottom: 10px; }
+  .hood-all ul { list-style: none; margin: 0; padding: 0; display: grid; }
+  .hood-all a { display: flex; justify-content: space-between; padding: 7px 0; border-bottom: 1px solid var(--g2); font-weight: 500; }
+  .hood-all li:last-child a { border-bottom: 0; }
+  .hood-all a:hover { color: var(--o-text); }
+  .hood-all span { color: var(--g5); font-weight: 400; font-size: 14px; }
+  .hood-more { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 20px; font-size: 14.5px; color: var(--g5); }
+  .hood-more a { padding: 7px 14px; border-radius: 999px; border: 1px solid var(--g3); color: var(--g8); }
+  .hood-more a:hover { border-color: var(--k); }
 
-  /* owner band */
-  .band { margin-top: 88px; padding: 0 12px; }
-  .band-in { position: relative; overflow: hidden; border-radius: 28px; background: var(--k); color: #fff; padding: 64px 0; }
-  .band-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 48px; align-items: center; }
-  .band h2 { margin: 0 0 12px; font-size: 40px; line-height: 1.08; font-weight: 700; letter-spacing: -.035em; }
-  .band p { margin: 0; color: rgba(255,255,255,.72); font-size: 17px; max-width: 520px; }
-  .band-actions { display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap; }
-  .band .btn { height: 52px; padding: 0 26px; }
-  .band .btn-ghost { border-color: rgba(255,255,255,.28); color: #fff; }
-  .band .btn-ghost:hover { border-color: #fff; }
+  /* why */
+  .why { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 72px; align-items: center; }
+  .why-photo { position: relative; border-radius: var(--r-lg); overflow: hidden; aspect-ratio: 5 / 4; }
+  .why-photo img { width: 100%; height: 100%; object-fit: cover; }
+  .why-badge { position: absolute; left: 20px; bottom: 20px; background: #fff; border-radius: 12px; padding: 14px 16px; display: flex; align-items: center; gap: 12px; font-size: 14px; color: var(--g6); }
+  .why-badge b { display: block; color: var(--k); font-size: 15px; }
+  .why-badge .pin { width: 38px; height: 38px; border-radius: 10px; background: var(--o-light); color: var(--o); display: grid; place-items: center; }
+  .why h2 { margin: 0 0 16px; font-size: 38px; line-height: 1.08; font-weight: 700; letter-spacing: -.035em; }
+  .why > div > p { margin: 0 0 28px; color: var(--g6); font-size: 17px; }
+  .points { display: grid; gap: 0; }
+  .point { display: grid; grid-template-columns: 44px 1fr; gap: 16px; padding: 18px 0; border-top: 1px solid var(--g2); }
+  .point:last-child { border-bottom: 1px solid var(--g2); }
+  .point .pi { width: 44px; height: 44px; border-radius: 12px; background: var(--g1); display: grid; place-items: center; }
+  .point .pi .ico { width: 20px; height: 20px; }
+  .point b { display: block; font-weight: 600; font-size: 16px; }
+  .point span { color: var(--g6); font-size: 15px; }
+
+  /* owners */
+  .owners { margin-top: 104px; background: var(--g1); padding: 96px 0; }
+  .owners-grid { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 72px; align-items: start; }
+  .owners-grid > div:first-child { position: sticky; top: 110px; }
+  .owners h2 { margin: 0 0 16px; font-size: 38px; line-height: 1.08; font-weight: 700; letter-spacing: -.035em; }
+  .owners-intro { margin: 0 0 32px; font-size: 17px; color: var(--g6); }
+  .flow { display: grid; gap: 14px; }
+  .flow div { display: flex; gap: 14px; align-items: flex-start; }
+  .flow i { flex: none; width: 26px; height: 26px; border-radius: 50%; background: var(--o); color: #fff; display: grid; place-items: center; margin-top: 1px; }
+  .flow i .ico { width: 14px; height: 14px; }
+  .flow b { font-weight: 600; }
+  .flow span { color: var(--g6); }
+  .owner-contact { margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--g3); display: flex; gap: 10px; flex-wrap: wrap; }
+  .form { background: #fff; border-radius: var(--r-lg); padding: 32px; border: 1px solid var(--g2); }
+  .form h3 { margin: 0 0 4px; font-size: 22px; font-weight: 700; letter-spacing: -.02em; }
+  .form > p { margin: 0 0 24px; font-size: 14.5px; color: var(--g5); }
+  .fgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .full { grid-column: 1 / -1; }
+  .fl label { display: block; font-size: 13.5px; font-weight: 600; margin-bottom: 6px; color: var(--g8); }
+  .fl input, .fl select, .fl textarea { width: 100%; height: 48px; border: 1px solid var(--g3); border-radius: var(--r); background: #fff; padding: 0 14px; outline: 0; font-size: 15px; transition: border-color .15s, box-shadow .15s; }
+  .fl select { appearance: none; -webkit-appearance: none; background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23787878' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat right 14px center; padding-right: 34px; cursor: pointer; }
+  .fl textarea { height: 96px; padding: 12px 14px; resize: vertical; }
+  .fl input:focus, .fl select:focus, .fl textarea:focus { border-color: var(--k); box-shadow: 0 0 0 3px rgba(17,17,17,.06); }
+  .choice { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .choice label { position: relative; display: flex; align-items: center; justify-content: center; height: 48px; border: 1px solid var(--g3); border-radius: var(--r); font-weight: 600; color: var(--g6); cursor: pointer; margin: 0; }
+  .choice input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+  .choice label:has(input:checked) { border-color: var(--o); background: var(--o-light); color: var(--o-text); }
+  .fl .upload { display: flex; font-weight: 400; align-items: center; gap: 14px; padding: 16px; border: 1.5px dashed var(--g3); border-radius: var(--r); cursor: pointer; font-size: 14px; color: var(--g5); margin: 0; }
+  .fl .upload:hover { border-color: var(--k); }
+  .upload .ui { width: 42px; height: 42px; border-radius: 10px; background: var(--g1); display: grid; place-items: center; color: var(--k); flex: none; }
+  .upload strong { display: block; color: var(--k); font-weight: 600; font-size: 15px; }
+  .form-foot { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 24px; flex-wrap: wrap; }
+  .form-foot small { color: var(--g5); font-size: 13px; max-width: 300px; }
+  .done { display: none; margin-top: 16px; padding: 14px 16px; border-radius: var(--r); background: #eaf6ee; color: #1d6b3d; font-size: 15px; }
+  .done.show { display: block; }
+
+  /* contact */
+  .contact { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 0; border: 1px solid var(--g2); border-radius: var(--r-lg); overflow: hidden; }
+  .contact-info { padding: 44px; }
+  .contact-info h2 { margin: 0 0 8px; font-size: 32px; font-weight: 700; letter-spacing: -.03em; }
+  .contact-info > p { margin: 0 0 28px; color: var(--g5); }
+  .cl { display: grid; gap: 18px; }
+  .cl div { display: flex; gap: 14px; }
+  .cl .ci { flex: none; width: 40px; height: 40px; border-radius: 10px; background: var(--g1); display: grid; place-items: center; }
+  .cl small { display: block; color: var(--g5); font-size: 13px; }
+  .cl a:hover { color: var(--o-text); }
+  .open-now { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: #1d6b3d; background: #eaf6ee; padding: 3px 9px; border-radius: 999px; margin-left: 6px; }
+  .contact-actions { display: flex; gap: 10px; margin-top: 30px; flex-wrap: wrap; }
+  .map { min-height: 460px; background: var(--g1); border-left: 1px solid var(--g2); }
+  .map iframe { width: 100%; height: 100%; border: 0; display: block; }
 
   /* footer */
-  .footer { padding: 40px 0 44px; font-size: 14px; color: var(--g5); }
-  .footer .wrap { display: flex; justify-content: space-between; align-items: center; gap: 16px 24px; flex-wrap: wrap; }
-  .footer .logo { font-size: 17px; }
-  .footer a:hover { color: var(--k); }
-  .footer .sep { margin: 0 9px; color: var(--g3); }
-  .credits { width: 100%; font-size: 12px; color: #a0a0a0; }
+  .footer { margin-top: 104px; background: var(--k); color: rgba(255,255,255,.66); font-size: 14.5px; }
+  .foot-top { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 40px; padding: 64px 0 48px; }
+  .footer .logo { margin: 0 0 16px; color: #fff; }
+  .footer p { margin: 0; max-width: 300px; }
+  .footer h4 { margin: 0 0 14px; color: #fff; font-size: 14px; font-weight: 600; }
+  .footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 9px; }
+  .footer a:hover { color: #fff; }
+  .foot-bottom { display: flex; justify-content: space-between; gap: 16px 32px; flex-wrap: wrap; padding: 22px 0 28px; border-top: 1px solid rgba(255,255,255,.12); font-size: 12.5px; color: rgba(255,255,255,.45); }
 
-  .preview-note { position: fixed; left: 16px; bottom: 16px; z-index: 40; background: var(--k); color: #fff; font-size: 12.5px; padding: 7px 12px; border-radius: 999px; opacity: .88; }
+  .mbar { display: none; }
+  .m-only { display: none; justify-content: center; margin-top: 36px; }
+  .preview-note { position: fixed; left: 16px; bottom: 16px; z-index: 40; background: rgba(17,17,17,.88); color: #fff; font-size: 12.5px; padding: 7px 12px; border-radius: 8px; }
 
+  /* ============ RESPONSIVE ============ */
   @media (max-width: 1100px) {
-    .links, .nav-tel, .nav-right .btn { display: none; }
-    .nav-bar { margin: 0 16px; padding: 0 8px 0 20px; }
-    .nav-right { margin-left: auto; }
-    .round { display: grid; }
-    .hero h1 { font-size: 52px; }
-    .search { max-width: 760px; }
+    .menu, .nav-right { display: none; }
+    .nav-mobile { display: flex; }
+    .drawer.open { display: block; position: fixed; inset: 70px 0 auto; z-index: 49; background: #fff; border-bottom: 1px solid var(--g2); padding: 8px var(--gut) 20px; }
+    .drawer a { display: block; padding: 14px 0; border-bottom: 1px solid var(--g2); font-size: 18px; font-weight: 500; }
+    .hero h1 { font-size: 54px; }
+    .finder-box { grid-template-columns: 1fr 1fr; }
+    .ff { border-bottom: 1px solid var(--g2); }
+    .ff:nth-child(2) { border-right: 0; }
+    .ff:nth-child(3) { border-bottom: 0; }
+    .ff:nth-last-child(2) { border-right: 0; border-bottom: 0; }
+    .finder-box .btn { grid-column: 1 / -1; margin-top: 8px; }
     .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .hoods { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .band-grid { grid-template-columns: minmax(0, 1fr); }
-    .band-actions { justify-content: flex-start; }
+    .why, .owners-grid { grid-template-columns: minmax(0, 1fr); gap: 44px; }
+    .owners-grid > div:first-child { position: static; }
+    .contact { grid-template-columns: minmax(0, 1fr); }
+    .map { border-left: 0; border-top: 1px solid var(--g2); min-height: 340px; }
+    .foot-top { grid-template-columns: 1fr 1fr; }
   }
   @media (max-width: 720px) {
     :root { --gut: 18px; }
-    .nav { top: 12px; }
-    .nav-bar { margin: 0 12px; height: 58px; padding: 0 7px 0 18px; }
-    .round { width: 42px; height: 42px; }
-    .hero { padding: 8px 8px 0; }
-    .hero-media { height: auto; min-height: 0; border-radius: 22px; padding: 110px 0 16px; }
-    .hero-media::after { background: linear-gradient(0deg, rgba(8,12,16,.78) 0%, rgba(8,12,16,.55) 45%, rgba(8,12,16,.2) 75%, rgba(8,12,16,.1) 100%); }
-    .hero-content { position: relative; bottom: auto; padding: 120px 14px 0; }
-    .hero h1 { font-size: 34px; }
-    .hero-sub { font-size: 15.5px; margin-bottom: 22px; }
-    .hero-cap { display: none; }
-    .search { flex-direction: column; align-items: stretch; height: auto; border-radius: 24px; padding: 10px; gap: 4px; }
-    .toggle { margin: 0 0 4px; }
-    .toggle button { flex: 1; height: 44px; }
-    .sf { height: auto; padding: 10px 14px; border-radius: 14px; background: var(--g1); }
-    .sf + .sf::before { display: none; }
-    .go { width: 100%; height: 52px; border-radius: 999px; margin-top: 4px; display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: 600; }
-    .go svg { width: 18px; height: 18px; }
-    .go-text { display: inline; }
-    section.block { padding-top: 64px; }
+    .nav .wrap { height: 68px; }
+    .nav.solid .wrap { height: 62px; }
+    .drawer.open { inset: 62px 0 auto; }
+    .hero { padding: 6px 6px 0; }
+    .hero-media { min-height: 0; height: auto; max-height: none; border-radius: 16px; }
+    .hero-media::after { background: linear-gradient(180deg, rgba(0,0,0,.4) 0%, rgba(0,0,0,0) 22%), linear-gradient(0deg, rgba(10,12,14,.85) 0%, rgba(10,12,14,.6) 45%, rgba(10,12,14,.15) 80%); }
+    .hero-inner { padding: 200px 14px 16px; }
+    .hero h1 { font-size: 38px; }
+    .hero-sub { font-size: 16px; margin-bottom: 24px; }
+    .finder-tabs button { flex: 1; padding: 0 8px; }
+    .finder-box { grid-template-columns: 1fr 1fr; border-radius: 0 0 var(--r-lg) var(--r-lg); padding: 6px; }
+    .ff { padding: 10px 12px; }
+    .ff:first-child { grid-column: 1 / -1; border-right: 0; }
+    .ff:nth-child(2) { border-right: 1px solid var(--g2); }
+    .ff:nth-child(3) { border-right: 0; border-bottom: 1px solid var(--g2); }
+    .ff:nth-last-child(2) { grid-column: 1 / -1; }
+    .finder-box .btn { min-height: 52px; }
+    .suggest { right: 0; left: 0; }
+    .hero-foot { flex-wrap: wrap; gap: 6px 14px; font-size: 13px; }
+    section.block { padding-top: 72px; }
     .sec-head { flex-direction: column; align-items: flex-start; gap: 16px; }
-    .sec-head h2 { font-size: 28px; }
-    .grid { grid-template-columns: minmax(0, 1fr); gap: 32px; }
-    .hoods { gap: 12px; }
-    .hood { border-radius: 18px; }
-    .hood-label { left: 14px; right: 14px; bottom: 14px; flex-direction: column; align-items: flex-start; gap: 6px; }
-    .hood-label b { font-size: 18px; }
-    .band { margin-top: 64px; padding: 0 8px; }
-    .band-in { padding: 44px 0; border-radius: 22px; }
-    .band h2 { font-size: 30px; }
+    .sec-head h2, .why h2, .owners h2 { font-size: 30px; }
+    .list-tools .link-more { display: none; }
+    .m-only { display: flex !important; }
+    .grid { grid-template-columns: minmax(0, 1fr); gap: 36px; }
+    .hoods { grid-template-columns: 1fr 1fr; grid-template-rows: 280px 170px 170px auto; gap: 10px; }
+    .hood-all { grid-column: 1 / -1; }
+    .hood:first-child { grid-column: 1 / -1; grid-row: auto; }
+    .hood-t { left: 16px; bottom: 14px; }
+    .hood-t b { font-size: 19px; }
+    .hood:first-child .hood-t b { font-size: 26px; }
+    .owners { margin-top: 72px; padding: 64px 0; }
+    .form { padding: 22px 18px; }
+    .fgrid { grid-template-columns: minmax(0, 1fr); }
+    .contact-info { padding: 28px 20px; }
+    .foot-top { grid-template-columns: minmax(0, 1fr); gap: 28px; padding-top: 48px; }
+    .footer { margin-top: 72px; padding-bottom: 76px; }
     .preview-note { display: none; }
+    .mbar { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; position: fixed; left: 0; right: 0; bottom: 0; z-index: 45; padding: 10px 12px calc(10px + env(safe-area-inset-bottom)); background: #fff; border-top: 1px solid var(--g2); }
+    .mbar .btn { height: 48px; }
   }
 </style>
 </head>
 <body>
 
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></symbol>
+    <symbol id="i-wa" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19.6L4 20z"/><path d="M9.5 9.5c.3 1.6 1.4 3 3 3.9l1-.9 2 .9c-.2 1-1 1.6-2 1.6A5.5 5.5 0 0 1 8 9.5c0-1 .6-1.8 1.6-2l.9 2-1 1"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></symbol>
+    <symbol id="i-bed" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18V7M3 14h18v4M21 14v-2a3 3 0 0 0-3-3h-7v5"/><circle cx="7" cy="11" r="1.6"/></symbol>
+    <symbol id="i-area" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="1.5"/><path d="M4 10h6v10"/></symbol>
+    <symbol id="i-floor" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V6l8-3 8 3v14"/><path d="M4 12h16M9 20v-4h6v4"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.6-7-11.5a7 7 0 0 1 14 0C19 15.4 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
+    <symbol id="i-cam" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="14" rx="2"/><circle cx="12" cy="13" r="3.5"/><path d="M8 6l1.5-2h5L16 6"/></symbol>
+    <symbol id="i-key" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M16 7l3 3"/></symbol>
+    <symbol id="i-doc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h6"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 8h16M4 16h16"/></symbol>
+  </defs>
+</svg>
+
 <header class="nav" id="nav">
-  <div class="nav-bar">
-    <a class="logo" href="#" aria-label="Özkal Emlak ana sayfa"><span class="logo-dot" aria-hidden="true"></span><span><b>Özkal</b> <span>Emlak</span></span></a>
-    <nav class="links" aria-label="Ana menü">
-      <a class="on" href="#ilanlar">Satılık</a>
-      <a href="#ilanlar">Kiralık</a>
+  <div class="wrap">
+    <a class="logo" href="#" aria-label="Özkal Emlak ana sayfa">
+      <span class="logo-mark" aria-hidden="true"></span>
+      <span class="logo-text"><b>Özkal</b> <span>Emlak</span></span>
+    </a>
+    <nav class="menu" aria-label="Ana menü">
+      <a href="#ilanlar" data-go="satilik">Satılık</a>
+      <a href="#ilanlar" data-go="kiralik">Kiralık</a>
       <a href="#semtler">Semtler</a>
       <a href="#evinizi-verin">Evinizi verin</a>
-      <a href="#">Hakkımızda</a>
+      <a href="#iletisim">İletişim</a>
     </nav>
     <div class="nav-right">
-      <a class="nav-tel" href="tel:+902323309911"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>0232 330 99 11</a>
-      <a class="btn btn-k" href="https://wa.me/905322864617">Bize yazın</a>
-      <a class="round tel" href="tel:+902323309911" aria-label="Ara"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></a>
-      <button class="round" aria-label="Menü"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 8h14M5 16h14"/></svg></button>
+      <a class="nav-tel" href="tel:+902323309911"><svg class="ico"><use href="#i-phone"/></svg>0232 330 99 11</a>
+      <a class="btn btn-line" href="https://wa.me/905322864617"><svg class="ico"><use href="#i-wa"/></svg>WhatsApp</a>
+    </div>
+    <div class="nav-mobile">
+      <a href="tel:+902323309911" aria-label="Ara"><svg class="ico"><use href="#i-phone"/></svg></a>
+      <button type="button" id="menu-btn" aria-label="Menü" aria-expanded="false"><svg class="ico"><use href="#i-menu"/></svg></button>
     </div>
   </div>
 </header>
+<nav class="drawer" id="drawer" aria-label="Mobil menü">
+  <a href="#ilanlar" data-go="satilik">Satılık</a><a href="#ilanlar" data-go="kiralik">Kiralık</a><a href="#semtler">Semtler</a><a href="#evinizi-verin">Evinizi verin</a><a href="#iletisim">İletişim</a>
+</nav>
 
 <main>
+  <!-- HERO -->
   <section class="hero">
     <div class="hero-media">
       <img src="img/hero-mavisehir.jpg" alt="Mavişehir sahili ve konutları" fetchpriority="high">
-      <div class="hero-content">
+      <div class="hero-inner">
         <h1>Karşıyaka'da evinizi bulun.</h1>
-        <p class="hero-sub">Bostanlı, Mavişehir, Atakent ve çevresinde satılık ve kiralık 37 ilan.</p>
-        <form class="search" role="search" onsubmit="return false">
-          <div class="toggle" role="group" aria-label="İlan türü">
-            <button type="button" aria-pressed="true">Satılık</button>
-            <button type="button" aria-pressed="false">Kiralık</button>
+        <p class="hero-sub">Bostanlı'dan Mavişehir'e, semti bilen bir ofisten satılık ve kiralık ilanlar.</p>
+
+        <form class="finder" id="finder" role="search" autocomplete="off">
+          <div class="finder-tabs" role="tablist">
+            <button type="button" role="tab" aria-selected="true" data-type="satilik">Satılık</button>
+            <button type="button" role="tab" aria-selected="false" data-type="kiralik">Kiralık</button>
+            <button type="button" role="tab" aria-selected="false" data-type="deger">Değerleme</button>
           </div>
-          <div class="sf"><label for="s1">Semt</label>
-            <select id="s1"><option>Tüm Karşıyaka</option><option>Bostanlı</option><option>Mavişehir</option><option>Atakent</option><option>Donanmacı</option><option>Karşıyaka Merkez</option><option>Şemikler</option></select>
+          <div class="finder-box">
+            <div class="ff">
+              <label for="f-where">Konum</label>
+              <input id="f-where" placeholder="Semt, mahalle veya ilan no" aria-autocomplete="list" aria-controls="suggest">
+              <div class="suggest" id="suggest" role="listbox"></div>
+            </div>
+            <div class="ff">
+              <label for="f-type">Emlak tipi</label>
+              <select id="f-type"><option>Daire</option><option>Müstakil ev</option><option>Villa</option><option>İş yeri</option><option>Arsa</option></select>
+            </div>
+            <div class="ff">
+              <label for="f-room">Oda</label>
+              <select id="f-room"><option>Tümü</option><option>1+1</option><option>2+1</option><option>3+1</option><option>4+1 ve üzeri</option></select>
+            </div>
+            <div class="ff">
+              <label for="f-price" id="price-label">En fazla</label>
+              <select id="f-price"></select>
+            </div>
+            <button class="btn btn-o" type="submit" id="f-submit">İlanları göster</button>
           </div>
-          <div class="sf"><label for="s2">Emlak tipi</label>
-            <select id="s2"><option>Daire</option><option>Müstakil ev</option><option>Villa</option><option>İş yeri</option><option>Arsa</option></select>
-          </div>
-          <div class="sf"><label for="s3">Bütçe</label>
-            <select id="s3"><option>Fark etmez</option><option>5 milyon TL'ye kadar</option><option>5 – 10 milyon TL</option><option>10 – 15 milyon TL</option><option>15 milyon TL üzeri</option></select>
-          </div>
-          <button class="go" type="submit" aria-label="Ara"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg><span class="go-text">İlan ara</span></button>
         </form>
+
+        <div class="hero-foot"><span><b>37</b> aktif ilan</span><span class="dot"></span><span>Bu hafta <b>4</b> yeni</span><span class="dot"></span><span>Pazartesi – Cumartesi 09.00 – 19.00</span></div>
       </div>
-      <span class="hero-cap">Mavişehir, Karşıyaka</span>
     </div>
   </section>
 
+  <!-- LISTINGS -->
   <section class="block" id="ilanlar">
     <div class="wrap">
       <div class="sec-head">
         <div>
           <h2>Yeni ilanlar</h2>
-          <p>Portföyümüze son eklenenler, bugün güncellendi.</p>
+          <p>Portföyümüze son eklenen daireler. Hepsini yerinde görüp fotoğrafladık.</p>
         </div>
-        <div class="tabs" role="group" aria-label="İlan türü">
-          <button type="button" aria-pressed="true" data-f="tumu">Tümü</button>
-          <button type="button" aria-pressed="false" data-f="satilik">Satılık</button>
-          <button type="button" aria-pressed="false" data-f="kiralik">Kiralık</button>
+        <div class="list-tools">
+          <div class="seg" role="group" aria-label="İlan türü">
+            <button type="button" aria-pressed="true" data-f="tumu">Tümü</button>
+            <button type="button" aria-pressed="false" data-f="satilik">Satılık</button>
+            <button type="button" aria-pressed="false" data-f="kiralik">Kiralık</button>
+          </div>
+          <a class="link-more" href="#">Tüm ilanlar <svg class="ico"><use href="#i-arrow"/></svg></a>
         </div>
       </div>
 
-      <div class="grid">
+      <div class="grid" id="grid">
         <article class="card" data-t="satilik">
-          <a class="ph" href="#"><img src="img/ilan-bostanli-deniz.jpg" alt="Bostanlı'da deniz manzaralı salon"><span class="tag new">Yeni</span></a>
-          <button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></button>
-          <div class="card-body">
-            <div class="row"><span class="price">14.750.000 TL</span><span class="place">Bostanlı</span></div>
-            <h3>Denize ikinci parsel, geniş balkonlu</h3>
-            <div class="meta"><span>3+1</span><span>145 m²</span><span>3. kat</span></div>
+          <a class="ph" href="#"><img src="img/ilan-bostanli-deniz.jpg" alt="Bostanlı'da deniz manzaralı salon"><span class="tags"><span class="tag o">Yeni</span><span class="tag">Deniz manzaralı</span></span></a>
+          <button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg class="ico"><use href="#i-heart"/></svg></button>
+          <div class="card-b">
+            <div class="card-top"><span class="price">14.750.000 TL</span><span class="ref">No 1042</span></div>
+            <h3>Denize ikinci parsel, geniş balkonlu daire</h3>
+            <div class="facts"><span><svg class="ico"><use href="#i-bed"/></svg>3+1</span><span><svg class="ico"><use href="#i-area"/></svg>145 m²</span><span><svg class="ico"><use href="#i-floor"/></svg>3. kat</span><span class="where">Bostanlı</span></div>
           </div>
         </article>
         <article class="card" data-t="satilik">
-          <a class="ph" href="#"><img src="img/ilan-mavisehir.jpg" alt="Mavişehir'de aydınlık salon" loading="lazy"><span class="tag">Site içinde</span></a>
-          <button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></button>
-          <div class="card-body">
-            <div class="row"><span class="price">8.450.000 TL</span><span class="place">Mavişehir</span></div>
-            <h3>Havuzlu site içinde, aydınlık</h3>
-            <div class="meta"><span>2+1</span><span>105 m²</span><span>7. kat</span></div>
+          <a class="ph" href="#"><img src="img/ilan-mavisehir.jpg" alt="Mavişehir'de aydınlık salon" loading="lazy"><span class="tags"><span class="tag">Fiyat düştü</span></span></a>
+          <button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg class="ico"><use href="#i-heart"/></svg></button>
+          <div class="card-b">
+            <div class="card-top"><span class="price">8.450.000 TL<span class="old">8.900.000</span></span><span class="ref">No 1038</span></div>
+            <h3>Havuzlu site içinde, aydınlık daire</h3>
+            <div class="facts"><span><svg class="ico"><use href="#i-bed"/></svg>2+1</span><span><svg class="ico"><use href="#i-area"/></svg>105 m²</span><span><svg class="ico"><use href="#i-floor"/></svg>7. kat</span><span class="where">Mavişehir</span></div>
           </div>
         </article>
         <article class="card" data-t="kiralik">
-          <a class="ph" href="#"><img src="img/ilan-carsi-kiralik.jpg" alt="Karşıyaka merkezde kiralık daire" loading="lazy"><span class="tag rent">Kiralık</span></a>
-          <button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></button>
-          <div class="card-body">
-            <div class="row"><span class="price">32.000 TL <small>/ ay</small></span><span class="place">Karşıyaka Merkez</span></div>
-            <h3>Çarşıya 3 dakika, eşyasız</h3>
-            <div class="meta"><span>2+1</span><span>95 m²</span><span>2. kat</span></div>
+          <a class="ph" href="#"><img src="img/ilan-carsi-kiralik.jpg" alt="Karşıyaka merkezde kiralık daire" loading="lazy"><span class="tags"><span class="tag k">Kiralık</span></span></a>
+          <button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg class="ico"><use href="#i-heart"/></svg></button>
+          <div class="card-b">
+            <div class="card-top"><span class="price">32.000 TL <small>/ ay</small></span><span class="ref">No 1051</span></div>
+            <h3>Çarşıya 3 dakika, eşyasız daire</h3>
+            <div class="facts"><span><svg class="ico"><use href="#i-bed"/></svg>2+1</span><span><svg class="ico"><use href="#i-area"/></svg>95 m²</span><span><svg class="ico"><use href="#i-floor"/></svg>2. kat</span><span class="where">Merkez</span></div>
           </div>
         </article>
         <article class="card" data-t="satilik">
           <a class="ph" href="#"><img src="img/ilan-atakent.jpg" alt="Atakent'te güney cepheli salon" loading="lazy"></a>
-          <button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></button>
-          <div class="card-body">
-            <div class="row"><span class="price">11.900.000 TL</span><span class="place">Atakent</span></div>
-            <h3>Güney cephe, gün boyu güneş alan</h3>
-            <div class="meta"><span>3+1</span><span>130 m²</span><span>5. kat</span></div>
+          <button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg class="ico"><use href="#i-heart"/></svg></button>
+          <div class="card-b">
+            <div class="card-top"><span class="price">11.900.000 TL</span><span class="ref">No 1029</span></div>
+            <h3>Güney cephe, gün boyu güneş alan daire</h3>
+            <div class="facts"><span><svg class="ico"><use href="#i-bed"/></svg>3+1</span><span><svg class="ico"><use href="#i-area"/></svg>130 m²</span><span><svg class="ico"><use href="#i-floor"/></svg>5. kat</span><span class="where">Atakent</span></div>
           </div>
         </article>
         <article class="card" data-t="satilik">
-          <a class="ph" href="#"><img src="img/ilan-semikler.jpg" alt="Şemikler'de bahçeli müstakil ev" loading="lazy"><span class="tag">Müstakil</span></a>
-          <button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></button>
-          <div class="card-body">
-            <div class="row"><span class="price">16.500.000 TL</span><span class="place">Şemikler</span></div>
-            <h3>300 m² arsa içinde, bahçeli</h3>
-            <div class="meta"><span>4+1</span><span>220 m²</span><span>2 katlı</span></div>
+          <a class="ph" href="#"><img src="img/ilan-semikler.jpg" alt="Şemikler'de bahçeli müstakil ev" loading="lazy"><span class="tags"><span class="tag">Müstakil</span></span></a>
+          <button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg class="ico"><use href="#i-heart"/></svg></button>
+          <div class="card-b">
+            <div class="card-top"><span class="price">16.500.000 TL</span><span class="ref">No 1017</span></div>
+            <h3>300 m² arsa içinde bahçeli ev</h3>
+            <div class="facts"><span><svg class="ico"><use href="#i-bed"/></svg>4+1</span><span><svg class="ico"><use href="#i-area"/></svg>220 m²</span><span><svg class="ico"><use href="#i-floor"/></svg>2 katlı</span><span class="where">Şemikler</span></div>
           </div>
         </article>
         <article class="card" data-t="kiralik">
-          <a class="ph" href="#"><img src="img/ilan-donanmaci.jpg" alt="Donanmacı'da eşyalı kiralık daire" loading="lazy"><span class="tag rent">Kiralık</span></a>
-          <button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></button>
-          <div class="card-body">
-            <div class="row"><span class="price">22.500 TL <small>/ ay</small></span><span class="place">Donanmacı</span></div>
-            <h3>İskeleye yürüme mesafesinde, eşyalı</h3>
-            <div class="meta"><span>1+1</span><span>60 m²</span><span>1. kat</span></div>
+          <a class="ph" href="#"><img src="img/ilan-donanmaci.jpg" alt="Donanmacı'da eşyalı kiralık daire" loading="lazy"><span class="tags"><span class="tag k">Kiralık</span><span class="tag">Eşyalı</span></span></a>
+          <button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg class="ico"><use href="#i-heart"/></svg></button>
+          <div class="card-b">
+            <div class="card-top"><span class="price">22.500 TL <small>/ ay</small></span><span class="ref">No 1055</span></div>
+            <h3>İskeleye yürüme mesafesinde daire</h3>
+            <div class="facts"><span><svg class="ico"><use href="#i-bed"/></svg>1+1</span><span><svg class="ico"><use href="#i-area"/></svg>60 m²</span><span><svg class="ico"><use href="#i-floor"/></svg>1. kat</span><span class="where">Donanmacı</span></div>
           </div>
         </article>
       </div>
-
-      <div class="center"><a class="btn btn-line" href="#">Tüm ilanları gör (37)</a></div>
+      <div class="m-only"><a class="btn btn-line" href="#">Tüm ilanları gör (37)</a></div>
     </div>
   </section>
 
+  <!-- NEIGHBORHOODS -->
   <section class="block" id="semtler">
     <div class="wrap">
       <div class="sec-head">
         <div>
-          <h2>Semtlere göz atın</h2>
-          <p>Karşıyaka'nın her semtini sokak sokak biliyoruz.</p>
+          <h2>Semt semt Karşıyaka</h2>
+          <p>Ev bakarken sokağa, okula, iskeleye de bakarsınız. Hangi semtte ne olduğunu biliyoruz.</p>
         </div>
       </div>
       <div class="hoods">
-        <a class="hood" href="#"><img src="img/semt-bostanli.jpg" alt="Bostanlı" loading="lazy"><span class="hood-label"><b>Bostanlı</b><span>12 ilan</span></span></a>
-        <a class="hood" href="#"><img src="img/semt-mavisehir.jpg" alt="Mavişehir" loading="lazy"><span class="hood-label"><b>Mavişehir</b><span>8 ilan</span></span></a>
-        <a class="hood" href="#"><img src="img/semt-carsi.jpg" alt="Karşıyaka Çarşı" loading="lazy"><span class="hood-label"><b>Çarşı</b><span>9 ilan</span></span></a>
-        <a class="hood" href="#"><img src="img/semt-donanmaci.jpg" alt="Donanmacı" loading="lazy" style="object-position:50% 62%"><span class="hood-label"><b>Donanmacı</b><span>6 ilan</span></span></a>
+        <a class="hood" href="#"><img src="img/semt-bostanli.jpg" alt="Bostanlı sahil yolu" loading="lazy"><span class="hood-t"><b>Bostanlı</b><span>12 ilan · Sahil, vapur iskelesi, semt pazarı</span></span></a>
+        <a class="hood" href="#"><img src="img/semt-mavisehir.jpg" alt="Mavişehir akşam" loading="lazy"><span class="hood-t"><b>Mavişehir</b><span>8 ilan · Siteler, İZBAN</span></span></a>
+        <a class="hood" href="#"><img src="img/semt-carsi.jpg" alt="Karşıyaka Çarşı" loading="lazy"><span class="hood-t"><b>Çarşı</b><span>9 ilan · Her şey yürüme mesafesinde</span></span></a>
+        <a class="hood" href="#"><img src="img/semt-donanmaci.jpg" alt="Denizden Donanmacı" loading="lazy" style="object-position:50% 62%"><span class="hood-t"><b>Donanmacı</b><span>6 ilan · Sakin, sahile paralel</span></span></a>
+        <div class="hood hood-all">
+          <b>Diğer semtler</b>
+          <ul>
+            <li><a href="#">Atakent <span>4</span></a></li>
+            <li><a href="#">Yalı <span>2</span></a></li>
+            <li><a href="#">Şemikler <span>2</span></a></li>
+            <li><a href="#">Demirköprü <span>1</span></a></li>
+            <li><a href="#">Alaybey <span>1</span></a></li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="band" id="evinizi-verin">
-    <div class="band-in">
-      <div class="wrap band-grid">
-        <div>
-          <h2>Evinizi satmak ya da kiraya vermek mi istiyorsunuz?</h2>
-          <p>Bilgileri gönderin, evi yerinde görüp fiyatı birlikte belirleyelim. Onayımızdan sonra ilanınız burada yayına girer.</p>
+  <!-- WHY -->
+  <section class="block">
+    <div class="wrap why">
+      <div class="why-photo">
+        <img src="img/hero-bostanli-barinak.jpg" alt="Bostanlı Balıkçı Barınağı" loading="lazy">
+        <div class="why-badge"><span class="pin"><svg class="ico"><use href="#i-pin"/></svg></span><span><b>Ofisimiz Bostanlı'da</b>Karşıyaka / İzmir</span></div>
+      </div>
+      <div>
+        <h2>Evi satana da, alana da doğru bilgi.</h2>
+        <p>Karşıyaka'da ev alan, satan ve kiralayanlarla çalışıyoruz. İşimizin büyük kısmı tavsiyeyle geliyor, bu yüzden her ilanı kendi evimiz gibi takip ediyoruz.</p>
+        <div class="points">
+          <div class="point"><span class="pi"><svg class="ico"><use href="#i-cam"/></svg></span><span><b>Fotoğraflar gerçek, fiyatlar güncel</b><span>Her ilanı yerinde görüp kendimiz fotoğraflıyoruz.</span></span></div>
+          <div class="point"><span class="pi"><svg class="ico"><use href="#i-key"/></svg></span><span><b>Size uyan saatte gösterim</b><span>Randevuyla, hafta sonu dahil yerinde gezdiriyoruz.</span></span></div>
+          <div class="point"><span class="pi"><svg class="ico"><use href="#i-doc"/></svg></span><span><b>Tapuya kadar yanınızdayız</b><span>Evrak, ekspertiz ve tapu randevusu bizde.</span></span></div>
         </div>
-        <div class="band-actions">
-          <a class="btn btn-ghost" href="https://wa.me/905322864617">WhatsApp'tan yazın</a>
-          <a class="btn btn-o" href="#">İlan bilgilerini gönderin</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- OWNERS -->
+  <section class="owners" id="evinizi-verin">
+    <div class="wrap owners-grid">
+      <div>
+        <h2>Evinizi satmak ya da kiraya vermek mi istiyorsunuz?</h2>
+        <p class="owners-intro">Bilgileri formdan gönderin. Sizi arayıp evi yerinde görüyoruz, semtteki benzer ilanlara göre fiyatı birlikte belirliyoruz.</p>
+        <div class="flow">
+          <div><i><svg class="ico"><use href="#i-check"/></svg></i><span><b>Formu doldurun.</b> Birkaç fotoğraf ve temel bilgiler yeterli.</span></div>
+          <div><i><svg class="ico"><use href="#i-check"/></svg></i><span><b>Aynı gün dönüyoruz.</b> Uygun bir gün evi birlikte geziyoruz.</span></div>
+          <div><i><svg class="ico"><use href="#i-check"/></svg></i><span><b>Onaydan sonra yayında.</b> İlanınız kontrol edilip portföyümüze eklenir.</span></div>
         </div>
+        <div class="owner-contact">
+          <a class="btn btn-line" href="tel:+905322864617"><svg class="ico"><use href="#i-phone"/></svg>0532 286 46 17</a>
+          <a class="btn btn-line" href="https://wa.me/905322864617"><svg class="ico"><use href="#i-wa"/></svg>WhatsApp</a>
+        </div>
+      </div>
+
+      <form class="form" id="owner-form">
+        <h3>İlan bilgileri</h3>
+        <p>Gönderdiğiniz bilgiler incelendikten sonra ilanınız yayına alınır.</p>
+        <div class="fgrid">
+          <div class="fl full">
+            <div class="choice" role="radiogroup" aria-label="İşlem">
+              <label><input type="radio" name="islem" checked>Satmak istiyorum</label>
+              <label><input type="radio" name="islem">Kiraya vermek istiyorum</label>
+            </div>
+          </div>
+          <div class="fl"><label for="o-name">Adınız soyadınız</label><input id="o-name" autocomplete="name" required></div>
+          <div class="fl"><label for="o-tel">Telefon</label><input id="o-tel" type="tel" autocomplete="tel" placeholder="05xx xxx xx xx" required></div>
+          <div class="fl"><label for="o-semt">Semt</label><select id="o-semt"><option>Bostanlı</option><option>Mavişehir</option><option>Atakent</option><option>Donanmacı</option><option>Karşıyaka Merkez</option><option>Yalı</option><option>Şemikler</option><option>Diğer</option></select></div>
+          <div class="fl"><label for="o-type">Emlak tipi</label><select id="o-type"><option>Daire</option><option>Müstakil ev</option><option>Villa</option><option>İş yeri</option><option>Arsa</option></select></div>
+          <div class="fl"><label for="o-m2">Brüt m²</label><input id="o-m2" inputmode="numeric" placeholder="Örn. 120"></div>
+          <div class="fl"><label for="o-room">Oda sayısı</label><select id="o-room"><option>1+1</option><option selected>2+1</option><option>3+1</option><option>4+1</option><option>5+1 ve üzeri</option></select></div>
+          <div class="fl full"><label for="o-price">Fiyat beklentiniz</label><input id="o-price" inputmode="numeric" placeholder="Örn. 9.500.000 TL"></div>
+          <div class="fl full">
+            <label class="upload" for="o-photo"><span class="ui"><svg class="ico"><use href="#i-cam"/></svg></span><span><strong id="photo-text">Fotoğraf ekleyin</strong>Telefonla çekilenler de olur, en fazla 10 adet.</span></label>
+            <input id="o-photo" type="file" accept="image/*" multiple hidden>
+          </div>
+          <div class="fl full"><label for="o-note">Not</label><textarea id="o-note" placeholder="Kat, cephe, aidat, ne zaman boşalacağı gibi bilgiler"></textarea></div>
+        </div>
+        <div class="form-foot">
+          <small>Bilgileriniz yalnızca sizinle iletişim için kullanılır.</small>
+          <button class="btn btn-k" type="submit">Bilgileri gönder</button>
+        </div>
+        <div class="done" id="done" role="status">Teşekkürler, bilgileriniz bize ulaştı. Bugün içinde sizi arayacağız.</div>
+      </form>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="block" id="iletisim">
+    <div class="wrap">
+      <div class="contact">
+        <div class="contact-info">
+          <h2>Ofisimize bekleriz</h2>
+          <p>Uğramadan önce arayın, sizi bekleyelim.</p>
+          <div class="cl">
+            <div><span class="ci"><svg class="ico"><use href="#i-pin"/></svg></span><span><small>Adres</small>Bostanlı Mah., Karşıyaka / İzmir</span></div>
+            <div><span class="ci"><svg class="ico"><use href="#i-phone"/></svg></span><span><small>Telefon</small><a href="tel:+902323309911">0232 330 99 11</a> · <a href="tel:+905322864617">0532 286 46 17</a></span></div>
+            <div><span class="ci"><svg class="ico"><use href="#i-clock"/></svg></span><span><small>Çalışma saatleri</small>Pazartesi – Cumartesi, 09.00 – 19.00<span class="open-now" id="open-now" hidden>Şu an açık</span></span></div>
+          </div>
+          <div class="contact-actions">
+            <a class="btn btn-o" href="https://maps.google.com/?q=Bostanl%C4%B1+Kar%C5%9F%C4%B1yaka+%C4%B0zmir">Yol tarifi al</a>
+            <a class="btn btn-line" href="https://wa.me/905322864617"><svg class="ico"><use href="#i-wa"/></svg>WhatsApp</a>
+          </div>
+        </div>
+        <div class="map"><iframe title="Ofis konumu" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Bostanl%C4%B1%2C%20Kar%C5%9F%C4%B1yaka%2C%20%C4%B0zmir&z=14&output=embed"></iframe></div>
       </div>
     </div>
   </section>
@@ -368,31 +597,101 @@
 
 <footer class="footer">
   <div class="wrap">
-    <a class="logo" href="#"><span class="logo-dot" aria-hidden="true"></span><span><b>Özkal</b> <span>Emlak</span></span></a>
-    <span>Bostanlı Mah., Karşıyaka / İzmir<span class="sep">·</span><a href="tel:+902323309911">0232 330 99 11</a><span class="sep">·</span><a href="tel:+905322864617">0532 286 46 17</a></span>
-    <span class="credits">Fotoğraflar: Wikimedia Commons (Mavişehir, Bostanlı, Karşıyaka Çarşı, Donanmacı; CC BY-SA), Unsplash. Önizleme amaçlıdır, ilanlar örnektir.</span>
+    <div class="foot-top">
+      <div>
+        <a class="logo" href="#"><span class="logo-mark" aria-hidden="true"></span><span class="logo-text"><b>Özkal</b> <span>Emlak</span></span></a>
+        <p>Karşıyaka'da satılık ve kiralık konut, iş yeri ve arsa. Bostanlı'daki ofisimizden.</p>
+      </div>
+      <div><h4>İlanlar</h4><ul><li><a href="#ilanlar">Satılık daireler</a></li><li><a href="#ilanlar">Kiralık daireler</a></li><li><a href="#ilanlar">İş yerleri</a></li><li><a href="#ilanlar">Müstakil ve villa</a></li></ul></div>
+      <div><h4>Semtler</h4><ul><li><a href="#semtler">Bostanlı</a></li><li><a href="#semtler">Mavişehir</a></li><li><a href="#semtler">Atakent</a></li><li><a href="#semtler">Donanmacı</a></li></ul></div>
+      <div><h4>İletişim</h4><ul><li><a href="tel:+902323309911">0232 330 99 11</a></li><li><a href="tel:+905322864617">0532 286 46 17</a></li><li><a href="https://wa.me/905322864617">WhatsApp</a></li><li><a href="#evinizi-verin">Evinizi verin</a></li></ul></div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Özkal Emlak · Önizleme, ilanlar örnektir</span>
+      <span>Fotoğraflar: Wikimedia Commons (CC BY / CC BY-SA), Unsplash</span>
+    </div>
   </div>
 </footer>
 
+<div class="mbar">
+  <a class="btn btn-line" href="tel:+902323309911"><svg class="ico"><use href="#i-phone"/></svg>Ara</a>
+  <a class="btn btn-o" href="https://wa.me/905322864617"><svg class="ico"><use href="#i-wa"/></svg>WhatsApp</a>
+</div>
 <div class="preview-note">Önizleme · ilanlar örnektir</div>
 
 <script>
+  // nav: transparent over hero, solid after
   const nav = document.getElementById('nav');
-  const onScroll = () => nav.classList.toggle('scrolled', scrollY > 40);
-  addEventListener('scroll', onScroll, { passive: true }); onScroll();
+  const hero = document.querySelector('.hero-media');
+  const solid = () => nav.classList.toggle('solid', scrollY > hero.offsetHeight - 120 || document.getElementById('drawer').classList.contains('open'));
+  addEventListener('scroll', solid, { passive: true }); solid();
 
-  document.querySelectorAll('.toggle button').forEach(b => b.addEventListener('click', () => {
-    b.parentElement.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
-  }));
+  // mobile drawer
+  const drawer = document.getElementById('drawer'), menuBtn = document.getElementById('menu-btn');
+  menuBtn.addEventListener('click', () => { const o = drawer.classList.toggle('open'); menuBtn.setAttribute('aria-expanded', String(o)); solid(); });
+  drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { drawer.classList.remove('open'); solid(); }));
 
+  // finder tabs + price options
+  const prices = {
+    satilik: ['Fark etmez', '5 milyon TL', '7,5 milyon TL', '10 milyon TL', '15 milyon TL', '20 milyon TL'],
+    kiralik: ['Fark etmez', '20.000 TL / ay', '25.000 TL / ay', '30.000 TL / ay', '40.000 TL / ay'],
+  };
+  const priceSel = document.getElementById('f-price'), submit = document.getElementById('f-submit');
+  let mode = 'satilik';
+  function setMode(m) {
+    mode = m;
+    document.querySelectorAll('.finder-tabs button').forEach(b => b.setAttribute('aria-selected', String(b.dataset.type === m)));
+    const list = prices[m === 'kiralik' ? 'kiralik' : 'satilik'];
+    priceSel.innerHTML = list.map(p => `<option>${p}</option>`).join('');
+    submit.textContent = m === 'deger' ? 'Değer iste' : 'İlanları göster';
+    document.getElementById('price-label').textContent = m === 'deger' ? 'Tahmini değer' : 'En fazla';
+  }
+  document.querySelectorAll('.finder-tabs button').forEach(b => b.addEventListener('click', () => setMode(b.dataset.type)));
+  setMode('satilik');
+
+  // location suggestions
+  const semts = [['Bostanlı', 12], ['Mavişehir', 8], ['Karşıyaka Merkez', 9], ['Donanmacı', 6], ['Atakent', 4], ['Yalı', 2], ['Şemikler', 2], ['Demirköprü', 1], ['Alaybey', 1]];
+  const where = document.getElementById('f-where'), sug = document.getElementById('suggest');
+  const norm = s => s.toLocaleLowerCase('tr');
+  function renderSug() {
+    const q = norm(where.value.trim());
+    const list = semts.filter(([n]) => !q || norm(n).includes(q));
+    if (/^\d+$/.test(q)) { sug.innerHTML = `<button type="button" data-v="İlan no ${q}">İlan no <b>${q}</b> ile ara<small>Numara</small></button>`; }
+    else sug.innerHTML = `<div class="head">${q ? 'Eşleşen semtler' : 'Karşıyaka semtleri'}</div>` + (list.length ? list.map(([n, c]) => `<button type="button" data-v="${n}">${n}<small>${c} ilan</small></button>`).join('') : '<div class="head">Sonuç yok, farklı bir semt deneyin</div>');
+    sug.classList.add('open');
+  }
+  where.addEventListener('focus', renderSug);
+  where.addEventListener('input', renderSug);
+  sug.addEventListener('mousedown', e => { const b = e.target.closest('button'); if (b) { where.value = b.dataset.v; sug.classList.remove('open'); } });
+  where.addEventListener('blur', () => setTimeout(() => sug.classList.remove('open'), 120));
+  document.getElementById('finder').addEventListener('submit', e => {
+    e.preventDefault();
+    if (mode === 'deger') { location.hash = 'evinizi-verin'; return; }
+    filter(mode);
+    document.getElementById('ilanlar').scrollIntoView({ behavior: 'smooth' });
+  });
+
+  // listing filter
   const cards = [...document.querySelectorAll('.card')];
-  document.querySelectorAll('.tabs button').forEach(b => b.addEventListener('click', () => {
-    b.parentElement.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
-    cards.forEach(c => { c.hidden = b.dataset.f !== 'tumu' && c.dataset.t !== b.dataset.f; });
-  }));
+  const segBtns = [...document.querySelectorAll('.seg button')];
+  function filter(f) {
+    segBtns.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.f === f)));
+    cards.forEach(c => { c.hidden = f !== 'tumu' && c.dataset.t !== f; });
+  }
+  segBtns.forEach(b => b.addEventListener('click', () => filter(b.dataset.f)));
+  document.querySelectorAll('[data-go]').forEach(a => a.addEventListener('click', () => filter(a.dataset.go)));
 
-  document.querySelectorAll('.save').forEach(s => s.addEventListener('click', () =>
-    s.setAttribute('aria-pressed', String(s.getAttribute('aria-pressed') !== 'true'))));
+  // save
+  document.querySelectorAll('.save').forEach(s => s.addEventListener('click', () => s.setAttribute('aria-pressed', String(s.getAttribute('aria-pressed') !== 'true'))));
+
+  // owner form (preview)
+  const photo = document.getElementById('o-photo');
+  photo.addEventListener('change', () => { document.getElementById('photo-text').textContent = photo.files.length ? `${photo.files.length} fotoğraf seçildi` : 'Fotoğraf ekleyin'; });
+  document.getElementById('owner-form').addEventListener('submit', e => { e.preventDefault(); document.getElementById('done').classList.add('show'); });
+
+  // open now (Mon–Sat 09–19, Istanbul time)
+  const tr = new Date(new Date().toLocaleString('en-US', { timeZone: 'Europe/Istanbul' }));
+  if (tr.getDay() !== 0 && tr.getHours() >= 9 && tr.getHours() < 19) document.getElementById('open-now').hidden = false;
 </script>
 </body>
 </html>
