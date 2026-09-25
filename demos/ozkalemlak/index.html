@@ -13,221 +13,232 @@
   :root {
     --o: #e8672a; --o-hover: #d2561b; --o-light: #fff2ea; --o-text: #b64a15;
     --k: #111; --g8: #2b2b2b; --g6: #595959; --g5: #787878; --g3: #d9d9d9; --g2: #eaeaea; --g1: #f5f5f3;
-    --wa: #25d366;
-    --r: 10px; --r-lg: 16px;
+    --wa: #25d366; --pill: 999px; --r: 14px; --r-lg: 22px;
     --wrap: 1240px; --gut: 32px;
+    --dur: .25s; --ease: cubic-bezier(.2, .7, .2, 1);
   }
   * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; scroll-padding-top: 110px; }
+  html { scroll-behavior: smooth; scroll-padding-top: 90px; }
   body { margin: 0; background: #fff; color: var(--k); font: 400 16px/1.55 "Schibsted Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif; -webkit-font-smoothing: antialiased; }
   a { color: inherit; text-decoration: none; }
   img { display: block; max-width: 100%; }
   button, input, select { font: inherit; color: inherit; }
   button { cursor: pointer; }
+  a, button, input, select, .ico { transition-property: color, background-color, border-color, box-shadow, transform, opacity; transition-duration: var(--dur); transition-timing-function: var(--ease); }
   .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 var(--gut); }
   .ico { width: 18px; height: 18px; flex: none; }
 
-  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 46px; padding: 0 20px; border-radius: var(--r); border: 1px solid transparent; font-weight: 600; font-size: 15px; white-space: nowrap; transition: background-color .15s, border-color .15s, color .15s; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 46px; padding: 0 22px; border-radius: var(--pill); border: 1px solid transparent; font-weight: 600; font-size: 15px; white-space: nowrap; }
   .btn .ico { width: 17px; height: 17px; }
   .btn-o { background: var(--o); color: #fff; }
-  .btn-o:hover { background: var(--o-hover); }
+  .btn-o:hover { background: var(--o-hover); transform: translateY(-1px); box-shadow: 0 8px 18px -10px rgba(232,103,42,.9); }
   .btn-line { border-color: var(--g3); background: #fff; color: var(--k); }
   .btn-line:hover { border-color: var(--k); }
 
-  /* ============ LOGO ============ */
+  /* logo */
   .logo { display: inline-flex; align-items: center; gap: 10px; }
   .logo svg { width: 34px; height: 34px; flex: none; }
   .logo-text { font-size: 20px; line-height: 1; letter-spacing: -.025em; }
   .logo-text b { font-weight: 700; }
   .logo-text span { font-weight: 400; opacity: .72; }
 
-  /* ============ NAV ============ */
-  .nav { position: fixed; top: 16px; left: 0; right: 0; z-index: 50; padding: 0 24px; pointer-events: none; }
-  .nav-in {
-    pointer-events: auto; max-width: 1280px; margin: 0 auto; height: 64px; padding: 0 10px 0 20px;
-    display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
-    color: #fff; border-radius: 14px; border: 1px solid transparent;
-    transition: background-color .25s, color .25s, border-color .25s, box-shadow .25s;
-  }
-  .nav.solid .nav-in { background: rgba(255,255,255,.96); color: var(--k); border-color: var(--g2); box-shadow: 0 12px 32px -18px rgba(0,0,0,.25); backdrop-filter: blur(12px); }
+  /* nav */
+  .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; padding: 16px 24px 0; transition: padding var(--dur) var(--ease), transform .35s var(--ease), background-color var(--dur), box-shadow var(--dur); }
+  .nav-in { max-width: 1280px; margin: 0 auto; height: 64px; padding: 0 10px 0 20px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; color: #fff; transition: color var(--dur), height var(--dur); }
+  .nav.solid { padding-top: 0; background: rgba(255,255,255,.94); backdrop-filter: blur(14px) saturate(1.4); -webkit-backdrop-filter: blur(14px) saturate(1.4); box-shadow: 0 1px 0 var(--g2); }
+  .nav.solid .nav-in { color: var(--k); }
+  .nav.hide { transform: translateY(-100%); }
   .nav .logo { justify-self: start; }
-  .menu { display: flex; gap: 34px; }
-  .menu a { font-size: 15px; font-weight: 500; opacity: .85; transition: opacity .15s; position: relative; }
-  .menu a:hover { opacity: 1; }
-  .menu a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -6px; height: 2px; border-radius: 2px; background: var(--o); transform: scaleX(0); transition: transform .2s; }
-  .menu a:hover::after { transform: scaleX(1); }
-  .nav-cta { justify-self: end; display: flex; align-items: center; gap: 8px; }
+  .menu { display: flex; gap: 2px; }
+  .menu a { padding: 9px 15px; border-radius: var(--pill); font-size: 15px; font-weight: 500; opacity: .88; }
+  .menu a:hover { opacity: 1; background: rgba(255,255,255,.16); }
+  .nav.solid .menu a:hover { background: var(--g1); }
+  .nav-cta { justify-self: end; }
   .nav-cta .btn { height: 44px; }
-  .nav-mobile { display: none; justify-self: end; gap: 8px; }
-  .nav-mobile button { width: 44px; height: 44px; border-radius: var(--r); display: grid; place-items: center; border: 1px solid rgba(255,255,255,.45); background: rgba(255,255,255,.12); color: inherit; }
-  .nav.solid .nav-mobile button { border-color: var(--g3); background: #fff; }
+  .burger { display: none; justify-self: end; width: 44px; height: 44px; border-radius: 50%; place-items: center; border: 1px solid rgba(255,255,255,.45); background: rgba(255,255,255,.12); color: inherit; }
+  .nav.solid .burger { border-color: var(--g3); background: #fff; }
+  .burger .i-x, .burger[aria-expanded="true"] .i-menu { display: none; }
+  .burger[aria-expanded="true"] .i-x { display: block; }
   .drawer { display: none; }
 
-  /* ============ HERO ============ */
+  /* hero */
   .hero { padding: 10px 10px 0; }
-  .hero-media { position: relative; min-height: 720px; height: 92vh; max-height: 880px; border-radius: 22px; overflow: hidden; background: #b9c4cc; display: flex; flex-direction: column; justify-content: flex-end; }
+  .hero-media { position: relative; min-height: 700px; height: 90vh; max-height: 860px; border-radius: var(--r-lg); overflow: hidden; background: #b9c4cc; display: flex; flex-direction: column; justify-content: flex-end; }
   .hero-media > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 42%; }
   .hero-media::after { content: ""; position: absolute; inset: 0; pointer-events: none;
-    background: linear-gradient(180deg, rgba(0,0,0,.4) 0%, rgba(0,0,0,0) 22%), linear-gradient(90deg, rgba(10,12,14,.45) 0%, rgba(10,12,14,.15) 45%, rgba(10,12,14,0) 70%), linear-gradient(0deg, rgba(10,12,14,.82) 0%, rgba(10,12,14,.5) 32%, rgba(10,12,14,0) 62%); }
-  .hero-inner { position: relative; z-index: 2; width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 44px 44px; color: #fff; }
-  .hero h1 { margin: 0 0 14px; font-size: 66px; line-height: 1; font-weight: 700; letter-spacing: -.045em; }
-  .hero-sub { margin: 0 0 32px; max-width: 720px; font-size: 18px; color: rgba(255,255,255,.86); }
-
-  .finder-tabs { display: flex; gap: 2px; }
-  .finder-tabs button { white-space: nowrap; height: 44px; padding: 0 20px; border: 0; border-radius: var(--r) var(--r) 0 0; background: rgba(255,255,255,.18); color: #fff; font-weight: 600; backdrop-filter: blur(8px); }
-  .finder-tabs button:hover { background: rgba(255,255,255,.28); }
-  .finder-tabs button[aria-selected="true"] { background: #fff; color: var(--k); }
-  .finder-box { display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr auto; background: #fff; color: var(--k); border-radius: 0 var(--r-lg) var(--r-lg) var(--r-lg); padding: 10px; box-shadow: 0 24px 60px -24px rgba(0,0,0,.5); }
-  .ff { position: relative; padding: 10px 20px; border-right: 1px solid var(--g2); min-width: 0; }
+    background: linear-gradient(180deg, rgba(0,0,0,.42) 0%, rgba(0,0,0,0) 22%), linear-gradient(90deg, rgba(10,12,14,.45) 0%, rgba(10,12,14,.15) 45%, rgba(10,12,14,0) 70%), linear-gradient(0deg, rgba(10,12,14,.78) 0%, rgba(10,12,14,.45) 30%, rgba(10,12,14,0) 60%); }
+  .hero-inner { position: relative; z-index: 2; width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 44px 56px; color: #fff; }
+  .hero h1 { margin: 0 0 14px; font-size: 68px; line-height: 1; font-weight: 700; letter-spacing: -.045em; }
+  .hero-sub { margin: 0 0 30px; max-width: 720px; font-size: 18px; color: rgba(255,255,255,.88); }
+  .finder-tabs { display: flex; gap: 8px; margin-bottom: 12px; }
+  .finder-tabs button { height: 42px; padding: 0 22px; border: 1px solid rgba(255,255,255,.3); border-radius: var(--pill); background: rgba(255,255,255,.12); color: #fff; font-weight: 600; font-size: 15px; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+  .finder-tabs button:hover { background: rgba(255,255,255,.24); }
+  .finder-tabs button[aria-selected="true"] { background: #fff; border-color: #fff; color: var(--k); }
+  .finder-box { display: grid; grid-template-columns: 1.7fr 1fr 1fr 1fr auto; align-items: center; background: #fff; color: var(--k); border-radius: var(--pill); padding: 8px; box-shadow: 0 24px 60px -24px rgba(0,0,0,.5); }
+  .ff { position: relative; padding: 8px 22px; border-right: 1px solid var(--g2); min-width: 0; }
   .ff:nth-last-child(2) { border-right: 0; }
-  .ff label { display: block; font-size: 12.5px; font-weight: 600; color: var(--g5); margin-bottom: 3px; }
+  .ff label { display: block; font-size: 12.5px; font-weight: 600; color: var(--g5); margin-bottom: 2px; }
   .ff input, .ff select { width: 100%; border: 0; padding: 0; background: transparent; outline: 0; font-size: 16px; font-weight: 500; color: var(--k); appearance: none; -webkit-appearance: none; }
   .ff input::placeholder { color: var(--g5); font-weight: 400; }
-  .ff select { cursor: pointer; padding-right: 18px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23787878' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat right 0 center; }
-  .finder-box .btn { height: 100%; min-height: 60px; padding: 0 30px; font-size: 16px; }
-  .suggest { position: absolute; left: 8px; right: -40px; top: calc(100% + 14px); background: #fff; border-radius: var(--r); box-shadow: 0 18px 40px -12px rgba(0,0,0,.3); border: 1px solid var(--g2); padding: 6px; display: none; z-index: 5; }
+  .ff select { cursor: pointer; padding-right: 20px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23787878' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat right 0 center; }
+  .finder-box .btn { height: 60px; padding: 0 30px; font-size: 16px; }
+  .suggest { position: absolute; left: 8px; right: -40px; top: calc(100% + 18px); background: #fff; border-radius: 16px; box-shadow: 0 18px 40px -12px rgba(0,0,0,.3); border: 1px solid var(--g2); padding: 6px; display: none; z-index: 5; }
   .suggest.open { display: block; }
-  .suggest button { display: flex; justify-content: space-between; align-items: center; width: 100%; border: 0; background: none; padding: 10px 12px; border-radius: 8px; font-size: 15px; text-align: left; }
+  .suggest button { display: flex; justify-content: space-between; align-items: center; width: 100%; border: 0; background: none; padding: 10px 12px; border-radius: 10px; font-size: 15px; text-align: left; }
   .suggest button:hover { background: var(--g1); }
   .suggest small { color: var(--g5); font-size: 13px; }
   .suggest .head { padding: 8px 12px 6px; font-size: 12px; font-weight: 600; color: var(--g5); }
-  .hero-foot { display: flex; align-items: center; gap: 22px; margin-top: 20px; font-size: 14px; color: rgba(255,255,255,.82); }
-  .hero-foot b { color: #fff; font-weight: 600; }
-  .hero-foot .dot { width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,.5); }
 
-  /* ============ SECTIONS ============ */
+  /* sections */
   section.block { padding: 96px 0 0; }
+  section.band { margin: 96px 10px 0; padding: 88px 0; background: var(--g1); border-radius: var(--r-lg); }
+  .sec-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 28px; }
   .h { margin: 0; font-size: 32px; line-height: 1.1; font-weight: 700; letter-spacing: -.03em; }
+  .h span { font-size: 16px; font-weight: 500; color: var(--g5); letter-spacing: 0; margin-left: 6px; }
+  .link-more { display: inline-flex; align-items: center; gap: 8px; height: 42px; padding: 0 18px; border: 1px solid var(--g3); border-radius: var(--pill); font-weight: 600; font-size: 14.5px; white-space: nowrap; background: #fff; }
+  .link-more .ico { width: 16px; height: 16px; }
+  .link-more:hover { border-color: var(--k); }
+  .link-more:hover .ico { transform: translateX(3px); }
 
-  /* listings */
-  .list-head { display: flex; align-items: center; justify-content: space-between; gap: 16px 24px; flex-wrap: wrap; margin-bottom: 28px; }
-  .list-head .h span { font-size: 16px; font-weight: 500; color: var(--g5); letter-spacing: 0; margin-left: 6px; }
-  .tools { display: flex; align-items: center; gap: 12px; }
-  .seg { display: inline-flex; gap: 4px; background: var(--g1); padding: 4px; border-radius: 12px; }
-  .seg button { border: 0; background: none; height: 38px; padding: 0 16px; border-radius: 9px; font-weight: 600; font-size: 14.5px; color: var(--g5); }
-  .seg button[aria-pressed="true"] { background: #fff; color: var(--k); box-shadow: 0 1px 2px rgba(0,0,0,.08); }
-  .sort select { height: 46px; border: 1px solid var(--g3); border-radius: var(--r); padding: 0 36px 0 14px; font-size: 14.5px; font-weight: 500; background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23787878' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat right 14px center; appearance: none; -webkit-appearance: none; cursor: pointer; }
-  .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px 24px; }
+  /* cards */
+  .grid { display: grid; gap: 40px 24px; }
+  .g3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .g4 { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px 20px; }
   .card { position: relative; }
-  .card[hidden] { display: none; }
-  .ph { position: relative; display: block; aspect-ratio: 4 / 3; border-radius: 10px; overflow: hidden; background: var(--g1); }
-  .ph img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
-  .card:hover .ph img { transform: scale(1.03); }
-  .tag { position: absolute; left: 12px; top: 12px; height: 26px; padding: 0 10px; border-radius: 999px; background: #fff; font-size: 12.5px; font-weight: 600; display: inline-flex; align-items: center; }
+  .ph { position: relative; display: block; aspect-ratio: 4 / 3; border-radius: var(--r); overflow: hidden; background: var(--g2); }
+  .ph img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s var(--ease); }
+  .card:hover .ph img { transform: scale(1.04); }
+  .tag { position: absolute; left: 12px; top: 12px; height: 28px; padding: 0 11px; border-radius: var(--pill); background: #fff; font-size: 12.5px; font-weight: 600; display: inline-flex; align-items: center; }
   .tag.new { background: var(--o); color: #fff; }
-  .pc { position: absolute; left: 12px; bottom: 12px; display: inline-flex; align-items: center; gap: 5px; height: 26px; padding: 0 9px; border-radius: 999px; background: rgba(17,17,17,.6); color: #fff; font-size: 12.5px; font-weight: 500; }
+  .pc { position: absolute; left: 12px; bottom: 12px; display: inline-flex; align-items: center; gap: 5px; height: 28px; padding: 0 10px; border-radius: var(--pill); background: rgba(17,17,17,.55); color: #fff; font-size: 12.5px; font-weight: 500; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
   .pc .ico { width: 14px; height: 14px; }
-  .save { position: absolute; right: 12px; top: 12px; width: 36px; height: 36px; border-radius: 50%; border: 0; background: rgba(255,255,255,.94); display: grid; place-items: center; color: var(--k); }
-  .save .ico { width: 17px; height: 17px; }
+  .save { position: absolute; right: 12px; top: 12px; width: 38px; height: 38px; border-radius: 50%; border: 0; background: rgba(255,255,255,.94); display: grid; place-items: center; color: var(--k); }
+  .save:hover { transform: scale(1.08); }
+  .save .ico { width: 18px; height: 18px; }
   .save[aria-pressed="true"] { color: var(--o); }
   .save[aria-pressed="true"] .ico { fill: currentColor; }
   .cb { display: block; padding-top: 14px; }
   .price { display: block; font-size: 21px; font-weight: 700; letter-spacing: -.02em; }
   .price small { font-size: 14px; font-weight: 500; color: var(--g5); letter-spacing: 0; }
-  .cb h3 { margin: 3px 0 8px; font-size: 15.5px; font-weight: 500; color: var(--g8); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .cb h3 { margin: 3px 0 8px; font-size: 15.5px; font-weight: 500; color: var(--g8); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; transition: color var(--dur); }
+  .card:hover h3 { color: var(--o-text); }
   .spec { display: block; font-size: 14.5px; }
   .loc { display: block; font-size: 14px; color: var(--g5); }
-  .card:hover h3 { color: var(--o-text); }
-  .more { display: flex; justify-content: center; margin-top: 44px; }
+  .g4 .price { font-size: 19px; }
 
   /* areas */
-  .areas { list-style: none; margin: 24px 0 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); column-gap: 32px; }
-  .areas a { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; padding: 16px 0; border-bottom: 1px solid var(--g2); }
+  .areas { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); column-gap: 32px; }
+  .areas a { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 18px 0; border-bottom: 1px solid var(--g2); }
   .areas b { font-weight: 600; }
-  .areas span { font-size: 14px; color: var(--g5); }
+  .areas span { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; color: var(--g5); }
+  .areas .ico { width: 15px; height: 15px; opacity: 0; transform: translateX(-4px); }
   .areas a:hover b { color: var(--o-text); }
+  .areas a:hover .ico { opacity: 1; transform: none; color: var(--o); }
 
   /* contact */
-  .contact { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); border: 1px solid var(--g2); border-radius: var(--r-lg); overflow: hidden; }
-  .contact-info { padding: 44px; }
+  .contact { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 16px; }
+  .contact-info { padding: 44px; background: var(--g1); border-radius: var(--r-lg); }
   .contact-info h2 { margin: 0 0 8px; font-size: 32px; font-weight: 700; letter-spacing: -.03em; }
-  .contact-info > p { margin: 0 0 28px; color: var(--g5); }
+  .contact-info > p { margin: 0 0 28px; color: var(--g6); }
   .cl { display: grid; gap: 18px; }
-  .cl div { display: flex; gap: 14px; }
-  .cl .ci { flex: none; width: 40px; height: 40px; border-radius: 10px; background: var(--g1); display: grid; place-items: center; }
+  .cl > div { display: flex; gap: 14px; align-items: flex-start; }
+  .cl .ci { flex: none; width: 42px; height: 42px; border-radius: 50%; background: #fff; display: grid; place-items: center; }
   .cl small { display: block; color: var(--g5); font-size: 13px; }
   .cl a:hover { color: var(--o-text); }
-  .open-now { display: inline-flex; font-size: 13px; font-weight: 600; color: #1d6b3d; background: #eaf6ee; padding: 3px 9px; border-radius: 999px; margin-left: 6px; }
-  .contact-actions { display: flex; gap: 10px; margin-top: 30px; flex-wrap: wrap; }
-  .map { min-height: 460px; background: var(--g1); border-left: 1px solid var(--g2); }
-  .map iframe { width: 100%; height: 100%; border: 0; display: block; }
+  .open-now { display: inline-flex; font-size: 12.5px; font-weight: 600; color: #1d6b3d; background: #e3f3e8; padding: 3px 10px; border-radius: var(--pill); margin-left: 6px; }
+  .contact-actions { display: flex; gap: 10px; margin-top: 32px; flex-wrap: wrap; }
+  .map { min-height: 480px; background: var(--g1); border-radius: var(--r-lg); overflow: hidden; }
+  .map iframe { width: 100%; height: 100%; min-height: 480px; border: 0; display: block; }
 
-  /* ============ FOOTER ============ */
-  .foot { margin-top: 96px; background: var(--g1); }
-  .foot-top { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 40px; padding: 52px 0 44px; }
-  .foot p { margin: 14px 0 0; color: var(--g6); font-size: 15px; line-height: 1.65; }
-  .foot nav { display: grid; gap: 10px; align-content: start; font-size: 15px; color: var(--g6); }
-  .foot nav a:hover { color: var(--k); }
-  .foot-tel { display: grid; gap: 4px; align-content: start; justify-items: start; }
-  .foot-tel small { font-size: 13px; color: var(--g5); margin-bottom: 4px; }
-  .foot-tel a { font-size: 20px; font-weight: 600; letter-spacing: -.01em; }
-  .foot-tel a:hover { color: var(--o-text); }
-  .foot-bottom { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px 24px; padding: 20px 0 28px; border-top: 1px solid var(--g3); font-size: 13px; color: var(--g5); }
+  /* footer */
+  .footer { margin: 96px 10px 10px; background: var(--k); color: rgba(255,255,255,.62); border-radius: var(--r-lg); }
+  .foot-top { display: grid; grid-template-columns: 1.4fr 2fr; gap: 64px; padding: 64px 0 56px; }
+  .footer .logo { color: #fff; }
+  .foot-about p { margin: 18px 0 26px; max-width: 340px; font-size: 15px; line-height: 1.65; }
+  .foot-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+  .btn-ghost { border-color: rgba(255,255,255,.22); color: #fff; }
+  .btn-ghost:hover { border-color: #fff; }
+  .btn-ghost .i-wa { color: var(--wa); }
+  .foot-cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
+  .footer h4 { margin: 6px 0 18px; color: #fff; font-size: 14px; font-weight: 600; }
+  .footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 11px; font-size: 15px; }
+  .footer ul a:hover { color: #fff; }
+  .foot-info { display: flex; flex-wrap: wrap; gap: 14px 40px; padding: 24px 0; border-top: 1px solid rgba(255,255,255,.1); font-size: 14.5px; }
+  .foot-info span { display: inline-flex; align-items: center; gap: 10px; }
+  .foot-info .ico { width: 16px; height: 16px; color: var(--o); }
+  .foot-info a:hover { color: #fff; }
+  .foot-bottom { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px 24px; padding: 22px 0 28px; border-top: 1px solid rgba(255,255,255,.1); font-size: 13px; color: rgba(255,255,255,.42); }
+  .foot-bottom a { color: rgba(255,255,255,.7); }
+  .foot-bottom a:hover { color: #fff; }
 
-  /* whatsapp float */
-  .wa-float { position: fixed; right: 22px; bottom: 22px; z-index: 60; display: flex; align-items: center; gap: 10px; height: 56px; padding: 0 20px 0 16px; border-radius: 999px; background: var(--wa); color: #fff; font-weight: 600; box-shadow: 0 12px 28px -10px rgba(0,0,0,.35); transition: transform .2s; }
-  .wa-float:hover { transform: translateY(-2px); }
+  /* whatsapp */
+  .wa-float { position: fixed; right: 22px; bottom: 22px; z-index: 60; display: flex; align-items: center; gap: 10px; height: 54px; padding: 0 22px 0 18px; border-radius: var(--pill); background: var(--wa); color: #fff; font-weight: 600; box-shadow: 0 14px 30px -12px rgba(0,0,0,.4); }
+  .wa-float:hover { transform: translateY(-2px); box-shadow: 0 18px 34px -12px rgba(0,0,0,.45); }
   .wa-float .ico { width: 24px; height: 24px; }
-  .preview-note { position: fixed; left: 16px; bottom: 16px; z-index: 40; background: rgba(17,17,17,.88); color: #fff; font-size: 12.5px; padding: 7px 12px; border-radius: 8px; }
 
-  /* ============ RESPONSIVE ============ */
-  @media (max-width: 1100px) {
+  /* responsive */
+  @media (max-width: 1180px) {
     .menu, .nav-cta { display: none; }
     .nav-in { grid-template-columns: 1fr auto; }
-    .nav-mobile { display: flex; }
-    .drawer.open { display: block; position: fixed; top: 88px; left: 24px; right: 24px; z-index: 49; background: #fff; border-radius: 14px; border: 1px solid var(--g2); box-shadow: 0 20px 40px -20px rgba(0,0,0,.3); padding: 8px 20px 18px; }
+    .burger { display: grid; }
+    .drawer.open { display: block; position: fixed; top: 76px; left: 16px; right: 16px; z-index: 49; background: #fff; border-radius: 20px; box-shadow: 0 24px 50px -20px rgba(0,0,0,.35); padding: 10px 22px 20px; }
     .drawer a { display: block; padding: 14px 0; border-bottom: 1px solid var(--g2); font-size: 17px; font-weight: 500; }
-    .drawer .btn { width: 100%; margin-top: 14px; }
+    .drawer .btn { display: flex; width: 100%; margin-top: 16px; border-bottom: 0; }
+  }
+  @media (max-width: 1100px) {
     .hero h1 { font-size: 54px; }
-    .finder-box { grid-template-columns: 1fr 1fr; }
-    .ff { border-bottom: 1px solid var(--g2); }
+    .finder-box { grid-template-columns: 1fr 1fr; border-radius: 24px; }
+    .ff { border-bottom: 1px solid var(--g2); padding: 12px 18px; }
     .ff:first-child { grid-column: 1 / -1; border-right: 0; }
     .ff:nth-child(3) { border-right: 0; }
     .ff:nth-last-child(2) { grid-column: 1 / -1; border-bottom: 0; }
-    .finder-box .btn { grid-column: 1 / -1; margin-top: 8px; }
-    .contact { grid-template-columns: minmax(0, 1fr); }
-    .map { border-left: 0; border-top: 1px solid var(--g2); min-height: 340px; }
-    .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .finder-box .btn { grid-column: 1 / -1; margin-top: 6px; height: 54px; }
+    .g3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .g4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .areas { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .foot-top { grid-template-columns: 1fr 1fr; }
+    .contact { grid-template-columns: minmax(0, 1fr); }
+    .map, .map iframe { min-height: 340px; }
+    .foot-top { grid-template-columns: minmax(0, 1fr); gap: 44px; }
   }
   @media (max-width: 720px) {
     :root { --gut: 18px; }
-    .nav { top: 10px; padding: 0 10px; }
-    .nav-in { height: 58px; padding: 0 7px 0 14px; }
+    .nav { padding: 10px 10px 0; }
+    .nav.solid { padding: 0; }
+    .nav-in { height: 60px; padding: 0 8px 0 14px; }
     .logo svg { width: 30px; height: 30px; }
     .logo-text { font-size: 18px; }
-    .nav-mobile button { width: 42px; height: 42px; }
-    .drawer.open { top: 74px; left: 10px; right: 10px; }
+    .drawer.open { top: 70px; left: 10px; right: 10px; }
     .hero { padding: 6px 6px 0; }
-    .hero-media { min-height: 0; height: auto; max-height: none; border-radius: 16px; }
+    .hero-media { min-height: 0; height: auto; max-height: none; border-radius: 18px; }
     .hero-media::after { background: linear-gradient(180deg, rgba(0,0,0,.4) 0%, rgba(0,0,0,0) 22%), linear-gradient(0deg, rgba(10,12,14,.86) 0%, rgba(10,12,14,.6) 45%, rgba(10,12,14,.15) 80%); }
-    .hero-inner { padding: 190px 12px 14px; }
-    .hero h1 { font-size: 38px; }
+    .hero-inner { padding: 180px 12px 14px; }
+    .hero h1 { font-size: 40px; }
     .hero-sub { font-size: 16px; margin-bottom: 22px; }
-    .finder-tabs button { flex: 1; padding: 0 6px; font-size: 14.5px; }
-    .finder-box { border-radius: 0 0 var(--r-lg) var(--r-lg); padding: 6px; }
+    .finder-tabs button { flex: 1; }
+    .finder-box { padding: 6px; border-radius: 20px; }
     .ff { padding: 10px 12px; }
-    .suggest { right: 0; left: 0; }
-    .finder-box .btn { min-height: 52px; }
-    .hero-foot { flex-wrap: wrap; gap: 6px 14px; font-size: 13px; }
-    .hero-foot .dot:nth-of-type(4) { display: none; }
+    .suggest { left: 0; right: 0; }
     section.block { padding-top: 72px; }
-    .contact-info { padding: 28px 20px; }
-    .wa-float { right: 14px; bottom: 14px; width: 56px; padding: 0; justify-content: center; }
-    .wa-float span { display: none; }
-    .preview-note { display: none; }
-    section.block { padding-top: 72px; }
+    section.band { margin: 72px 6px 0; padding: 60px 0; border-radius: 18px; }
     .h { font-size: 26px; }
-    .tools { width: 100%; gap: 8px; }
-    .sort { margin-left: auto; min-width: 0; }
-    .sort select { max-width: 100%; padding: 0 26px 0 10px; background-position: right 10px center; font-size: 14px; }
-    .seg button { padding: 0 10px; font-size: 14px; }
-    .grid { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+    .h span { display: block; margin: 6px 0 0; font-size: 14px; }
+    .link-more { height: 40px; padding: 0 14px; font-size: 14px; }
+    .g3 { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+    .rail { display: grid; grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 80%; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; margin: 0 calc(var(--gut) * -1); padding: 0 var(--gut); scroll-padding: 0 var(--gut); }
+    .rail::-webkit-scrollbar { display: none; }
+    .rail .card { scroll-snap-align: start; }
     .areas { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 20px; }
-    .foot { margin-top: 72px; }
-    .foot-top { grid-template-columns: minmax(0, 1fr); gap: 28px; padding: 40px 0 32px; }
+    .areas .ico { display: none; }
+    .contact-info { padding: 28px 20px; border-radius: 18px; }
+    .map { border-radius: 18px; }
+    .footer { margin: 72px 6px 6px; border-radius: 18px; }
+    .foot-top { padding: 44px 0 36px; }
+    .foot-cols { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .foot-cols > div:last-child { grid-column: 1 / -1; }
     .foot-bottom { padding-bottom: 90px; }
+    .wa-float { right: 14px; bottom: 14px; width: 56px; height: 56px; padding: 0; justify-content: center; }
+    .wa-float span { display: none; }
+    .wa-float .ico { width: 28px; height: 28px; }
   }
 </style>
 </head>
@@ -236,29 +247,19 @@
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
     <symbol id="logo" viewBox="0 0 34 34"><rect width="34" height="34" rx="9" fill="#e8672a"/><path d="M10 13.2 17 8l7 5.2" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="17" cy="20.5" r="5.4" fill="none" stroke="#fff" stroke-width="2.6"/></symbol>
-    <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></symbol>
-    <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.2A9.8 9.8 0 0 0 3.6 17l-1.4 4.8 4.9-1.3A9.8 9.8 0 1 0 12 2.2zm0 17.8c-1.5 0-3-.4-4.2-1.2l-.3-.2-2.9.8.8-2.8-.2-.3A8.1 8.1 0 1 1 12 20zm4.5-6c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s1 2.6 1.1 2.7c.1.2 1.9 2.9 4.6 4 1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.8-1.2.2-.6.2-1.1.1-1.2 0-.1-.2-.2-.4-.3z"/></symbol>
-    <symbol id="i-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></symbol>
-    <symbol id="i-bed" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18V7M3 14h18v4M21 14v-2a3 3 0 0 0-3-3h-7v5"/><circle cx="7" cy="11" r="1.6"/></symbol>
-    <symbol id="i-area" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="1.5"/><path d="M4 10h6v10"/></symbol>
-    <symbol id="i-floor" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V6l8-3 8 3v14"/><path d="M4 12h16M9 20v-4h6v4"/></symbol>
-    <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
-    <symbol id="i-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></symbol>
-    <symbol id="i-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></symbol>
-    <symbol id="i-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></symbol>
-    <symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></symbol>
-    <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.6-7-11.5a7 7 0 0 1 14 0C19 15.4 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
-    <symbol id="i-cam" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="14" rx="2"/><circle cx="12" cy="13" r="3.5"/><path d="M8 6l1.5-2h5L16 6"/></symbol>
-    <symbol id="i-key" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M16 7l3 3"/></symbol>
-    <symbol id="i-doc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h6"/></symbol>
-    <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
-    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 8h16M4 16h16"/></symbol>
-    <symbol id="i-apt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="1.5"/><path d="M9 7h2M13 7h2M9 11h2M13 11h2M9 15h2M13 15h2"/></symbol>
-    <symbol id="i-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11l8-6 8 6v9H4z"/><path d="M10 20v-5h4v5"/></symbol>
-    <symbol id="i-shop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9l1.5-5h13L20 9M4 9h16v11H4zM9 20v-6h6v6"/></symbol>
-    <symbol id="i-land" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18l5-7 4 5 3-3 6 5z"/><circle cx="16" cy="7" r="2"/></symbol>
-    <symbol id="i-villa" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l6-5 6 5M5 10.5V20h14v-7l-4-3"/><path d="M8 20v-4h3v4"/></symbol>
-    <symbol id="i-key2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11l8-6 8 6v9H4z"/><circle cx="12" cy="13" r="2"/><path d="M12 15v3"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><svg class="lucide lucide-phone" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><svg class="lucide lucide-map-pin" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/> <circle cx="12" cy="10" r="3"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><svg class="lucide lucide-clock" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <circle cx="12" cy="12" r="10"/> <polyline points="12 6 12 12 16 14"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><svg class="lucide lucide-heart" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></symbol>
+    <symbol id="i-cam" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><svg class="lucide lucide-camera" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/> <circle cx="12" cy="13" r="3"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><svg class="lucide lucide-arrow-right" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M5 12h14"/> <path d="m12 5 7 7-7 7"/></symbol>
+    <symbol id="i-out" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><svg class="lucide lucide-arrow-up-right" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M7 7h10v10"/> <path d="M7 17 17 7"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><svg class="lucide lucide-menu" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <line x1="4" x2="20" y1="12" y2="12"/> <line x1="4" x2="20" y1="6" y2="6"/> <line x1="4" x2="20" y1="18" y2="18"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><svg class="lucide lucide-x" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M18 6 6 18"/> <path d="m6 6 12 12"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><svg class="lucide lucide-search" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <circle cx="11" cy="11" r="8"/> <path d="m21 21-4.3-4.3"/></symbol>
+    <symbol id="i-nav" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><svg class="lucide lucide-navigation" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <polygon points="3 11 22 2 13 21 11 13 3 11"/></symbol>
+    <symbol id="i-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><svg class="lucide lucide-chevron-down" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="m6 9 6 6 6-6"/></symbol>
+    <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></symbol>
   </defs>
 </svg>
 
@@ -266,28 +267,33 @@
   <div class="nav-in">
     <a class="logo" href="#" aria-label="Özkal Emlak ana sayfa"><svg><use href="#logo"/></svg><span class="logo-text"><b>Özkal</b> <span>Emlak</span></span></a>
     <nav class="menu" aria-label="Ana menü">
-      <a href="#ilanlar" data-go="satilik">Satılık</a>
-      <a href="#ilanlar" data-go="kiralik">Kiralık</a>
-      <a href="#semtler">Bölgeler</a>
+      <a href="#satilik">Satılık</a>
+      <a href="#kiralik">Kiralık</a>
+      <a href="#isyeri">İş yeri ve arsa</a>
       <a href="#">Evinizi verin</a>
+      <a href="#">Hakkımızda</a>
       <a href="#iletisim">İletişim</a>
     </nav>
     <div class="nav-cta"><a class="btn btn-o" href="https://wa.me/905322864617?text=Merhaba%2C%20ev%20g%C3%B6rmek%20i%C3%A7in%20randevu%20almak%20istiyorum.">Randevu alın</a></div>
-    <div class="nav-mobile"><button type="button" id="menu-btn" aria-label="Menü" aria-expanded="false"><svg class="ico"><use href="#i-menu"/></svg></button></div>
+    <button class="burger" type="button" id="menu-btn" aria-label="Menü" aria-expanded="false"><svg class="ico i-menu"><use href="#i-menu"/></svg><svg class="ico i-x"><use href="#i-x"/></svg></button>
   </div>
 </header>
 <nav class="drawer" id="drawer" aria-label="Mobil menü">
-  <a href="#ilanlar" data-go="satilik">Satılık</a><a href="#ilanlar" data-go="kiralik">Kiralık</a><a href="#semtler">Bölgeler</a><a href="#">Evinizi verin</a><a href="#iletisim">İletişim</a>
+      <a href="#satilik">Satılık</a>
+      <a href="#kiralik">Kiralık</a>
+      <a href="#isyeri">İş yeri ve arsa</a>
+      <a href="#">Evinizi verin</a>
+      <a href="#">Hakkımızda</a>
+      <a href="#iletisim">İletişim</a>
   <a class="btn btn-o" href="https://wa.me/905322864617?text=Merhaba%2C%20ev%20g%C3%B6rmek%20i%C3%A7in%20randevu%20almak%20istiyorum.">Randevu alın</a>
 </nav>
 
 <main>
-  <!-- HERO -->
   <section class="hero">
     <div class="hero-media">
       <img src="img/hero-mavisehir.jpg" alt="Mavişehir sahili ve konutları" fetchpriority="high">
       <div class="hero-inner">
-        <h1>İzmir'de evinizi bulun.</h1>
+        <h1>İzmir'de evinizi bulun</h1>
         <p class="hero-sub">Bostanlı'daki ofisimizden İzmir genelinde satılık ve kiralık daire, iş yeri ve arsa.</p>
         <form class="finder" id="finder" role="search" autocomplete="off">
           <div class="finder-tabs" role="tablist">
@@ -303,148 +309,194 @@
             <div class="ff"><label for="f-type">Emlak tipi</label><select id="f-type"><option>Daire</option><option>Müstakil ev</option><option>Villa</option><option>İş yeri</option><option>Arsa</option></select></div>
             <div class="ff"><label for="f-room">Oda</label><select id="f-room"><option>Tümü</option><option>1+1</option><option>2+1</option><option>3+1</option><option>4+1 ve üzeri</option></select></div>
             <div class="ff"><label for="f-price">En fazla</label><select id="f-price"></select></div>
-            <button class="btn btn-o" type="submit">İlanları göster</button>
+            <button class="btn btn-o" type="submit"><svg class="ico" aria-hidden="true"><use href="#i-search"/></svg>İlanları göster</button>
           </div>
         </form>
-        <div class="hero-foot"><span><b>37</b> aktif ilan</span><span class="dot"></span><span>Bu hafta <b>4</b> yeni</span><span class="dot"></span><span>Pazartesi – Cumartesi 09.00 – 19.00</span></div>
       </div>
     </div>
   </section>
 
-  <!-- LISTINGS -->
-  <section class="block" id="ilanlar">
+  <section class="block" id="satilik">
     <div class="wrap">
-      <div class="list-head">
-        <h2 class="h">İlanlar <span>37 ilan</span></h2>
-        <div class="tools">
-          <div class="seg" role="group" aria-label="İlan türü">
-            <button type="button" aria-pressed="true" data-f="tumu">Tümü</button>
-            <button type="button" aria-pressed="false" data-f="satilik">Satılık</button>
-            <button type="button" aria-pressed="false" data-f="kiralik">Kiralık</button>
-          </div>
-          <label class="sort"><select id="sort" aria-label="Sırala"><option value="new">En yeni</option><option value="asc">Fiyat artan</option><option value="desc">Fiyat azalan</option></select></label>
-        </div>
+      <div class="sec-head">
+        <h2 class="h">Satılık <span>24 ilan</span></h2>
+        <a class="link-more" href="#">Tümünü gör <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </div>
-      <div class="grid" id="grid">
-        <article class="card" data-t="satilik" data-p="14750000" data-i="0">
-          <a class="ph" href="#"><img src="img/ilan-bostanli-deniz.jpg" alt="Bostanlı'da deniz manzaralı salon"><span class="tag new">Yeni</span><span class="pc"><svg class="ico"><use href="#i-cam"/></svg>18</span></a>
-          <button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg class="ico"><use href="#i-heart"/></svg></button>
+      <div class="grid g3">
+        <article class="card">
+          <a class="ph" href="#"><img src="img/ilan-bostanli-deniz.jpg" alt="Bostanlı'da deniz manzaralı salon"><span class="tag new">Yeni</span><span class="pc"><svg class="ico" aria-hidden="true"><use href="#i-cam"/></svg>18</span></a>
+          <button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg class="ico" aria-hidden="true"><use href="#i-heart"/></svg></button>
           <a class="cb" href="#"><span class="price">14.750.000 TL</span><h3>Denize ikinci parsel, geniş balkonlu daire</h3><span class="spec">3+1 · 145 m² · 3. kat</span><span class="loc">Bostanlı, Karşıyaka</span></a>
         </article>
-        <article class="card" data-t="satilik" data-p="8450000" data-i="1">
-          <a class="ph" href="#"><img src="img/ilan-mavisehir.jpg" alt="Mavişehir'de aydınlık salon"><span class="tag">Satılık</span><span class="pc"><svg class="ico"><use href="#i-cam"/></svg>14</span></a>
-          <button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg class="ico"><use href="#i-heart"/></svg></button>
+        <article class="card">
+          <a class="ph" href="#"><img src="img/ilan-mavisehir.jpg" alt="Mavişehir'de aydınlık salon"><span class="tag">Site içinde</span><span class="pc"><svg class="ico" aria-hidden="true"><use href="#i-cam"/></svg>14</span></a>
+          <button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg class="ico" aria-hidden="true"><use href="#i-heart"/></svg></button>
           <a class="cb" href="#"><span class="price">8.450.000 TL</span><h3>Havuzlu site içinde, aydınlık daire</h3><span class="spec">2+1 · 105 m² · 7. kat</span><span class="loc">Mavişehir, Karşıyaka</span></a>
         </article>
-        <article class="card" data-t="kiralik" data-p="32000" data-i="2">
-          <a class="ph" href="#"><img src="img/ilan-carsi-kiralik.jpg" alt="Karşıyaka çarşıda kiralık daire"><span class="tag">Kiralık</span><span class="pc"><svg class="ico"><use href="#i-cam"/></svg>11</span></a>
-          <button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg class="ico"><use href="#i-heart"/></svg></button>
-          <a class="cb" href="#"><span class="price">32.000 TL <small>/ ay</small></span><h3>Çarşıya 3 dakika, eşyasız daire</h3><span class="spec">2+1 · 95 m² · 2. kat</span><span class="loc">Çarşı, Karşıyaka</span></a>
-        </article>
-        <article class="card" data-t="satilik" data-p="11900000" data-i="3">
-          <a class="ph" href="#"><img src="img/ilan-atakent.jpg" alt="Bayraklı'da güney cepheli salon" loading="lazy"><span class="tag">Satılık</span><span class="pc"><svg class="ico"><use href="#i-cam"/></svg>16</span></a>
-          <button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg class="ico"><use href="#i-heart"/></svg></button>
+        <article class="card">
+          <a class="ph" href="#"><img src="img/ilan-atakent.jpg" alt="Bayraklı'da güney cepheli salon"><span class="pc"><svg class="ico" aria-hidden="true"><use href="#i-cam"/></svg>16</span></a>
+          <button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg class="ico" aria-hidden="true"><use href="#i-heart"/></svg></button>
           <a class="cb" href="#"><span class="price">11.900.000 TL</span><h3>Güney cephe, gün boyu güneş alan daire</h3><span class="spec">3+1 · 130 m² · 5. kat</span><span class="loc">Adalet, Bayraklı</span></a>
         </article>
-        <article class="card" data-t="satilik" data-p="16500000" data-i="4">
-          <a class="ph" href="#"><img src="img/ilan-semikler.jpg" alt="Narlıdere'de bahçeli müstakil ev" loading="lazy"><span class="tag">Satılık</span><span class="pc"><svg class="ico"><use href="#i-cam"/></svg>22</span></a>
-          <button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg class="ico"><use href="#i-heart"/></svg></button>
-          <a class="cb" href="#"><span class="price">16.500.000 TL</span><h3>300 m² arsa içinde bahçeli müstakil ev</h3><span class="spec">4+1 · 220 m² · 2 katlı</span><span class="loc">Narlıdere</span></a>
+        <article class="card">
+          <a class="ph" href="#"><img src="img/ilan-semikler.jpg" alt="Narlıdere'de bahçeli müstakil ev" loading="lazy"><span class="tag">Müstakil</span><span class="pc"><svg class="ico" aria-hidden="true"><use href="#i-cam"/></svg>22</span></a>
+          <button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg class="ico" aria-hidden="true"><use href="#i-heart"/></svg></button>
+          <a class="cb" href="#"><span class="price">16.500.000 TL</span><h3>300 m² arsa içinde bahçeli ev</h3><span class="spec">4+1 · 220 m² · 2 katlı</span><span class="loc">Narlıdere</span></a>
         </article>
-        <article class="card" data-t="kiralik" data-p="22500" data-i="5">
-          <a class="ph" href="#"><img src="img/ilan-donanmaci.jpg" alt="Alsancak'ta eşyalı kiralık daire" loading="lazy"><span class="tag">Kiralık</span><span class="pc"><svg class="ico"><use href="#i-cam"/></svg>9</span></a>
-          <button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg class="ico"><use href="#i-heart"/></svg></button>
-          <a class="cb" href="#"><span class="price">22.500 TL <small>/ ay</small></span><h3>Kordon'a iki sokak, eşyalı daire</h3><span class="spec">1+1 · 60 m² · 1. kat</span><span class="loc">Alsancak, Konak</span></a>
+        <article class="card">
+          <a class="ph" href="#"><img src="img/ilan-mavisehir-4.jpg" alt="Mavişehir'de geniş salon" loading="lazy"><span class="pc"><svg class="ico" aria-hidden="true"><use href="#i-cam"/></svg>20</span></a>
+          <button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg class="ico" aria-hidden="true"><use href="#i-heart"/></svg></button>
+          <a class="cb" href="#"><span class="price">13.250.000 TL</span><h3>Ebeveyn banyolu, körfez manzaralı daire</h3><span class="spec">4+1 · 175 m² · 9. kat</span><span class="loc">Mavişehir, Karşıyaka</span></a>
         </article>
-        <article class="card" data-t="satilik" data-p="6950000" data-i="6">
-          <a class="ph" href="#"><img src="img/ilan-alaybey.jpg" alt="Bornova'da yenilenmiş mutfak" loading="lazy"><span class="tag">Satılık</span><span class="pc"><svg class="ico"><use href="#i-cam"/></svg>12</span></a>
-          <button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg class="ico"><use href="#i-heart"/></svg></button>
-          <a class="cb" href="#"><span class="price">6.950.000 TL</span><h3>Mutfağı yeni yapılmış, metroya yakın</h3><span class="spec">2+1 · 90 m² · 4. kat</span><span class="loc">Kazımdirik, Bornova</span></a>
-        </article>
-        <article class="card" data-t="satilik" data-p="13250000" data-i="7">
-          <a class="ph" href="#"><img src="img/ilan-mavisehir-4.jpg" alt="Mavişehir'de geniş salon" loading="lazy"><span class="tag">Satılık</span><span class="pc"><svg class="ico"><use href="#i-cam"/></svg>20</span></a>
-          <button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg class="ico"><use href="#i-heart"/></svg></button>
-          <a class="cb" href="#"><span class="price">13.250.000 TL</span><h3>Ebeveyn banyolu, körfez manzaralı</h3><span class="spec">4+1 · 175 m² · 9. kat</span><span class="loc">Mavişehir, Karşıyaka</span></a>
-        </article>
-        <article class="card" data-t="satilik" data-p="15900000" data-i="8">
-          <a class="ph" href="#"><img src="img/ilan-dubleks.jpg" alt="Dubleks dairede ahşap merdiven" loading="lazy"><span class="tag">Satılık</span><span class="pc"><svg class="ico"><use href="#i-cam"/></svg>24</span></a>
-          <button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg class="ico"><use href="#i-heart"/></svg></button>
-          <a class="cb" href="#"><span class="price">15.900.000 TL</span><h3>Çatı dubleksi, geniş teraslı</h3><span class="spec">5+2 · 240 m² · Dubleks</span><span class="loc">Bostanlı, Karşıyaka</span></a>
+        <article class="card">
+          <a class="ph" href="#"><img src="img/ilan-dubleks.jpg" alt="Dubleks dairede ahşap merdiven" loading="lazy"><span class="tag">Dubleks</span><span class="pc"><svg class="ico" aria-hidden="true"><use href="#i-cam"/></svg>24</span></a>
+          <button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg class="ico" aria-hidden="true"><use href="#i-heart"/></svg></button>
+          <a class="cb" href="#"><span class="price">15.900.000 TL</span><h3>Geniş teraslı çatı dubleksi</h3><span class="spec">5+2 · 240 m² · 6-7. kat</span><span class="loc">Bostanlı, Karşıyaka</span></a>
         </article>
       </div>
-      <div class="more"><a class="btn btn-line" href="#">Tüm ilanları gör (37)</a></div>
     </div>
   </section>
 
-  <!-- AREAS -->
-  <section class="block" id="semtler">
+  <section class="band" id="kiralik">
     <div class="wrap">
-      <h2 class="h">Bölgelere göre ilanlar</h2>
+      <div class="sec-head">
+        <h2 class="h">Kiralık <span>8 ilan</span></h2>
+        <a class="link-more" href="#">Tümünü gör <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+      <div class="grid g4 rail">
+        <article class="card">
+          <a class="ph" href="#"><img src="img/ilan-carsi-kiralik.jpg" alt="Karşıyaka çarşıda kiralık daire" loading="lazy"><span class="pc"><svg class="ico" aria-hidden="true"><use href="#i-cam"/></svg>11</span></a>
+          <button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg class="ico" aria-hidden="true"><use href="#i-heart"/></svg></button>
+          <a class="cb" href="#"><span class="price">32.000 TL <small>/ ay</small></span><h3>Çarşıya 3 dakika, eşyasız daire</h3><span class="spec">2+1 · 95 m² · 2. kat</span><span class="loc">Çarşı, Karşıyaka</span></a>
+        </article>
+        <article class="card">
+          <a class="ph" href="#"><img src="img/ilan-donanmaci.jpg" alt="Alsancak'ta eşyalı kiralık daire" loading="lazy"><span class="tag">Eşyalı</span><span class="pc"><svg class="ico" aria-hidden="true"><use href="#i-cam"/></svg>9</span></a>
+          <button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg class="ico" aria-hidden="true"><use href="#i-heart"/></svg></button>
+          <a class="cb" href="#"><span class="price">22.500 TL <small>/ ay</small></span><h3>Kordon'a iki sokak, eşyalı daire</h3><span class="spec">1+1 · 60 m² · 1. kat</span><span class="loc">Alsancak, Konak</span></a>
+        </article>
+        <article class="card">
+          <a class="ph" href="#"><img src="img/ilan-alaybey.jpg" alt="Bornova'da yenilenmiş mutfak" loading="lazy"><span class="pc"><svg class="ico" aria-hidden="true"><use href="#i-cam"/></svg>12</span></a>
+          <button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg class="ico" aria-hidden="true"><use href="#i-heart"/></svg></button>
+          <a class="cb" href="#"><span class="price">26.000 TL <small>/ ay</small></span><h3>Mutfağı yeni yapılmış, metroya yakın</h3><span class="spec">2+1 · 90 m² · 4. kat</span><span class="loc">Kazımdirik, Bornova</span></a>
+        </article>
+        <article class="card">
+          <a class="ph" href="#"><img src="img/ilan-modern-salon.jpg" alt="Site içinde geniş salon" loading="lazy"><span class="tag">Site içinde</span><span class="pc"><svg class="ico" aria-hidden="true"><use href="#i-cam"/></svg>15</span></a>
+          <button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg class="ico" aria-hidden="true"><use href="#i-heart"/></svg></button>
+          <a class="cb" href="#"><span class="price">35.000 TL <small>/ ay</small></span><h3>Otoparklı site içinde geniş daire</h3><span class="spec">3+1 · 140 m² · 6. kat</span><span class="loc">Mavişehir, Karşıyaka</span></a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="isyeri">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="h">İş yeri ve arsa <span>5 ilan</span></h2>
+        <a class="link-more" href="#">Tümünü gör <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+      <div class="grid g3 rail">
+        <article class="card">
+          <a class="ph" href="#"><img src="img/isyeri-ofis.jpg" alt="Cam cepheli açık ofis katı" loading="lazy"><span class="tag">Kiralık</span><span class="pc"><svg class="ico" aria-hidden="true"><use href="#i-cam"/></svg>10</span></a>
+          <button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg class="ico" aria-hidden="true"><use href="#i-heart"/></svg></button>
+          <a class="cb" href="#"><span class="price">65.000 TL <small>/ ay</small></span><h3>Cam cepheli, açık plan ofis katı</h3><span class="spec">Ofis · 280 m² · 12. kat</span><span class="loc">Manas Bulvarı, Bayraklı</span></a>
+        </article>
+        <article class="card">
+          <a class="ph" href="#"><img src="img/isyeri-dukkan.jpg" alt="Vitrinli dükkan" loading="lazy"><span class="tag">Satılık</span><span class="pc"><svg class="ico" aria-hidden="true"><use href="#i-cam"/></svg>8</span></a>
+          <button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg class="ico" aria-hidden="true"><use href="#i-heart"/></svg></button>
+          <a class="cb" href="#"><span class="price">9.800.000 TL</span><h3>Cadde üzerinde, vitrinli dükkan</h3><span class="spec">Dükkan · 85 m² · Zemin kat</span><span class="loc">Çarşı, Karşıyaka</span></a>
+        </article>
+        <article class="card">
+          <a class="ph" href="#"><img src="img/arsa-menemen.jpg" alt="Gün batımında tarla" loading="lazy"><span class="tag">Satılık</span><span class="pc"><svg class="ico" aria-hidden="true"><use href="#i-cam"/></svg>6</span></a>
+          <button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg class="ico" aria-hidden="true"><use href="#i-heart"/></svg></button>
+          <a class="cb" href="#"><span class="price">4.200.000 TL</span><h3>Yola cepheli, konut imarlı arsa</h3><span class="spec">Arsa · 1.250 m² · İmarlı</span><span class="loc">Seyrek, Menemen</span></a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="bolgeler">
+    <div class="wrap">
+      <div class="sec-head"><h2 class="h">Bölgelere göre ilanlar</h2></div>
       <ul class="areas">
-        <li><a href="#ilanlar"><b>Karşıyaka</b><span>21 ilan</span></a></li>
-        <li><a href="#ilanlar"><b>Bayraklı</b><span>6 ilan</span></a></li>
-        <li><a href="#ilanlar"><b>Çiğli</b><span>5 ilan</span></a></li>
-        <li><a href="#ilanlar"><b>Bornova</b><span>4 ilan</span></a></li>
-        <li><a href="#ilanlar"><b>Alsancak</b><span>3 ilan</span></a></li>
-        <li><a href="#ilanlar"><b>Narlıdere</b><span>2 ilan</span></a></li>
-        <li><a href="#ilanlar"><b>Buca</b><span>2 ilan</span></a></li>
-        <li><a href="#ilanlar"><b>Karabağlar</b><span>1 ilan</span></a></li>
-        <li><a href="#ilanlar"><b>Menemen</b><span>1 ilan</span></a></li>
-        <li><a href="#ilanlar"><b>Balçova</b><span>1 ilan</span></a></li>
+        <li><a href="#"><b>Karşıyaka</b><span>21 ilan<svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></span></a></li>
+        <li><a href="#"><b>Bayraklı</b><span>6 ilan<svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></span></a></li>
+        <li><a href="#"><b>Çiğli</b><span>5 ilan<svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></span></a></li>
+        <li><a href="#"><b>Bornova</b><span>4 ilan<svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></span></a></li>
+        <li><a href="#"><b>Alsancak</b><span>3 ilan<svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></span></a></li>
+        <li><a href="#"><b>Narlıdere</b><span>2 ilan<svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></span></a></li>
+        <li><a href="#"><b>Buca</b><span>2 ilan<svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></span></a></li>
+        <li><a href="#"><b>Karabağlar</b><span>1 ilan<svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></span></a></li>
+        <li><a href="#"><b>Menemen</b><span>1 ilan<svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></span></a></li>
+        <li><a href="#"><b>Balçova</b><span>1 ilan<svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></span></a></li>
       </ul>
     </div>
   </section>
 
-  <!-- CONTACT -->
   <section class="block" id="iletisim">
-    <div class="wrap">
-      <div class="contact">
-        <div class="contact-info">
-          <h2>Ofisimize bekleriz</h2>
-          <p>Bostanlı'daki ofisimizden İzmir genelinde çalışıyoruz. Uğramadan önce arayın, sizi bekleyelim.</p>
-          <div class="cl">
-            <div><span class="ci"><svg class="ico"><use href="#i-pin"/></svg></span><span><small>Adres</small>Bostanlı Mah., Karşıyaka / İzmir</span></div>
-            <div><span class="ci"><svg class="ico"><use href="#i-phone"/></svg></span><span><small>Telefon</small><a href="tel:+902323309911">0232 330 99 11</a> · <a href="tel:+905322864617">0532 286 46 17</a></span></div>
-            <div><span class="ci"><svg class="ico"><use href="#i-clock"/></svg></span><span><small>Çalışma saatleri</small>Pazartesi – Cumartesi, 09.00 – 19.00<span class="open-now" id="open-now" hidden>Şu an açık</span></span></div>
-          </div>
-          <div class="contact-actions">
-            <a class="btn btn-o" href="https://maps.google.com/?q=Bostanl%C4%B1+Kar%C5%9F%C4%B1yaka+%C4%B0zmir">Yol tarifi al</a>
-            <a class="btn btn-line" href="tel:+902323309911"><svg class="ico"><use href="#i-phone"/></svg>Ara</a>
-          </div>
+    <div class="wrap contact">
+      <div class="contact-info">
+        <h2>Ofisimize bekleriz</h2>
+        <p>Bostanlı'daki ofisimizden İzmir genelinde çalışıyoruz. Uğramadan önce arayın, sizi bekleyelim.</p>
+        <div class="cl">
+          <div><span class="ci"><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg></span><span><small>Adres</small>Bostanlı Mah., Karşıyaka / İzmir</span></div>
+          <div><span class="ci"><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg></span><span><small>Telefon</small><a href="tel:+902323309911">0232 330 99 11</a> · <a href="tel:+905322864617">0532 286 46 17</a></span></div>
+          <div><span class="ci"><svg class="ico" aria-hidden="true"><use href="#i-clock"/></svg></span><span><small>Çalışma saatleri</small>Pazartesi – Cumartesi, 09.00 – 19.00<span class="open-now" id="open-now" hidden>Şu an açık</span></span></div>
         </div>
-        <div class="map"><iframe title="Ofis konumu" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Bostanl%C4%B1%2C%20Kar%C5%9F%C4%B1yaka%2C%20%C4%B0zmir&z=14&output=embed"></iframe></div>
+        <div class="contact-actions">
+          <a class="btn btn-o" href="https://maps.google.com/?q=Bostanl%C4%B1+Kar%C5%9F%C4%B1yaka+%C4%B0zmir"><svg class="ico" aria-hidden="true"><use href="#i-nav"/></svg>Yol tarifi al</a>
+          <a class="btn btn-line" href="tel:+902323309911"><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg>Ara</a>
+        </div>
       </div>
+      <div class="map"><iframe title="Ofis konumu" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Bostanl%C4%B1%2C%20Kar%C5%9F%C4%B1yaka%2C%20%C4%B0zmir&z=14&output=embed"></iframe></div>
     </div>
   </section>
 </main>
 
-<footer class="foot">
+<footer class="footer">
   <div class="wrap">
     <div class="foot-top">
-      <div>
+      <div class="foot-about">
         <a class="logo" href="#"><svg><use href="#logo"/></svg><span class="logo-text"><b>Özkal</b> <span>Emlak</span></span></a>
-        <p>Bostanlı Mah., Karşıyaka / İzmir<br>Pazartesi – Cumartesi, 09.00 – 19.00</p>
+        <p>İzmir genelinde satılık ve kiralık ev, iş yeri ve arsa. Ofisimiz Bostanlı, Karşıyaka'da.</p>
+        <div class="foot-btns">
+          <a class="btn btn-ghost" href="tel:+902323309911"><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg>0232 330 99 11</a>
+          <a class="btn btn-ghost" href="https://wa.me/905322864617"><svg class="ico i-wa" aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a>
+        </div>
       </div>
-      <nav aria-label="Alt menü"><a href="#ilanlar" data-go="satilik">Satılık</a><a href="#ilanlar" data-go="kiralik">Kiralık</a><a href="#semtler">Bölgeler</a><a href="#">Evinizi verin</a><a href="#iletisim">İletişim</a></nav>
-      <div class="foot-tel"><small>Telefon</small><a href="tel:+902323309911">0232 330 99 11</a><a href="tel:+905322864617">0532 286 46 17</a></div>
+      <div class="foot-cols">
+        <div><h4>İlanlar</h4><ul><li><a href="#satilik">Satılık daire</a></li><li><a href="#kiralik">Kiralık daire</a></li><li><a href="#isyeri">İş yeri</a></li><li><a href="#isyeri">Arsa</a></li></ul></div>
+        <div><h4>Özkal Emlak</h4><ul><li><a href="#">Hakkımızda</a></li><li><a href="#">Evinizi verin</a></li><li><a href="#iletisim">İletişim</a></li></ul></div>
+        <div><h4>Bölgeler</h4><ul><li><a href="#bolgeler">Karşıyaka</a></li><li><a href="#bolgeler">Bayraklı</a></li><li><a href="#bolgeler">Bornova</a></li><li><a href="#bolgeler">Çiğli</a></li></ul></div>
+      </div>
+    </div>
+    <div class="foot-info">
+      <span><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg>Bostanlı Mah., Karşıyaka / İzmir</span>
+      <span><svg class="ico" aria-hidden="true"><use href="#i-clock"/></svg>Pazartesi – Cumartesi, 09.00 – 19.00</span>
+      <span><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg><a href="tel:+905322864617">0532 286 46 17</a></span>
     </div>
     <div class="foot-bottom">
-      <span>© 2026 Özkal Emlak · Önizleme, ilanlar örnektir</span>
-      <span>Kapak fotoğrafı: Denham35, Wikimedia Commons (CC BY-SA 4.0) · İlan fotoğrafları: Unsplash</span>
+      <span>© 2026 Özkal Emlak</span>
+      <span>Kapak fotoğrafı: Denham35, CC BY-SA 4.0 · Tasarım: <a href="https://himbel.com">Himbel</a></span>
     </div>
   </div>
 </footer>
 
-<a class="wa-float" href="https://wa.me/905322864617" aria-label="WhatsApp'tan yazın"><svg class="ico"><use href="#i-wa"/></svg><span>WhatsApp</span></a>
-<div class="preview-note">Önizleme · ilanlar örnektir</div>
+<a class="wa-float" href="https://wa.me/905322864617" aria-label="WhatsApp'tan yazın"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg><span>WhatsApp</span></a>
 
 <script>
-  // nav
-  const nav = document.getElementById('nav'), hero = document.querySelector('.hero-media'), drawer = document.getElementById('drawer'), menuBtn = document.getElementById('menu-btn');
-  const solid = () => nav.classList.toggle('solid', scrollY > hero.offsetHeight - 110 || drawer.classList.contains('open'));
-  addEventListener('scroll', solid, { passive: true }); solid();
-  menuBtn.addEventListener('click', () => { const o = drawer.classList.toggle('open'); menuBtn.setAttribute('aria-expanded', String(o)); solid(); });
-  drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { drawer.classList.remove('open'); solid(); }));
+  // nav: solid after scroll, hides on scroll down, returns on scroll up
+  const nav = document.getElementById('nav'), drawer = document.getElementById('drawer'), menuBtn = document.getElementById('menu-btn');
+  let lastY = scrollY;
+  function onScroll() {
+    const y = scrollY, open = drawer.classList.contains('open');
+    nav.classList.toggle('solid', y > 40 || open);
+    if (!open && y > 400 && y > lastY + 6) nav.classList.add('hide');
+    else if (y < lastY - 6 || y <= 400) nav.classList.remove('hide');
+    lastY = y;
+  }
+  addEventListener('scroll', onScroll, { passive: true }); onScroll();
+  menuBtn.addEventListener('click', () => { const o = drawer.classList.toggle('open'); menuBtn.setAttribute('aria-expanded', String(o)); onScroll(); });
+  drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { drawer.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false'); }));
 
   // finder
   const prices = { satilik: ['Fark etmez', '5 milyon TL', '7,5 milyon TL', '10 milyon TL', '15 milyon TL', '20 milyon TL'], kiralik: ['Fark etmez', '20.000 TL / ay', '25.000 TL / ay', '30.000 TL / ay', '40.000 TL / ay'] };
@@ -452,34 +504,24 @@
   function setMode(m) { mode = m; document.querySelectorAll('.finder-tabs button').forEach(b => b.setAttribute('aria-selected', String(b.dataset.type === m))); priceSel.innerHTML = prices[m].map(p => `<option>${p}</option>`).join(''); }
   document.querySelectorAll('.finder-tabs button').forEach(b => b.addEventListener('click', () => setMode(b.dataset.type))); setMode('satilik');
 
-  const semts = [['Karşıyaka', 21], ['Bostanlı', 9], ['Mavişehir', 8], ['Bayraklı', 6], ['Çiğli', 5], ['Bornova', 4], ['Alsancak', 3], ['Narlıdere', 2], ['Buca', 2], ['Menemen', 1]];
+  const areas = [['Karşıyaka', 21], ['Bostanlı', 9], ['Mavişehir', 8], ['Bayraklı', 6], ['Çiğli', 5], ['Bornova', 4], ['Alsancak', 3], ['Narlıdere', 2], ['Buca', 2], ['Menemen', 1]];
   const where = document.getElementById('f-where'), sug = document.getElementById('suggest'), norm = s => s.toLocaleLowerCase('tr');
   function renderSug() {
     const q = norm(where.value.trim());
     if (/^\d+$/.test(q)) { sug.innerHTML = `<button type="button" data-v="İlan no ${q}">İlan no <b>${q}</b> ile ara<small>Numara</small></button>`; sug.classList.add('open'); return; }
-    const list = semts.filter(([n]) => !q || norm(n).includes(q));
+    const list = areas.filter(([n]) => !q || norm(n).includes(q));
     sug.innerHTML = `<div class="head">${q ? 'Eşleşen bölgeler' : 'Popüler bölgeler'}</div>` + (list.length ? list.map(([n, c]) => `<button type="button" data-v="${n}">${n}<small>${c} ilan</small></button>`).join('') : '<div class="head">Sonuç yok, farklı bir bölge deneyin</div>');
     sug.classList.add('open');
   }
   where.addEventListener('focus', renderSug); where.addEventListener('input', renderSug);
   sug.addEventListener('mousedown', e => { const b = e.target.closest('button'); if (b) { where.value = b.dataset.v; sug.classList.remove('open'); } });
   where.addEventListener('blur', () => setTimeout(() => sug.classList.remove('open'), 120));
-  document.getElementById('finder').addEventListener('submit', e => { e.preventDefault(); filter(mode); document.getElementById('ilanlar').scrollIntoView({ behavior: 'smooth' }); });
-
-  // listing filter + sort
-  const grid = document.getElementById('grid'), cards = [...grid.querySelectorAll('.card')], segBtns = [...document.querySelectorAll('.seg button')];
-  function filter(f) { segBtns.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.f === f))); cards.forEach(c => { c.hidden = f !== 'tumu' && c.dataset.t !== f; }); }
-  segBtns.forEach(b => b.addEventListener('click', () => filter(b.dataset.f)));
-  document.querySelectorAll('[data-go]').forEach(a => a.addEventListener('click', () => filter(a.dataset.go)));
-  document.getElementById('sort').addEventListener('change', e => {
-    const v = e.target.value, key = c => v === 'new' ? +c.dataset.i : +c.dataset.p;
-    [...cards].sort((a, b) => v === 'desc' ? key(b) - key(a) : key(a) - key(b)).forEach(c => grid.appendChild(c));
-  });
+  document.getElementById('finder').addEventListener('submit', e => { e.preventDefault(); document.getElementById(mode).scrollIntoView({ behavior: 'smooth' }); });
 
   // save
   document.querySelectorAll('.save').forEach(s => s.addEventListener('click', () => s.setAttribute('aria-pressed', String(s.getAttribute('aria-pressed') !== 'true'))));
 
-  // open now
+  // open now (Istanbul time)
   const tr = new Date(new Date().toLocaleString('en-US', { timeZone: 'Europe/Istanbul' }));
   if (tr.getDay() !== 0 && tr.getHours() >= 9 && tr.getHours() < 19) document.getElementById('open-now').hidden = false;
 </script>
