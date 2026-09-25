@@ -11,9 +11,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --o: #c2410c; --o-hover: #a3360a; --o-light: #fdf0e7;
-    --k: #111111; --g7: #454545; --g5: #767676; --g3: #d4d4d4; --g2: #e7e7e7; --g1: #f5f5f4;
-    --wrap: 1320px; --gut: 40px;
+    --o: #e8672a; --o-hover: #d4571c; --o-light: #fff3ec;
+    --k: #121212; --g7: #474747; --g5: #7a7a7a; --g3: #d9d9d9; --g2: #ebebeb; --g1: #f6f6f5;
+    --wrap: 1240px; --gut: 32px;
   }
   * { box-sizing: border-box; }
   body { margin: 0; background: #fff; color: var(--k); font: 400 16px/1.55 "Onest", system-ui, -apple-system, "Segoe UI", sans-serif; -webkit-font-smoothing: antialiased; }
@@ -22,124 +22,93 @@
   button, input, select { font: inherit; color: inherit; }
   .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 var(--gut); }
 
-  /* utility bar */
-  .util { background: var(--g1); font-size: 13px; color: var(--g5); }
-  .util .wrap { display: flex; justify-content: space-between; align-items: center; height: 36px; }
-  .util a { color: var(--g7); }
-  .util a:hover { color: var(--k); }
-  .util .sep { margin: 0 12px; color: var(--g3); }
-
-  /* navbar */
-  .nav { background: #fff; border-bottom: 1px solid var(--g2); position: sticky; top: 0; z-index: 20; }
-  .nav .wrap { display: flex; align-items: stretch; height: 80px; }
-  .logo { display: flex; align-items: center; gap: 12px; }
-  .logo-name { display: flex; align-items: baseline; gap: 7px; font-size: 26px; line-height: 1; letter-spacing: -.035em; }
-  .logo-name b { font-weight: 700; }
-  .logo-name span { font-weight: 400; color: var(--o); }
-  .logo-rule { width: 1px; height: 28px; background: var(--g2); }
-  .logo-place { font-size: 12.5px; line-height: 1.3; color: var(--g5); }
-  .links { display: flex; gap: 32px; margin-left: auto; }
-  .links a { display: flex; align-items: center; font-size: 15px; font-weight: 500; color: var(--g7); border-bottom: 2px solid transparent; margin-bottom: -1px; }
+  /* nav */
+  .nav { position: sticky; top: 0; z-index: 20; background: rgba(255,255,255,.96); backdrop-filter: blur(8px); border-bottom: 1px solid var(--g2); }
+  .nav .wrap { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; height: 72px; }
+  .logo { justify-self: start; font-size: 23px; letter-spacing: -.03em; line-height: 1; }
+  .logo b { font-weight: 700; }
+  .logo span { font-weight: 400; color: var(--o); }
+  .links { display: flex; gap: 30px; }
+  .links a { font-size: 15px; font-weight: 500; color: var(--g7); position: relative; padding: 6px 0; }
   .links a:hover { color: var(--k); }
-  .links a.on { color: var(--k); border-bottom-color: var(--o); }
-  .nav-cta { display: flex; align-items: center; margin-left: 36px; }
-  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 46px; padding: 0 22px; border: 0; border-radius: 6px; font-weight: 600; font-size: 15px; cursor: pointer; white-space: nowrap; }
+  .links a.on { color: var(--k); }
+  .links a.on::after { content: ""; position: absolute; left: 0; right: 0; bottom: -2px; height: 2px; border-radius: 2px; background: var(--o); }
+  .nav-right { justify-self: end; display: flex; align-items: center; gap: 20px; }
+  .tel { display: flex; align-items: center; gap: 7px; font-size: 15px; font-weight: 600; }
+  .tel svg { width: 16px; height: 16px; color: var(--o); }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 42px; padding: 0 18px; border: 0; border-radius: 8px; font-weight: 600; font-size: 15px; cursor: pointer; white-space: nowrap; transition: background-color .15s; }
   .btn-o { background: var(--o); color: #fff; }
   .btn-o:hover { background: var(--o-hover); }
-  .burger { display: none; align-self: center; margin-left: auto; width: 44px; height: 44px; border: 1px solid var(--g3); border-radius: 6px; background: #fff; cursor: pointer; }
+  .burger { display: none; justify-self: end; width: 42px; height: 42px; border: 1px solid var(--g3); border-radius: 8px; background: #fff; cursor: pointer; }
   .burger span { display: block; width: 18px; height: 2px; background: var(--k); margin: 4px auto; border-radius: 1px; }
 
   /* hero */
-  .hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); border-bottom: 1px solid var(--g2); }
-  .hero-left {
-    display: flex; flex-direction: column; justify-content: center;
-    padding: 72px 72px 64px max(var(--gut), calc((100vw - var(--wrap)) / 2 + var(--gut)));
-  }
-  .kicker { margin: 0 0 20px; font-size: 15px; color: var(--g5); }
-  .kicker b { color: var(--k); font-weight: 600; }
-  .hero h1 { margin: 0 0 36px; max-width: 540px; font-size: 50px; line-height: 1.07; font-weight: 600; letter-spacing: -.035em; }
-  .sbar { display: flex; max-width: 580px; height: 60px; border: 1.5px solid var(--k); border-radius: 8px; overflow: hidden; background: #fff; }
+  .hero { padding: 64px 0 72px; }
+  .hero .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 72px; align-items: center; }
+  .hero h1 { margin: 0 0 14px; font-size: 52px; line-height: 1.05; font-weight: 600; letter-spacing: -.04em; }
+  .hero .sub { margin: 0 0 32px; font-size: 18px; color: var(--g5); }
+  .sbar { display: flex; height: 58px; border: 1px solid var(--g3); border-radius: 12px; padding: 5px; background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.04); }
+  .sbar:focus-within { border-color: var(--k); }
   .sbar select {
-    border: 0; border-right: 1px solid var(--g2); padding: 0 40px 0 18px; font-weight: 600; outline: 0; cursor: pointer;
+    border: 0; border-right: 1px solid var(--g2); padding: 0 36px 0 12px; font-weight: 600; font-size: 15px; outline: 0; cursor: pointer;
     appearance: none; -webkit-appearance: none;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23111' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat right 16px center;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23121212' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat right 14px center;
   }
-  .sbar input { flex: 1; min-width: 0; border: 0; padding: 0 18px; font-size: 16px; outline: 0; }
+  .sbar input { flex: 1; min-width: 0; border: 0; padding: 0 14px; font-size: 16px; outline: 0; background: transparent; }
   .sbar input::placeholder { color: var(--g5); }
-  .sbar .btn { height: auto; border-radius: 0; padding: 0 28px; }
-  .semts { display: flex; flex-wrap: wrap; gap: 4px 14px; margin-top: 22px; font-size: 14px; line-height: 1.8; color: var(--g5); }
-  .semts a { color: var(--g7); text-decoration: underline; text-decoration-color: var(--g3); text-underline-offset: 4px; }
-  .semts a:hover { color: var(--o); text-decoration-color: var(--o); }
-  .office { display: flex; align-items: center; gap: 14px; margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--g2); max-width: 580px; font-size: 14px; color: var(--g5); }
-  .office strong { display: block; color: var(--k); font-weight: 600; font-size: 15px; }
-  .office .btn { margin-left: auto; height: 40px; padding: 0 16px; font-size: 14px; background: #fff; border: 1px solid var(--g3); color: var(--k); }
-  .office .btn:hover { border-color: var(--k); }
+  .sbar .btn { height: auto; padding: 0 22px; }
+  .semts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+  .semts a { font-size: 14px; color: var(--g7); padding: 6px 12px; border-radius: 999px; background: var(--g1); }
+  .semts a:hover { background: var(--o-light); color: var(--o-hover); }
 
-  /* hero right: featured listings */
-  .hero-right { display: flex; flex-direction: column; border-left: 1px solid var(--g2); }
-  .feat-photo { position: relative; flex: 1; min-height: 480px; background: var(--g1); overflow: hidden; }
-  .feat-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: opacity .35s ease; }
-  .feat-tag { position: absolute; left: 20px; top: 20px; background: var(--k); color: #fff; font-size: 12.5px; font-weight: 600; padding: 6px 10px; border-radius: 4px; }
-  .feat-bar { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 24px; padding: 20px 28px 22px; background: #fff; }
-  .feat-info a { display: block; }
-  .feat-title { font-size: 18px; font-weight: 600; }
-  .feat-meta { margin-top: 2px; font-size: 14px; color: var(--g5); }
-  .feat-price { margin-top: 8px; font-size: 22px; font-weight: 600; letter-spacing: -.02em; }
+  /* featured */
+  .feat { position: relative; }
+  .feat-photo { position: relative; display: block; border-radius: 16px; overflow: hidden; aspect-ratio: 5 / 4; background: var(--g1); }
+  .feat-photo img { width: 100%; height: 100%; object-fit: cover; transition: opacity .3s ease; }
+  .feat-tag { position: absolute; left: 16px; top: 16px; background: #fff; font-size: 13px; font-weight: 600; padding: 6px 10px; border-radius: 6px; }
+  .feat-bar { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; padding: 18px 4px 0; }
+  .feat-title { font-size: 17px; font-weight: 600; }
+  .feat-meta { font-size: 14px; color: var(--g5); margin-top: 1px; }
+  .feat-price { font-size: 20px; font-weight: 600; letter-spacing: -.02em; margin-top: 6px; }
   .feat-price small { font-size: 14px; font-weight: 500; color: var(--g5); letter-spacing: 0; }
-  .feat-nav { display: flex; align-items: center; gap: 8px; }
-  .feat-count { font-size: 13px; color: var(--g5); margin-right: 6px; font-variant-numeric: tabular-nums; }
-  .feat-nav button { width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--g3); background: #fff; cursor: pointer; display: grid; place-items: center; }
+  .feat-nav { display: flex; gap: 8px; }
+  .feat-nav button { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--g3); background: #fff; cursor: pointer; display: grid; place-items: center; }
   .feat-nav button:hover { border-color: var(--k); }
   .feat-nav svg { width: 16px; height: 16px; }
+  .dots { position: absolute; right: 16px; top: 18px; display: flex; gap: 5px; }
+  .dots i { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,.55); }
+  .dots i.on { background: #fff; }
 
   .preview-note { position: fixed; left: 16px; bottom: 16px; z-index: 30; background: var(--k); color: #fff; font-size: 12.5px; padding: 7px 11px; border-radius: 6px; opacity: .88; }
 
-  @media (max-width: 1180px) {
-    .links, .nav-cta, .logo-rule, .logo-place { display: none; }
+  @media (max-width: 1080px) {
+    .links, .tel { display: none; }
+    .nav .wrap { grid-template-columns: 1fr auto auto; gap: 10px; }
     .burger { display: block; }
-    .hero { grid-template-columns: minmax(0, 1fr); }
-    .hero-left { padding: 56px var(--gut) 48px; }
-    .hero-right { border-left: 0; border-top: 1px solid var(--g2); }
-    .feat-photo { min-height: 0; aspect-ratio: 16 / 10; flex: none; }
+    .hero .wrap { grid-template-columns: minmax(0, 1fr); gap: 40px; }
   }
   @media (max-width: 640px) {
     :root { --gut: 16px; }
-    .util { display: none; }
-    .nav .wrap { height: 64px; }
-    .logo-name { font-size: 23px; }
-    .hero-left { padding: 36px var(--gut) 32px; }
-    .kicker { font-size: 14px; margin-bottom: 14px; }
-    .hero h1 { font-size: 34px; margin-bottom: 24px; }
+    .nav .wrap { height: 62px; }
+    .logo { font-size: 21px; }
+    .nav-right .btn { height: 40px; padding: 0 14px; font-size: 14px; }
+    .hero { padding: 32px 0 48px; }
+    .hero h1 { font-size: 34px; }
+    .hero .sub { font-size: 16px; margin-bottom: 22px; }
     .sbar { height: 54px; }
-    .sbar select { padding: 0 32px 0 12px; background-position: right 12px center; }
-    .sbar input { padding: 0 12px; font-size: 15px; }
-    .sbar .btn { padding: 0 18px; }
-    .office { margin-top: 28px; }
-    .feat-bar { padding: 16px var(--gut) 18px; gap: 12px; align-items: end; }
-    .feat-count { display: none; }
-    .feat-nav button { width: 38px; height: 38px; }
-    .office { flex-wrap: wrap; }
-    .office .btn { margin-left: 0; }
+    .sbar select { padding: 0 30px 0 8px; background-position: right 10px center; }
+    .sbar input { padding: 0 10px; font-size: 15px; }
+    .sbar .btn { padding: 0 16px; }
+    .feat-photo { border-radius: 12px; }
     .preview-note { display: none; }
   }
 </style>
 </head>
 <body>
 
-<div class="util">
-  <div class="wrap">
-    <div>Bostanlı Mah., Karşıyaka / İzmir<span class="sep">|</span>Pazartesi – Cumartesi 09.00 – 19.00</div>
-    <div><a href="tel:+902323309911">0232 330 99 11</a><span class="sep">|</span><a href="tel:+905322864617">0532 286 46 17</a></div>
-  </div>
-</div>
-
 <header class="nav">
   <div class="wrap">
-    <a class="logo" href="#" aria-label="Özkal Emlak ana sayfa">
-      <span class="logo-name"><b>Özkal</b><span>Emlak</span></span>
-      <span class="logo-rule" aria-hidden="true"></span>
-      <span class="logo-place">Gayrimenkul Danışmanlık<br>Karşıyaka · İzmir</span>
-    </a>
+    <a class="logo" href="#" aria-label="Özkal Emlak ana sayfa"><b>Özkal</b> <span>Emlak</span></a>
     <nav class="links" aria-label="Ana menü">
       <a class="on" href="#">Satılık</a>
       <a href="#">Kiralık</a>
@@ -147,45 +116,44 @@
       <a href="#">Hakkımızda</a>
       <a href="#">İletişim</a>
     </nav>
-    <div class="nav-cta"><a class="btn btn-o" href="#">Evinizi bize verin</a></div>
+    <div class="nav-right">
+      <a class="tel" href="tel:+902323309911"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>0232 330 99 11</a>
+      <a class="btn btn-o" href="#">Evinizi verin</a>
+    </div>
     <button class="burger" aria-label="Menü"><span></span><span></span><span></span></button>
   </div>
 </header>
 
 <main>
   <section class="hero">
-    <div class="hero-left">
-      <p class="kicker">Karşıyaka'da <b>37 aktif ilan</b> · Bu hafta 4 yeni</p>
-      <h1>Bostanlı'dan Mavişehir'e, Karşıyaka'nın her köşesinde.</h1>
-      <form class="sbar" role="search" onsubmit="return false">
-        <select aria-label="İlan türü"><option>Satılık</option><option>Kiralık</option></select>
-        <input placeholder="Semt, mahalle veya ilan no" data-short="Semt veya ilan no" aria-label="Semt, mahalle veya ilan no">
-        <button class="btn btn-o" type="submit">Ara</button>
-      </form>
-      <div class="semts">Semtler: <a href="#">Bostanlı</a><a href="#">Mavişehir</a><a href="#">Atakent</a><a href="#">Donanmacı</a><a href="#">Çarşı</a><a href="#">Şemikler</a></div>
-      <div class="office">
-        <div><strong>Ofisimiz Bostanlı'da</strong>Randevuyla yerinde gösterim, hafta sonu dahil.</div>
-        <a class="btn" href="https://wa.me/905322864617">WhatsApp'tan yazın</a>
+    <div class="wrap">
+      <div>
+        <h1>Karşıyaka'da<br>ev arıyorsanız.</h1>
+        <p class="sub">Satılık ve kiralık 37 ilan, semti bilen bir ofisten.</p>
+        <form class="sbar" role="search" onsubmit="return false">
+          <select aria-label="İlan türü"><option>Satılık</option><option>Kiralık</option></select>
+          <input placeholder="Semt, mahalle veya ilan no" data-short="Semt veya ilan no" aria-label="Semt, mahalle veya ilan no">
+          <button class="btn btn-o" type="submit">Ara</button>
+        </form>
+        <div class="semts"><a href="#">Bostanlı</a><a href="#">Mavişehir</a><a href="#">Atakent</a><a href="#">Donanmacı</a><a href="#">Çarşı</a></div>
       </div>
-    </div>
 
-    <div class="hero-right" aria-label="Öne çıkan ilanlar">
-      <div class="feat-photo">
-        <img id="feat-img" src="img/ilan-mavisehir.jpg" alt="">
-        <span class="feat-tag" id="feat-tag">Yeni ilan</span>
-      </div>
-      <div class="feat-bar">
-        <div class="feat-info">
+      <div class="feat" aria-label="Öne çıkan ilanlar">
+        <a class="feat-photo" href="#">
+          <img id="feat-img" src="img/ilan-mavisehir.jpg" alt="">
+          <span class="feat-tag" id="feat-tag">Yeni ilan</span>
+          <span class="dots" id="dots"><i class="on"></i><i></i><i></i><i></i></span>
+        </a>
+        <div class="feat-bar">
           <a href="#">
             <div class="feat-title" id="feat-title">Havuzlu site içinde 2+1</div>
             <div class="feat-meta" id="feat-meta">Mavişehir · 105 m² · 7. kat</div>
             <div class="feat-price" id="feat-price">8.450.000 ₺</div>
           </a>
-        </div>
-        <div class="feat-nav">
-          <span class="feat-count" id="feat-count">1 / 4</span>
-          <button type="button" id="prev" aria-label="Önceki ilan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 5l-7 7 7 7"/></svg></button>
-          <button type="button" id="next" aria-label="Sonraki ilan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg></button>
+          <div class="feat-nav">
+            <button type="button" id="prev" aria-label="Önceki ilan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 5l-7 7 7 7"/></svg></button>
+            <button type="button" id="next" aria-label="Sonraki ilan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg></button>
+          </div>
         </div>
       </div>
     </div>
@@ -195,26 +163,28 @@
 <div class="preview-note">Önizleme · ilanlar örnektir</div>
 
 <script>
+  const q = document.querySelector('.sbar input');
+  if (matchMedia('(max-width: 640px)').matches) q.placeholder = q.dataset.short;
+
   const items = [
     { img: 'img/ilan-mavisehir.jpg', tag: 'Yeni ilan', title: 'Havuzlu site içinde 2+1', meta: 'Mavişehir · 105 m² · 7. kat', price: '8.450.000 ₺' },
     { img: 'img/ilan-bostanli-deniz.jpg', tag: 'Satılık', title: 'Denize ikinci parsel, balkonlu 3+1', meta: 'Bostanlı · 145 m² · 3. kat', price: '14.750.000 ₺' },
     { img: 'img/ilan-carsi-kiralik.jpg', tag: 'Kiralık', title: 'Çarşıya 3 dakika, eşyasız 2+1', meta: 'Karşıyaka Merkez · 95 m² · 2. kat', price: '32.000 ₺ <small>/ ay</small>' },
     { img: 'img/ilan-semikler.jpg', tag: 'Satılık', title: 'Bahçeli müstakil ev', meta: 'Şemikler · 220 m² · 300 m² arsa', price: '16.500.000 ₺' }
   ];
-  const q = document.querySelector('.sbar input');
-  if (matchMedia('(max-width: 640px)').matches) q.placeholder = q.dataset.short;
   let i = 0;
   const $ = id => document.getElementById(id);
+  const dots = [...$('dots').children];
   function show(n) {
     i = (n + items.length) % items.length;
     const it = items[i];
     $('feat-img').style.opacity = 0;
-    setTimeout(() => { $('feat-img').src = it.img; $('feat-img').style.opacity = 1; }, 180);
+    setTimeout(() => { $('feat-img').src = it.img; $('feat-img').style.opacity = 1; }, 160);
     $('feat-tag').textContent = it.tag;
     $('feat-title').textContent = it.title;
     $('feat-meta').textContent = it.meta;
     $('feat-price').innerHTML = it.price;
-    $('feat-count').textContent = `${i + 1} / ${items.length}`;
+    dots.forEach((d, k) => d.classList.toggle('on', k === i));
   }
   $('prev').addEventListener('click', () => show(i - 1));
   $('next').addEventListener('click', () => show(i + 1));
