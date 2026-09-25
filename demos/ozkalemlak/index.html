@@ -12,436 +12,353 @@
 <style>
   :root {
     --o: #e8672a; --o-hover: #d4571c; --o-light: #fff2ea; --o-text: #b94a14;
-    --k: #111; --g8: #2e2e2e; --g6: #5c5c5c; --g5: #7b7b7b; --g3: #d7d7d7; --g2: #e9e9e9; --g1: #f5f5f4;
-    --wrap: 1280px; --gut: 32px;
+    --k: #111; --g8: #2c2c2c; --g6: #5c5c5c; --g5: #7b7b7b; --g3: #dadada; --g2: #ebebeb; --g1: #f5f5f4;
+    --wrap: 1240px; --gut: 32px;
   }
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
-  body { margin: 0; background: #fff; color: var(--k); font: 400 15px/1.5 "Schibsted Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif; -webkit-font-smoothing: antialiased; font-feature-settings: "tnum" 0; }
+  body { margin: 0; background: #fff; color: var(--k); font: 400 15.5px/1.5 "Schibsted Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif; -webkit-font-smoothing: antialiased; }
   a { color: inherit; text-decoration: none; }
   img { display: block; max-width: 100%; }
   button, input, select { font: inherit; color: inherit; }
   button { cursor: pointer; }
   .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 var(--gut); }
-  .num { font-variant-numeric: tabular-nums; }
 
-  /* ---------- nav ---------- */
-  .nav { position: sticky; top: 0; z-index: 30; background: #fff; border-bottom: 1px solid var(--g2); }
-  .nav .wrap { display: flex; align-items: stretch; height: 76px; }
-  .logo { display: flex; align-items: center; gap: 11px; flex: none; margin-right: 48px; }
-  .mark { width: 34px; height: 34px; border-radius: 9px; background: var(--o); display: grid; place-items: center; }
-  .mark svg { width: 20px; height: 20px; }
-  .wordmark { font-size: 21px; letter-spacing: -.025em; line-height: 1; }
-  .wordmark b { font-weight: 700; }
-  .wordmark span { color: var(--g5); font-weight: 500; }
-  .links { display: flex; gap: 30px; }
-  .links a { position: relative; display: flex; align-items: center; gap: 4px; font-size: 15px; font-weight: 500; color: var(--g6); transition: color .15s; }
-  .links a:hover { color: var(--k); }
-  .links a.on { color: var(--k); }
-  .links a.on::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: var(--o); }
-  .links svg { width: 14px; height: 14px; color: var(--g5); }
-  .nav-right { margin-left: auto; display: flex; align-items: center; gap: 20px; }
-  .tel { display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 15px; }
-  .tel svg { width: 16px; height: 16px; color: var(--o); }
-  .nav-sep { width: 1px; height: 22px; background: var(--g2); }
-  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 42px; padding: 0 18px; border-radius: 8px; border: 1px solid transparent; font-weight: 600; white-space: nowrap; transition: background-color .15s, border-color .15s; }
+  /* ---------- buttons (all pill) ---------- */
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 44px; padding: 0 22px; border-radius: 999px; border: 1px solid transparent; font-weight: 600; white-space: nowrap; transition: background-color .15s, border-color .15s, color .15s; }
+  .btn svg { width: 16px; height: 16px; }
   .btn-o { background: var(--o); color: #fff; }
   .btn-o:hover { background: var(--o-hover); }
+  .btn-k { background: var(--k); color: #fff; }
+  .btn-k:hover { background: #2a2a2a; }
   .btn-line { border-color: var(--g3); background: #fff; }
   .btn-line:hover { border-color: var(--k); }
-  .btn svg { width: 16px; height: 16px; }
-  .icon-btn { display: none; width: 40px; height: 40px; border-radius: 8px; border: 1px solid var(--g3); background: #fff; place-items: center; color: var(--o); }
-  .icon-btn svg { width: 17px; height: 17px; }
-  .burger { display: none; width: 40px; height: 40px; border: 1px solid var(--g3); border-radius: 8px; background: #fff; }
-  .burger span { display: block; width: 16px; height: 1.8px; background: var(--k); margin: 3.5px auto; border-radius: 1px; }
+  .btn-white { background: #fff; color: var(--k); }
+
+  /* ---------- floating nav ---------- */
+  .nav { position: fixed; top: 20px; left: 0; right: 0; z-index: 50; pointer-events: none; }
+  .nav-bar {
+    pointer-events: auto; max-width: 1180px; margin: 0 auto; height: 64px; padding: 0 8px 0 22px;
+    display: flex; align-items: center; gap: 24px;
+    background: rgba(255,255,255,.94); backdrop-filter: saturate(160%) blur(14px); -webkit-backdrop-filter: saturate(160%) blur(14px);
+    border-radius: 999px; border: 1px solid rgba(0,0,0,.06);
+    transition: box-shadow .25s ease;
+  }
+  .nav.scrolled .nav-bar { box-shadow: 0 10px 30px -12px rgba(0,0,0,.18); }
+  .logo { display: flex; align-items: center; gap: 9px; font-size: 19px; letter-spacing: -.02em; flex: none; }
+  .logo-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--o); box-shadow: 0 0 0 4px var(--o-light); }
+  .logo b { font-weight: 700; }
+  .logo span { font-weight: 500; color: var(--g5); }
+  .links { display: flex; gap: 2px; margin: 0 auto; }
+  .links a { padding: 9px 15px; border-radius: 999px; font-weight: 500; color: var(--g6); transition: background-color .15s, color .15s; }
+  .links a:hover { color: var(--k); background: var(--g1); }
+  .links a.on { color: var(--k); background: var(--g1); }
+  .nav-right { display: flex; align-items: center; gap: 6px; flex: none; }
+  .nav-tel { display: flex; align-items: center; gap: 8px; height: 48px; padding: 0 16px; border-radius: 999px; font-weight: 600; }
+  .nav-tel:hover { background: var(--g1); }
+  .nav-tel svg { width: 16px; height: 16px; color: var(--o); }
+  .nav-right .btn { height: 48px; padding: 0 22px; }
+  .round { display: none; width: 44px; height: 44px; border-radius: 50%; border: 0; background: var(--g1); place-items: center; }
+  .round svg { width: 18px; height: 18px; }
+  .round.tel svg { color: var(--o); }
 
   /* ---------- hero ---------- */
-  .hero { padding: 20px 0 0; }
-  .hero-media { position: relative; height: 560px; border-radius: 18px; overflow: hidden; background: var(--g1); }
-  .hero-media > img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 74%; }
-  .hero-panel { position: absolute; left: 0; bottom: 0; width: min(640px, 100%); background: #fff; padding: 36px 40px 0 0; border-top-right-radius: 18px; }
-  .hero-panel h1 { margin: 0 0 10px; font-size: 40px; line-height: 1.06; font-weight: 700; letter-spacing: -.035em; }
-  .hero-panel p { margin: 0 0 22px; color: var(--g6); font-size: 16px; }
-  .sbar { display: flex; height: 56px; border: 1px solid var(--g3); border-radius: 10px; padding: 5px; background: #fff; }
-  .sbar:focus-within { border-color: var(--k); }
-  .sbar select { border: 0; border-right: 1px solid var(--g2); padding: 0 34px 0 12px; font-weight: 600; outline: 0; appearance: none; -webkit-appearance: none; cursor: pointer;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23111' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat right 13px center; }
-  .sbar input { flex: 1; min-width: 0; border: 0; padding: 0 14px; font-size: 15.5px; outline: 0; }
-  .sbar input::placeholder { color: var(--g5); }
-  .sbar .btn { height: auto; padding: 0 22px; }
-  .hero-cap { position: absolute; right: 18px; bottom: 16px; font-size: 12.5px; color: #fff; text-shadow: 0 1px 3px rgba(0,0,0,.45); }
+  .hero { padding: 12px 12px 0; }
+  .hero-media { position: relative; height: min(88vh, 800px); min-height: 620px; border-radius: 28px; overflow: hidden; background: #cfd8de; }
+  .hero-media > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; }
+  .hero-media::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background:
+      linear-gradient(180deg, rgba(0,0,0,.22) 0%, rgba(0,0,0,0) 22%),
+      linear-gradient(0deg, rgba(8,12,16,.72) 0%, rgba(8,12,16,.38) 34%, rgba(8,12,16,0) 58%);
+  }
+  .hero-content { position: absolute; left: 0; right: 0; bottom: 56px; z-index: 1; text-align: center; color: #fff; padding: 0 24px; }
+  .hero h1 { margin: 0 0 12px; font-size: 64px; line-height: 1.02; font-weight: 700; letter-spacing: -.04em; }
+  .hero-sub { margin: 0 auto 32px; max-width: 560px; font-size: 18px; color: rgba(255,255,255,.88); }
+  .hero-cap { position: absolute; right: 24px; bottom: 18px; z-index: 1; font-size: 12px; color: rgba(255,255,255,.7); }
 
-  /* ---------- page head ---------- */
-  .head { padding: 56px 0 0; }
-  .head-row { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; }
-  .crumb { font-size: 13px; color: var(--g5); margin-bottom: 10px; }
-  .crumb a:hover { color: var(--k); }
-  .crumb i { font-style: normal; margin: 0 6px; color: var(--g3); }
-  .head h2 { margin: 0; font-size: 30px; line-height: 1.15; font-weight: 700; letter-spacing: -.03em; }
-  .head h2 em { font-style: normal; color: var(--g5); font-weight: 500; }
-  .updated { display: flex; align-items: center; gap: 8px; font-size: 13.5px; color: var(--g5); white-space: nowrap; padding-bottom: 6px; }
-  .live { width: 7px; height: 7px; border-radius: 50%; background: #1f9d55; box-shadow: 0 0 0 3px #e3f4ea; }
+  /* search pill */
+  .search {
+    display: flex; align-items: center; max-width: 900px; margin: 0 auto; height: 76px; padding: 8px;
+    background: #fff; border-radius: 999px; color: var(--k); text-align: left;
+    box-shadow: 0 20px 50px -20px rgba(0,0,0,.45);
+  }
+  .toggle { display: flex; background: var(--g1); border-radius: 999px; padding: 4px; margin-right: 6px; flex: none; }
+  .toggle button { height: 52px; padding: 0 20px; border: 0; border-radius: 999px; background: none; font-weight: 600; color: var(--g5); }
+  .toggle button[aria-pressed="true"] { background: #fff; color: var(--k); box-shadow: 0 1px 3px rgba(0,0,0,.1); }
+  .sf { position: relative; flex: 1; min-width: 0; height: 60px; padding: 10px 22px; border-radius: 999px; display: flex; flex-direction: column; justify-content: center; }
+  .sf:hover { background: var(--g1); }
+  .sf + .sf::before { content: ""; position: absolute; left: 0; top: 16px; bottom: 16px; width: 1px; background: var(--g2); }
+  .sf:hover::before, .sf:hover + .sf::before { opacity: 0; }
+  .sf label { font-size: 12.5px; font-weight: 600; color: var(--k); }
+  .sf select { border: 0; background: transparent; padding: 0; font-size: 15px; color: var(--g5); outline: 0; appearance: none; -webkit-appearance: none; cursor: pointer; width: 100%; }
+  .go { flex: none; width: 60px; height: 60px; border-radius: 50%; border: 0; background: var(--o); color: #fff; display: grid; place-items: center; transition: background-color .15s; }
+  .go:hover { background: var(--o-hover); }
+  .go svg { width: 22px; height: 22px; }
+  .go-text { display: none; }
 
-  /* ---------- filter bar ---------- */
-  .filters { position: sticky; top: 76px; z-index: 20; background: #fff; margin-top: 24px; border-bottom: 1px solid var(--g2); }
-  .filters .wrap { display: flex; align-items: center; gap: 8px; height: 64px; }
-  .seg { display: inline-flex; padding: 3px; background: var(--g1); border-radius: 9px; flex: none; }
-  .seg button { border: 0; background: none; height: 34px; padding: 0 14px; border-radius: 7px; font-weight: 600; color: var(--g5); }
-  .seg button[aria-pressed="true"] { background: #fff; color: var(--k); box-shadow: 0 1px 2px rgba(0,0,0,.08), 0 0 0 1px rgba(0,0,0,.04); }
-  .vr { width: 1px; height: 24px; background: var(--g2); margin: 0 6px; flex: none; }
-  .pill { display: inline-flex; align-items: center; gap: 6px; height: 40px; padding: 0 12px 0 14px; border: 1px solid var(--g3); border-radius: 999px; background: #fff; font-weight: 500; color: var(--g8); white-space: nowrap; flex: none; }
-  .pill:hover { border-color: var(--k); }
-  .pill svg { width: 14px; height: 14px; color: var(--g5); }
-  .pill.active { border-color: var(--o); background: var(--o-light); color: var(--o-text); }
-  .pill.active svg { color: var(--o-text); }
-  .filters-right { margin-left: auto; display: flex; align-items: center; gap: 8px; flex: none; }
-  .sort { display: flex; align-items: center; gap: 6px; font-size: 14px; color: var(--g5); }
-  .sort select { border: 0; font-weight: 600; color: var(--k); background: transparent; padding: 4px 18px 4px 2px; appearance: none; -webkit-appearance: none; outline: 0;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23111' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat right 2px center; cursor: pointer; }
-  .view { display: inline-flex; border: 1px solid var(--g3); border-radius: 8px; overflow: hidden; }
-  .view button { width: 38px; height: 36px; border: 0; background: #fff; display: grid; place-items: center; color: var(--g5); }
-  .view button + button { border-left: 1px solid var(--g3); }
-  .view button.on { background: var(--k); color: #fff; }
-  .view svg { width: 16px; height: 16px; }
+  /* ---------- sections ---------- */
+  section.block { padding: 88px 0 0; }
+  .sec-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: 28px; }
+  .sec-head h2 { margin: 0; font-size: 34px; line-height: 1.1; font-weight: 700; letter-spacing: -.03em; }
+  .sec-head p { margin: 8px 0 0; color: var(--g5); }
+  .tabs { display: flex; gap: 6px; }
+  .tabs button { height: 40px; padding: 0 18px; border-radius: 999px; border: 1px solid var(--g3); background: #fff; font-weight: 600; color: var(--g6); }
+  .tabs button:hover { border-color: var(--k); color: var(--k); }
+  .tabs button[aria-pressed="true"] { background: var(--k); border-color: var(--k); color: #fff; }
 
-  /* ---------- listings ---------- */
-  .results { padding: 28px 0 0; }
-  .count { font-size: 14px; color: var(--g5); margin-bottom: 18px; }
-  .count b { color: var(--k); font-weight: 600; }
-  .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px 24px; }
-  .card { position: relative; display: flex; flex-direction: column; }
+  /* listing cards */
+  .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px 24px; }
+  .card { position: relative; }
   .card[hidden] { display: none; }
-  .ph { position: relative; border-radius: 10px; overflow: hidden; background: var(--g1); aspect-ratio: 4 / 3; }
-  .ph img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s cubic-bezier(.2,.7,.2,1); }
-  .card:hover .ph img { transform: scale(1.035); }
-  .badges { position: absolute; left: 12px; top: 12px; display: flex; gap: 6px; }
-  .badge { font-size: 12px; font-weight: 600; padding: 4px 8px; border-radius: 6px; background: #fff; color: var(--k); }
-  .badge.new { background: var(--o); color: #fff; }
-  .badge.drop { background: #fff; color: #1f7a44; }
-  .badge.rent { background: var(--k); color: #fff; }
-  .save { position: absolute; right: 12px; top: 12px; width: 34px; height: 34px; border-radius: 50%; border: 0; background: rgba(255,255,255,.92); display: grid; place-items: center; color: var(--k); }
+  .ph { position: relative; display: block; border-radius: 18px; overflow: hidden; aspect-ratio: 4 / 3; background: var(--g1); }
+  .ph img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s cubic-bezier(.2,.7,.2,1); }
+  .card:hover .ph img { transform: scale(1.04); }
+  .tag { position: absolute; left: 14px; top: 14px; height: 28px; padding: 0 12px; border-radius: 999px; background: #fff; font-size: 12.5px; font-weight: 600; display: inline-flex; align-items: center; }
+  .tag.rent { background: var(--k); color: #fff; }
+  .tag.new { background: var(--o); color: #fff; }
+  .save { position: absolute; right: 14px; top: 14px; width: 36px; height: 36px; border-radius: 50%; border: 0; background: rgba(255,255,255,.94); display: grid; place-items: center; }
   .save svg { width: 17px; height: 17px; }
   .save[aria-pressed="true"] { color: var(--o); }
   .save[aria-pressed="true"] svg { fill: currentColor; }
-  .photos { position: absolute; right: 12px; bottom: 12px; display: flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 600; color: #fff; background: rgba(17,17,17,.62); padding: 3px 8px; border-radius: 6px; }
-  .photos svg { width: 13px; height: 13px; }
-  .info { padding-top: 14px; }
-  .price-row { display: flex; align-items: baseline; gap: 8px; }
+  .card-body { padding: 16px 4px 0; }
+  .row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
   .price { font-size: 21px; font-weight: 700; letter-spacing: -.02em; }
   .price small { font-size: 14px; font-weight: 500; color: var(--g5); letter-spacing: 0; }
-  .old { font-size: 14px; color: var(--g5); text-decoration: line-through; }
-  .title { margin: 4px 0 0; font-size: 15.5px; font-weight: 500; color: var(--g8); }
-  .specs { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
-  .specs span { font-size: 13px; color: var(--g6); background: var(--g1); padding: 3px 8px; border-radius: 5px; }
-  .foot { display: flex; justify-content: space-between; gap: 8px; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--g2); font-size: 13px; color: var(--g5); }
-  .loc { display: flex; align-items: center; gap: 5px; color: var(--g6); }
-  .loc svg { width: 14px; height: 14px; color: var(--g5); }
+  .place { font-size: 14px; color: var(--g5); white-space: nowrap; }
+  .card h3 { margin: 4px 0 6px; font-size: 16px; font-weight: 500; color: var(--g8); }
+  .meta { font-size: 14px; color: var(--g5); }
+  .meta span + span::before { content: "·"; margin: 0 7px; color: var(--g3); }
+  .center { display: flex; justify-content: center; margin-top: 48px; }
 
-  .card.big { grid-column: span 2; grid-row: span 2; }
-  .card.big .ph { aspect-ratio: auto; flex: 1; min-height: 360px; }
-  .card.big .price { font-size: 26px; }
-  .card.big .title { font-size: 17px; }
+  /* neighborhoods */
+  .hoods { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+  .hood { position: relative; display: block; border-radius: 22px; overflow: hidden; aspect-ratio: 3 / 4; }
+  .hood img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s cubic-bezier(.2,.7,.2,1); }
+  .hood:hover img { transform: scale(1.05); }
+  .hood::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,0) 45%); }
+  .hood-label { position: absolute; left: 20px; right: 20px; bottom: 18px; z-index: 1; color: #fff; display: flex; justify-content: space-between; align-items: flex-end; }
+  .hood-label b { font-size: 22px; font-weight: 700; letter-spacing: -.02em; }
+  .hood-label span { white-space: nowrap; font-size: 13px; font-weight: 600; background: rgba(255,255,255,.2); backdrop-filter: blur(6px); padding: 5px 11px; border-radius: 999px; }
 
-  .more { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 44px; }
-  .more p { margin: 0; font-size: 13.5px; color: var(--g5); }
-  .more .btn { height: 46px; padding: 0 24px; }
+  /* owner band */
+  .band { margin-top: 88px; padding: 0 12px; }
+  .band-in { position: relative; overflow: hidden; border-radius: 28px; background: var(--k); color: #fff; padding: 64px 0; }
+  .band-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 48px; align-items: center; }
+  .band h2 { margin: 0 0 12px; font-size: 40px; line-height: 1.08; font-weight: 700; letter-spacing: -.035em; }
+  .band p { margin: 0; color: rgba(255,255,255,.72); font-size: 17px; max-width: 520px; }
+  .band-actions { display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap; }
+  .band .btn { height: 52px; padding: 0 26px; }
+  .band .btn-ghost { border-color: rgba(255,255,255,.28); color: #fff; }
+  .band .btn-ghost:hover { border-color: #fff; }
 
-  /* ---------- owner band ---------- */
-  .band { margin: 72px 0 0; }
-  .band-in { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 32px; padding: 36px 40px; border-radius: 14px; background: var(--g1); }
-  .band h2 { margin: 0 0 6px; font-size: 24px; font-weight: 600; letter-spacing: -.02em; }
-  .band p { margin: 0; color: var(--g6); max-width: 620px; }
-  .band-actions { display: flex; gap: 8px; }
-  .band .btn { height: 46px; padding: 0 20px; }
-
-  /* ---------- footer ---------- */
-  .footer { margin-top: 72px; border-top: 1px solid var(--g2); padding: 32px 0 40px; font-size: 13.5px; color: var(--g5); }
-  .footer .wrap { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+  /* footer */
+  .footer { padding: 40px 0 44px; font-size: 14px; color: var(--g5); }
+  .footer .wrap { display: flex; justify-content: space-between; align-items: center; gap: 16px 24px; flex-wrap: wrap; }
+  .footer .logo { font-size: 17px; }
   .footer a:hover { color: var(--k); }
-  .footer .sep { margin: 0 10px; color: var(--g3); }
+  .footer .sep { margin: 0 9px; color: var(--g3); }
+  .credits { width: 100%; font-size: 12px; color: #a0a0a0; }
 
-  .preview-note { position: fixed; left: 16px; bottom: 16px; z-index: 40; background: var(--k); color: #fff; font-size: 12.5px; padding: 7px 11px; border-radius: 6px; opacity: .88; }
+  .preview-note { position: fixed; left: 16px; bottom: 16px; z-index: 40; background: var(--k); color: #fff; font-size: 12.5px; padding: 7px 12px; border-radius: 999px; opacity: .88; }
 
-  @media (max-width: 1120px) {
-    .links, .tel, .nav-sep, .nav-right .btn { display: none; }
-    .nav-right { gap: 8px; }
-    .icon-btn { display: grid; }
-    .burger { display: block; }
-    .hero-media { height: 480px; }
+  @media (max-width: 1100px) {
+    .links, .nav-tel, .nav-right .btn { display: none; }
+    .nav-bar { margin: 0 16px; padding: 0 8px 0 20px; }
+    .nav-right { margin-left: auto; }
+    .round { display: grid; }
+    .hero h1 { font-size: 52px; }
+    .search { max-width: 760px; }
     .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .card.big { grid-row: auto; }
-    .card.big .ph { aspect-ratio: 16 / 9; min-height: 0; flex: none; }
-    .sort span { display: none; }
+    .hoods { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .band-grid { grid-template-columns: minmax(0, 1fr); }
+    .band-actions { justify-content: flex-start; }
   }
   @media (max-width: 720px) {
-    :root { --gut: 16px; }
-    .nav .wrap { height: 62px; }
-    .logo { margin-right: 0; }
-    .wordmark { font-size: 19px; }
-    .mark { width: 30px; height: 30px; }
-    .hero { padding-top: 12px; }
-    .hero-media { height: auto; border-radius: 14px; overflow: visible; background: none; }
-    .hero-media > img { height: 260px; border-radius: 14px; }
-    .hero-panel { position: static; width: 100%; padding: 22px 0 0; border-radius: 0; }
-    .hero-panel h1 { font-size: 30px; }
-    .hero-panel p { font-size: 15px; margin-bottom: 16px; }
-    .sbar { height: 52px; }
-    .sbar select { padding: 0 28px 0 8px; background-position: right 9px center; }
-    .sbar input { padding: 0 10px; font-size: 15px; }
-    .sbar .btn { padding: 0 16px; }
+    :root { --gut: 18px; }
+    .nav { top: 12px; }
+    .nav-bar { margin: 0 12px; height: 58px; padding: 0 7px 0 18px; }
+    .round { width: 42px; height: 42px; }
+    .hero { padding: 8px 8px 0; }
+    .hero-media { height: auto; min-height: 0; border-radius: 22px; padding: 110px 0 16px; }
+    .hero-media::after { background: linear-gradient(0deg, rgba(8,12,16,.78) 0%, rgba(8,12,16,.55) 45%, rgba(8,12,16,.2) 75%, rgba(8,12,16,.1) 100%); }
+    .hero-content { position: relative; bottom: auto; padding: 120px 14px 0; }
+    .hero h1 { font-size: 34px; }
+    .hero-sub { font-size: 15.5px; margin-bottom: 22px; }
     .hero-cap { display: none; }
-    .head { padding-top: 40px; }
-    .head-row { flex-direction: column; align-items: flex-start; gap: 10px; }
-    .head h2 { font-size: 24px; }
-    .head h2 em { display: none; }
-    .updated { padding: 0; }
-    .filters { top: 62px; margin-top: 18px; }
-    .filters .wrap { overflow-x: auto; scrollbar-width: none; height: 60px; }
-    .filters .wrap::-webkit-scrollbar { display: none; }
-    .filters-right { margin-left: 8px; }
-    .view { display: none; }
-    .grid { grid-template-columns: minmax(0, 1fr); gap: 28px; }
-    .card.big { grid-column: auto; }
-    .card.big .ph { aspect-ratio: 4 / 3; }
-    .card.big .price { font-size: 22px; }
-    .band-in { grid-template-columns: minmax(0, 1fr); padding: 24px 20px; }
-    .band-actions { flex-wrap: wrap; }
+    .search { flex-direction: column; align-items: stretch; height: auto; border-radius: 24px; padding: 10px; gap: 4px; }
+    .toggle { margin: 0 0 4px; }
+    .toggle button { flex: 1; height: 44px; }
+    .sf { height: auto; padding: 10px 14px; border-radius: 14px; background: var(--g1); }
+    .sf + .sf::before { display: none; }
+    .go { width: 100%; height: 52px; border-radius: 999px; margin-top: 4px; display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: 600; }
+    .go svg { width: 18px; height: 18px; }
+    .go-text { display: inline; }
+    section.block { padding-top: 64px; }
+    .sec-head { flex-direction: column; align-items: flex-start; gap: 16px; }
+    .sec-head h2 { font-size: 28px; }
+    .grid { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+    .hoods { gap: 12px; }
+    .hood { border-radius: 18px; }
+    .hood-label { left: 14px; right: 14px; bottom: 14px; flex-direction: column; align-items: flex-start; gap: 6px; }
+    .hood-label b { font-size: 18px; }
+    .band { margin-top: 64px; padding: 0 8px; }
+    .band-in { padding: 44px 0; border-radius: 22px; }
+    .band h2 { font-size: 30px; }
     .preview-note { display: none; }
   }
 </style>
 </head>
 <body>
 
-<header class="nav">
-  <div class="wrap">
-    <a class="logo" href="#" aria-label="Özkal Emlak ana sayfa">
-      <span class="mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11.5 12 5l8 6.5"/><path d="M7 10.5V19h10v-8.5"/></svg></span>
-      <span class="wordmark"><b>Özkal</b> <span>Emlak</span></span>
-    </a>
+<header class="nav" id="nav">
+  <div class="nav-bar">
+    <a class="logo" href="#" aria-label="Özkal Emlak ana sayfa"><span class="logo-dot" aria-hidden="true"></span><span><b>Özkal</b> <span>Emlak</span></span></a>
     <nav class="links" aria-label="Ana menü">
-      <a class="on" href="#">Satılık</a>
-      <a href="#">Kiralık</a>
-      <a href="#">Semtler <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></a>
-      <a href="#">Evinizi verin</a>
+      <a class="on" href="#ilanlar">Satılık</a>
+      <a href="#ilanlar">Kiralık</a>
+      <a href="#semtler">Semtler</a>
+      <a href="#evinizi-verin">Evinizi verin</a>
       <a href="#">Hakkımızda</a>
     </nav>
     <div class="nav-right">
-      <a class="tel" href="tel:+902323309911"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>0232 330 99 11</a>
-      <span class="nav-sep" aria-hidden="true"></span>
-      <a class="btn btn-o" href="#">Randevu alın</a>
-      <a class="icon-btn" href="tel:+902323309911" aria-label="Ara"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></a>
-      <button class="burger" aria-label="Menü"><span></span><span></span><span></span></button>
+      <a class="nav-tel" href="tel:+902323309911"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>0232 330 99 11</a>
+      <a class="btn btn-k" href="https://wa.me/905322864617">Bize yazın</a>
+      <a class="round tel" href="tel:+902323309911" aria-label="Ara"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></a>
+      <button class="round" aria-label="Menü"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 8h14M5 16h14"/></svg></button>
     </div>
   </div>
 </header>
 
 <main>
   <section class="hero">
+    <div class="hero-media">
+      <img src="img/hero-mavisehir.jpg" alt="Mavişehir sahili ve konutları" fetchpriority="high">
+      <div class="hero-content">
+        <h1>Karşıyaka'da evinizi bulun.</h1>
+        <p class="hero-sub">Bostanlı, Mavişehir, Atakent ve çevresinde satılık ve kiralık 37 ilan.</p>
+        <form class="search" role="search" onsubmit="return false">
+          <div class="toggle" role="group" aria-label="İlan türü">
+            <button type="button" aria-pressed="true">Satılık</button>
+            <button type="button" aria-pressed="false">Kiralık</button>
+          </div>
+          <div class="sf"><label for="s1">Semt</label>
+            <select id="s1"><option>Tüm Karşıyaka</option><option>Bostanlı</option><option>Mavişehir</option><option>Atakent</option><option>Donanmacı</option><option>Karşıyaka Merkez</option><option>Şemikler</option></select>
+          </div>
+          <div class="sf"><label for="s2">Emlak tipi</label>
+            <select id="s2"><option>Daire</option><option>Müstakil ev</option><option>Villa</option><option>İş yeri</option><option>Arsa</option></select>
+          </div>
+          <div class="sf"><label for="s3">Bütçe</label>
+            <select id="s3"><option>Fark etmez</option><option>5 milyon TL'ye kadar</option><option>5 – 10 milyon TL</option><option>10 – 15 milyon TL</option><option>15 milyon TL üzeri</option></select>
+          </div>
+          <button class="go" type="submit" aria-label="Ara"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg><span class="go-text">İlan ara</span></button>
+        </form>
+      </div>
+      <span class="hero-cap">Mavişehir, Karşıyaka</span>
+    </div>
+  </section>
+
+  <section class="block" id="ilanlar">
     <div class="wrap">
-      <div class="hero-media">
-        <img src="img/hero-bostanli-barinak.jpg" alt="Bostanlı Balıkçı Barınağı'nda gün batımı" fetchpriority="high">
-        <span class="hero-cap">Bostanlı Balıkçı Barınağı</span>
-        <div class="hero-panel">
-          <h1>Karşıyaka'da ev arıyorsanız, doğru yerdesiniz.</h1>
-          <p>Bostanlı'dan Mavişehir'e satılık ve kiralık 37 ilan.</p>
-          <form class="sbar" role="search" onsubmit="return false">
-            <select aria-label="İlan türü"><option>Satılık</option><option>Kiralık</option></select>
-            <input placeholder="Semt, mahalle veya ilan no" data-short="Semt veya ilan no" aria-label="Semt, mahalle veya ilan no">
-            <button class="btn btn-o" type="submit">Ara</button>
-          </form>
+      <div class="sec-head">
+        <div>
+          <h2>Yeni ilanlar</h2>
+          <p>Portföyümüze son eklenenler, bugün güncellendi.</p>
+        </div>
+        <div class="tabs" role="group" aria-label="İlan türü">
+          <button type="button" aria-pressed="true" data-f="tumu">Tümü</button>
+          <button type="button" aria-pressed="false" data-f="satilik">Satılık</button>
+          <button type="button" aria-pressed="false" data-f="kiralik">Kiralık</button>
         </div>
       </div>
+
+      <div class="grid">
+        <article class="card" data-t="satilik">
+          <a class="ph" href="#"><img src="img/ilan-bostanli-deniz.jpg" alt="Bostanlı'da deniz manzaralı salon"><span class="tag new">Yeni</span></a>
+          <button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></button>
+          <div class="card-body">
+            <div class="row"><span class="price">14.750.000 TL</span><span class="place">Bostanlı</span></div>
+            <h3>Denize ikinci parsel, geniş balkonlu</h3>
+            <div class="meta"><span>3+1</span><span>145 m²</span><span>3. kat</span></div>
+          </div>
+        </article>
+        <article class="card" data-t="satilik">
+          <a class="ph" href="#"><img src="img/ilan-mavisehir.jpg" alt="Mavişehir'de aydınlık salon" loading="lazy"><span class="tag">Site içinde</span></a>
+          <button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></button>
+          <div class="card-body">
+            <div class="row"><span class="price">8.450.000 TL</span><span class="place">Mavişehir</span></div>
+            <h3>Havuzlu site içinde, aydınlık</h3>
+            <div class="meta"><span>2+1</span><span>105 m²</span><span>7. kat</span></div>
+          </div>
+        </article>
+        <article class="card" data-t="kiralik">
+          <a class="ph" href="#"><img src="img/ilan-carsi-kiralik.jpg" alt="Karşıyaka merkezde kiralık daire" loading="lazy"><span class="tag rent">Kiralık</span></a>
+          <button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></button>
+          <div class="card-body">
+            <div class="row"><span class="price">32.000 TL <small>/ ay</small></span><span class="place">Karşıyaka Merkez</span></div>
+            <h3>Çarşıya 3 dakika, eşyasız</h3>
+            <div class="meta"><span>2+1</span><span>95 m²</span><span>2. kat</span></div>
+          </div>
+        </article>
+        <article class="card" data-t="satilik">
+          <a class="ph" href="#"><img src="img/ilan-atakent.jpg" alt="Atakent'te güney cepheli salon" loading="lazy"></a>
+          <button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></button>
+          <div class="card-body">
+            <div class="row"><span class="price">11.900.000 TL</span><span class="place">Atakent</span></div>
+            <h3>Güney cephe, gün boyu güneş alan</h3>
+            <div class="meta"><span>3+1</span><span>130 m²</span><span>5. kat</span></div>
+          </div>
+        </article>
+        <article class="card" data-t="satilik">
+          <a class="ph" href="#"><img src="img/ilan-semikler.jpg" alt="Şemikler'de bahçeli müstakil ev" loading="lazy"><span class="tag">Müstakil</span></a>
+          <button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></button>
+          <div class="card-body">
+            <div class="row"><span class="price">16.500.000 TL</span><span class="place">Şemikler</span></div>
+            <h3>300 m² arsa içinde, bahçeli</h3>
+            <div class="meta"><span>4+1</span><span>220 m²</span><span>2 katlı</span></div>
+          </div>
+        </article>
+        <article class="card" data-t="kiralik">
+          <a class="ph" href="#"><img src="img/ilan-donanmaci.jpg" alt="Donanmacı'da eşyalı kiralık daire" loading="lazy"><span class="tag rent">Kiralık</span></a>
+          <button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></button>
+          <div class="card-body">
+            <div class="row"><span class="price">22.500 TL <small>/ ay</small></span><span class="place">Donanmacı</span></div>
+            <h3>İskeleye yürüme mesafesinde, eşyalı</h3>
+            <div class="meta"><span>1+1</span><span>60 m²</span><span>1. kat</span></div>
+          </div>
+        </article>
+      </div>
+
+      <div class="center"><a class="btn btn-line" href="#">Tüm ilanları gör (37)</a></div>
     </div>
   </section>
 
-  <section class="head">
+  <section class="block" id="semtler">
     <div class="wrap">
-      <div class="head-row">
-        <h2>Yeni eklenen ilanlar <em>· Karşıyaka</em></h2>
-        <div class="updated"><span class="live" aria-hidden="true"></span>Portföy bugün güncellendi</div>
-      </div>
-    </div>
-  </section>
-
-  <div class="filters">
-    <div class="wrap">
-      <div class="seg" role="group" aria-label="İlan türü">
-        <button type="button" aria-pressed="true" data-f="tumu">Tümü</button>
-        <button type="button" aria-pressed="false" data-f="satilik">Satılık</button>
-        <button type="button" aria-pressed="false" data-f="kiralik">Kiralık</button>
-      </div>
-      <span class="vr" aria-hidden="true"></span>
-      <button class="pill active" type="button">Karşıyaka <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
-      <button class="pill" type="button">Oda sayısı <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
-      <button class="pill" type="button">Fiyat <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
-      <button class="pill" type="button">Emlak tipi <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
-      <button class="pill" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M7 12h10M10 18h4"/></svg> Diğer filtreler</button>
-      <div class="filters-right">
-        <label class="sort"><span>Sırala:</span>
-          <select aria-label="Sıralama"><option>En yeni</option><option>Fiyat artan</option><option>Fiyat azalan</option><option>Metrekare</option></select>
-        </label>
-        <div class="view" role="group" aria-label="Görünüm">
-          <button class="on" type="button" aria-label="Izgara"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg></button>
-          <button type="button" aria-label="Harita"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2z"/><path d="M9 4v14M15 6v14"/></svg></button>
+      <div class="sec-head">
+        <div>
+          <h2>Semtlere göz atın</h2>
+          <p>Karşıyaka'nın her semtini sokak sokak biliyoruz.</p>
         </div>
       </div>
-    </div>
-  </div>
-
-  <section class="results">
-    <div class="wrap">
-      <div class="count"><b id="count">37 ilan</b> içinden en yeniler gösteriliyor</div>
-
-      <div class="grid" id="grid">
-        <article class="card big" data-t="satilik">
-          <a class="ph" href="#">
-            <img src="img/ilan-bostanli-deniz.jpg" alt="Bostanlı'da deniz manzaralı salon">
-            <span class="badges"><span class="badge new">Yeni</span><span class="badge">Deniz manzaralı</span></span>
-            <span class="photos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="3"/></svg>18</span>
-          </a>
-          <button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></button>
-          <div class="info">
-            <div class="price-row"><span class="price num">14.750.000 TL</span></div>
-            <h3 class="title">Denize ikinci parsel, geniş balkonlu 3+1</h3>
-            <div class="specs"><span>3+1</span><span>145 m²</span><span>3. kat</span><span>8 yaşında</span><span>Kapalı otopark</span></div>
-            <div class="foot"><span class="loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-6-5.3-6-11a6 6 0 0 1 12 0c0 5.7-6 11-6 11z"/><circle cx="12" cy="10" r="2"/></svg>Bostanlı, Karşıyaka</span><span class="num">İlan no 1042 · Bugün</span></div>
-          </div>
-        </article>
-
-        <article class="card" data-t="satilik">
-          <a class="ph" href="#">
-            <img src="img/ilan-mavisehir.jpg" alt="Mavişehir'de aydınlık salon" loading="lazy">
-            <span class="badges"><span class="badge drop">Fiyat düştü</span></span>
-            <span class="photos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="3"/></svg>12</span>
-          </a>
-          <button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></button>
-          <div class="info">
-            <div class="price-row"><span class="price num">8.450.000 TL</span><span class="old num">8.900.000 TL</span></div>
-            <h3 class="title">Havuzlu site içinde 2+1</h3>
-            <div class="specs"><span>2+1</span><span>105 m²</span><span>7. kat</span></div>
-            <div class="foot"><span class="loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-6-5.3-6-11a6 6 0 0 1 12 0c0 5.7-6 11-6 11z"/><circle cx="12" cy="10" r="2"/></svg>Mavişehir</span><span class="num">1038 · 2 gün önce</span></div>
-          </div>
-        </article>
-
-        <article class="card" data-t="kiralik">
-          <a class="ph" href="#">
-            <img src="img/ilan-carsi-kiralik.jpg" alt="Karşıyaka merkezde kiralık daire" loading="lazy">
-            <span class="badges"><span class="badge rent">Kiralık</span></span>
-            <span class="photos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="3"/></svg>9</span>
-          </a>
-          <button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></button>
-          <div class="info">
-            <div class="price-row"><span class="price num">32.000 TL <small>/ ay</small></span></div>
-            <h3 class="title">Çarşıya 3 dakika, eşyasız 2+1</h3>
-            <div class="specs"><span>2+1</span><span>95 m²</span><span>2. kat</span><span>Aidat 900 TL</span></div>
-            <div class="foot"><span class="loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-6-5.3-6-11a6 6 0 0 1 12 0c0 5.7-6 11-6 11z"/><circle cx="12" cy="10" r="2"/></svg>Karşıyaka Merkez</span><span class="num">1051 · 3 gün önce</span></div>
-          </div>
-        </article>
-
-        <article class="card" data-t="satilik">
-          <a class="ph" href="#">
-            <img src="img/ilan-atakent.jpg" alt="Atakent'te güney cepheli salon" loading="lazy">
-            <span class="photos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="3"/></svg>14</span>
-          </a>
-          <button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></button>
-          <div class="info">
-            <div class="price-row"><span class="price num">11.900.000 TL</span></div>
-            <h3 class="title">Güney cephe, gün boyu güneş alan 3+1</h3>
-            <div class="specs"><span>3+1</span><span>130 m²</span><span>5. kat</span></div>
-            <div class="foot"><span class="loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-6-5.3-6-11a6 6 0 0 1 12 0c0 5.7-6 11-6 11z"/><circle cx="12" cy="10" r="2"/></svg>Atakent</span><span class="num">1029 · 5 gün önce</span></div>
-          </div>
-        </article>
-
-        <article class="card" data-t="satilik">
-          <a class="ph" href="#">
-            <img src="img/ilan-semikler.jpg" alt="Şemikler'de bahçeli müstakil ev" loading="lazy">
-            <span class="badges"><span class="badge">Müstakil</span></span>
-            <span class="photos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="3"/></svg>22</span>
-          </a>
-          <button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></button>
-          <div class="info">
-            <div class="price-row"><span class="price num">16.500.000 TL</span></div>
-            <h3 class="title">300 m² arsa içinde bahçeli müstakil</h3>
-            <div class="specs"><span>4+1</span><span>220 m²</span><span>2 katlı</span></div>
-            <div class="foot"><span class="loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-6-5.3-6-11a6 6 0 0 1 12 0c0 5.7-6 11-6 11z"/><circle cx="12" cy="10" r="2"/></svg>Şemikler</span><span class="num">1017 · 1 hafta önce</span></div>
-          </div>
-        </article>
-
-        <article class="card" data-t="kiralik">
-          <a class="ph" href="#">
-            <img src="img/ilan-donanmaci.jpg" alt="Donanmacı'da eşyalı kiralık daire" loading="lazy">
-            <span class="badges"><span class="badge rent">Kiralık</span><span class="badge">Eşyalı</span></span>
-            <span class="photos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="3"/></svg>8</span>
-          </a>
-          <button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></button>
-          <div class="info">
-            <div class="price-row"><span class="price num">22.500 TL <small>/ ay</small></span></div>
-            <h3 class="title">İskeleye yürüme mesafesinde 1+1</h3>
-            <div class="specs"><span>1+1</span><span>60 m²</span><span>1. kat</span></div>
-            <div class="foot"><span class="loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-6-5.3-6-11a6 6 0 0 1 12 0c0 5.7-6 11-6 11z"/><circle cx="12" cy="10" r="2"/></svg>Donanmacı</span><span class="num">1055 · 1 hafta önce</span></div>
-          </div>
-        </article>
-
-        <article class="card" data-t="satilik">
-          <a class="ph" href="#">
-            <img src="img/ilan-mavisehir-4.jpg" alt="Mavişehir'de geniş 4+1" loading="lazy">
-            <span class="photos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="3"/></svg>16</span>
-          </a>
-          <button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></button>
-          <div class="info">
-            <div class="price-row"><span class="price num">13.250.000 TL</span></div>
-            <h3 class="title">Geniş salonlu, ebeveyn banyolu 4+1</h3>
-            <div class="specs"><span>4+1</span><span>175 m²</span><span>9. kat</span></div>
-            <div class="foot"><span class="loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-6-5.3-6-11a6 6 0 0 1 12 0c0 5.7-6 11-6 11z"/><circle cx="12" cy="10" r="2"/></svg>Mavişehir</span><span class="num">1011 · 2 hafta önce</span></div>
-          </div>
-        </article>
-
-        <article class="card" data-t="satilik">
-          <a class="ph" href="#">
-            <img src="img/ilan-alaybey.jpg" alt="Alaybey'de yenilenmiş mutfak" loading="lazy">
-            <span class="badges"><span class="badge drop">Fiyat düştü</span></span>
-            <span class="photos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="3"/></svg>11</span>
-          </a>
-          <button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></button>
-          <div class="info">
-            <div class="price-row"><span class="price num">6.950.000 TL</span><span class="old num">7.300.000 TL</span></div>
-            <h3 class="title">Mutfağı yenilenmiş, bakımlı 2+1</h3>
-            <div class="specs"><span>2+1</span><span>90 m²</span><span>3. kat</span></div>
-            <div class="foot"><span class="loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-6-5.3-6-11a6 6 0 0 1 12 0c0 5.7-6 11-6 11z"/><circle cx="12" cy="10" r="2"/></svg>Alaybey</span><span class="num">1008 · 2 hafta önce</span></div>
-          </div>
-        </article>
-        <article class="card" data-t="satilik">
-          <a class="ph" href="#">
-            <img src="img/semt-bostanli.jpg" alt="Bostanlı'da sahil yolundaki apartmanlar" loading="lazy">
-            <span class="badges"><span class="badge">Sahile yakın</span></span>
-            <span class="photos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="3"/></svg>15</span>
-          </a>
-          <button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></button>
-          <div class="info">
-            <div class="price-row"><span class="price num">12.400.000 TL</span></div>
-            <h3 class="title">Sahil yoluna bir sokak, asansörlü 3+1</h3>
-            <div class="specs"><span>3+1</span><span>125 m²</span><span>4. kat</span></div>
-            <div class="foot"><span class="loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-6-5.3-6-11a6 6 0 0 1 12 0c0 5.7-6 11-6 11z"/><circle cx="12" cy="10" r="2"/></svg>Bostanlı</span><span class="num">1004 · 3 hafta önce</span></div>
-          </div>
-        </article>
-      </div>
-
-      <div class="more">
-        <a class="btn btn-line" href="#">Tüm ilanları göster</a>
-        <p class="num">37 ilandan 9'u gösteriliyor</p>
+      <div class="hoods">
+        <a class="hood" href="#"><img src="img/semt-bostanli.jpg" alt="Bostanlı" loading="lazy"><span class="hood-label"><b>Bostanlı</b><span>12 ilan</span></span></a>
+        <a class="hood" href="#"><img src="img/semt-mavisehir.jpg" alt="Mavişehir" loading="lazy"><span class="hood-label"><b>Mavişehir</b><span>8 ilan</span></span></a>
+        <a class="hood" href="#"><img src="img/semt-carsi.jpg" alt="Karşıyaka Çarşı" loading="lazy"><span class="hood-label"><b>Çarşı</b><span>9 ilan</span></span></a>
+        <a class="hood" href="#"><img src="img/semt-donanmaci.jpg" alt="Donanmacı" loading="lazy" style="object-position:50% 62%"><span class="hood-label"><b>Donanmacı</b><span>6 ilan</span></span></a>
       </div>
     </div>
   </section>
 
-  <section class="band">
-    <div class="wrap">
-      <div class="band-in">
+  <section class="band" id="evinizi-verin">
+    <div class="band-in">
+      <div class="wrap band-grid">
         <div>
           <h2>Evinizi satmak ya da kiraya vermek mi istiyorsunuz?</h2>
-          <p>Bilgileri gönderin, evi yerinde görüp fiyatı birlikte belirleyelim. Onaydan sonra ilanınız burada yayına girer.</p>
+          <p>Bilgileri gönderin, evi yerinde görüp fiyatı birlikte belirleyelim. Onayımızdan sonra ilanınız burada yayına girer.</p>
         </div>
         <div class="band-actions">
-          <a class="btn btn-line" href="https://wa.me/905322864617">WhatsApp'tan yazın</a>
+          <a class="btn btn-ghost" href="https://wa.me/905322864617">WhatsApp'tan yazın</a>
           <a class="btn btn-o" href="#">İlan bilgilerini gönderin</a>
         </div>
       </div>
@@ -451,29 +368,31 @@
 
 <footer class="footer">
   <div class="wrap">
-    <span>© 2026 Özkal Emlak<span class="sep">·</span>Bostanlı Mah., Karşıyaka / İzmir<span class="sep">·</span>Bostanlı fotoğrafı: Dosseman, CC BY-SA 4.0</span>
-    <span><a href="tel:+902323309911">0232 330 99 11</a><span class="sep">·</span><a href="tel:+905322864617">0532 286 46 17</a></span>
+    <a class="logo" href="#"><span class="logo-dot" aria-hidden="true"></span><span><b>Özkal</b> <span>Emlak</span></span></a>
+    <span>Bostanlı Mah., Karşıyaka / İzmir<span class="sep">·</span><a href="tel:+902323309911">0232 330 99 11</a><span class="sep">·</span><a href="tel:+905322864617">0532 286 46 17</a></span>
+    <span class="credits">Fotoğraflar: Wikimedia Commons (Mavişehir, Bostanlı, Karşıyaka Çarşı, Donanmacı; CC BY-SA), Unsplash. Önizleme amaçlıdır, ilanlar örnektir.</span>
   </div>
 </footer>
 
 <div class="preview-note">Önizleme · ilanlar örnektir</div>
 
 <script>
-  const qi = document.querySelector('.sbar input');
-  if (matchMedia('(max-width: 720px)').matches) qi.placeholder = qi.dataset.short;
+  const nav = document.getElementById('nav');
+  const onScroll = () => nav.classList.toggle('scrolled', scrollY > 40);
+  addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+  document.querySelectorAll('.toggle button').forEach(b => b.addEventListener('click', () => {
+    b.parentElement.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+  }));
+
   const cards = [...document.querySelectorAll('.card')];
-  const segBtns = [...document.querySelectorAll('.seg button')];
-  const count = document.getElementById('count');
-  const totals = { tumu: 37, satilik: 29, kiralik: 8 };
-  segBtns.forEach(b => b.addEventListener('click', () => {
-    const f = b.dataset.f;
-    segBtns.forEach(x => x.setAttribute('aria-pressed', String(x === b)));
-    cards.forEach(c => { c.hidden = f !== 'tumu' && c.dataset.t !== f; });
-    count.textContent = totals[f] + ' ilan';
+  document.querySelectorAll('.tabs button').forEach(b => b.addEventListener('click', () => {
+    b.parentElement.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+    cards.forEach(c => { c.hidden = b.dataset.f !== 'tumu' && c.dataset.t !== b.dataset.f; });
   }));
-  document.querySelectorAll('.save').forEach(s => s.addEventListener('click', () => {
-    s.setAttribute('aria-pressed', String(s.getAttribute('aria-pressed') !== 'true'));
-  }));
+
+  document.querySelectorAll('.save').forEach(s => s.addEventListener('click', () =>
+    s.setAttribute('aria-pressed', String(s.getAttribute('aria-pressed') !== 'true'))));
 </script>
 </body>
 </html>
