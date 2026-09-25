@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Özkal Emlak · Karşıyaka Satılık ve Kiralık İlanlar</title>
-<meta name="description" content="Bostanlı, Mavişehir, Atakent, Donanmacı ve Karşıyaka merkezde satılık ve kiralık daire, iş yeri ve arsa ilanları. Özkal Emlak, Bostanlı / Karşıyaka.">
+<title>Özkal Emlak · İzmir Satılık ve Kiralık İlanlar</title>
+<meta name="description" content="Karşıyaka, Bayraklı, Çiğli, Bornova ve İzmir genelinde satılık ve kiralık daire, iş yeri ve arsa ilanları. Özkal Emlak, Bostanlı / Karşıyaka.">
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -71,7 +71,7 @@
     background: linear-gradient(180deg, rgba(0,0,0,.4) 0%, rgba(0,0,0,0) 22%), linear-gradient(90deg, rgba(10,12,14,.45) 0%, rgba(10,12,14,.15) 45%, rgba(10,12,14,0) 70%), linear-gradient(0deg, rgba(10,12,14,.82) 0%, rgba(10,12,14,.5) 32%, rgba(10,12,14,0) 62%); }
   .hero-inner { position: relative; z-index: 2; width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 44px 44px; color: #fff; }
   .hero h1 { margin: 0 0 14px; font-size: 66px; line-height: 1; font-weight: 700; letter-spacing: -.045em; }
-  .hero-sub { margin: 0 0 32px; max-width: 640px; font-size: 18px; color: rgba(255,255,255,.86); }
+  .hero-sub { margin: 0 0 32px; max-width: 720px; font-size: 18px; color: rgba(255,255,255,.86); }
 
   .finder-tabs { display: flex; gap: 2px; }
   .finder-tabs button { white-space: nowrap; height: 44px; padding: 0 20px; border: 0; border-radius: var(--r) var(--r) 0 0; background: rgba(255,255,255,.18); color: #fff; font-weight: 600; backdrop-filter: blur(8px); }
@@ -106,14 +106,23 @@
   .link-more:hover .ico { transform: translateX(3px); }
 
   /* categories */
-  .cats { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 12px; padding-top: 40px; }
-  .cat { display: flex; flex-direction: column; gap: 14px; padding: 18px; border: 1px solid var(--g2); border-radius: var(--r-lg); transition: border-color .15s, background-color .15s; }
-  .cat:hover { border-color: var(--k); }
-  .cat .ci { width: 40px; height: 40px; border-radius: 10px; background: var(--g1); display: grid; place-items: center; }
-  .cat .ci .ico { width: 20px; height: 20px; }
-  .cat:hover .ci { background: var(--o-light); color: var(--o); }
-  .cat b { display: block; font-weight: 600; }
-  .cat span { font-size: 14px; color: var(--g5); }
+  .kats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+  .kat { display: block; background: var(--g1); border-radius: 18px; padding: 8px; transition: background-color .2s; }
+  .kat:hover { background: #ecebe7; }
+  .kp { display: block; border-radius: 12px; overflow: hidden; aspect-ratio: 4 / 3; background: var(--g2); }
+  .kp img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s cubic-bezier(.2,.7,.2,1); }
+  .kat:hover .kp img { transform: scale(1.05); }
+  .kb { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 8px 8px 10px; }
+  .kb b { display: block; font-size: 17px; font-weight: 600; letter-spacing: -.01em; }
+  .kb small { display: block; font-size: 14px; color: var(--g5); }
+  .ka { flex: none; width: 38px; height: 38px; border-radius: 50%; background: #fff; display: grid; place-items: center; transition: background-color .2s, color .2s; }
+  .ka .ico { width: 16px; height: 16px; }
+  .kat:hover .ka { background: var(--o); color: #fff; }
+
+  /* bands */
+  section.band { margin: 104px 10px 0; padding: 96px 0; background: var(--g1); border-radius: 22px; }
+  .band .point .pi, .band .arrows button { background: #fff; }
+  .band .point, .band .point:last-child { border-color: #e4e3df; }
 
   /* tabs */
   .seg { display: inline-flex; gap: 4px; background: var(--g1); padding: 4px; border-radius: 12px; }
@@ -182,23 +191,6 @@
   .hood-all a:hover { color: var(--o-text); }
   .hood-all span { color: var(--g5); font-weight: 400; font-size: 14px; }
 
-  /* market table */
-  .market { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 64px; align-items: start; }
-  .market h2 { margin: 0 0 14px; font-size: 38px; line-height: 1.08; font-weight: 700; letter-spacing: -.035em; }
-  .market-intro p { margin: 0 0 24px; color: var(--g6); font-size: 17px; }
-  .market-note { font-size: 13px; color: var(--g5); margin-top: 16px; }
-  .mtabs { display: inline-flex; gap: 4px; background: var(--g1); padding: 4px; border-radius: 12px; margin-bottom: 8px; }
-  .mtabs button { border: 0; background: none; height: 36px; padding: 0 14px; border-radius: 9px; font-weight: 600; font-size: 14px; color: var(--g5); }
-  .mtabs button[aria-pressed="true"] { background: #fff; color: var(--k); box-shadow: 0 1px 2px rgba(0,0,0,.08); }
-  .mtable { width: 100%; border-collapse: collapse; }
-  .mtable th { text-align: left; font-size: 13px; font-weight: 600; color: var(--g5); padding: 0 0 12px; border-bottom: 1px solid var(--g2); }
-  .mtable th:last-child, .mtable td:last-child { text-align: right; }
-  .mtable td { padding: 16px 0; border-bottom: 1px solid var(--g2); vertical-align: middle; }
-  .mtable td:first-child { font-weight: 600; width: 30%; }
-  .bar { position: relative; height: 8px; border-radius: 99px; background: var(--g1); margin-right: 24px; }
-  .bar i { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 99px; background: var(--o); transition: width .5s ease; }
-  .val { display: block; font-weight: 600; margin-bottom: 6px; }
-  .trend { font-size: 14px; font-weight: 600; color: #1d7a45; }
 
   /* why */
   .why { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 72px; align-items: center; }
@@ -294,10 +286,9 @@
     .ff:nth-child(3) { border-right: 0; }
     .ff:nth-last-child(2) { grid-column: 1 / -1; border-bottom: 0; }
     .finder-box .btn { grid-column: 1 / -1; margin-top: 8px; }
-    .cats { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .rail { grid-auto-columns: calc((100% - 24px) / 2); }
-    .why, .market, .faq-wrap { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+    .why, .faq-wrap { grid-template-columns: minmax(0, 1fr); gap: 40px; }
     .guides { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .contact { grid-template-columns: minmax(0, 1fr); }
     .map { border-left: 0; border-top: 1px solid var(--g2); min-height: 340px; }
@@ -324,11 +315,17 @@
     .suggest { right: 0; left: 0; }
     .finder-box .btn { min-height: 52px; }
     .hero-foot { flex-wrap: wrap; gap: 6px 14px; font-size: 13px; }
-    .cats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; padding-top: 28px; }
-    .cat { padding: 14px; gap: 10px; }
+    .hero-foot .dot:nth-of-type(4) { display: none; }
+    .kats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    .kat { padding: 6px; border-radius: 14px; }
+    .kb { padding: 10px 4px 4px 6px; }
+    .kb b { font-size: 15px; }
+    .kb small { font-size: 13px; }
+    .ka { display: none; }
+    section.band { margin: 72px 6px 0; padding: 64px 0; border-radius: 16px; }
     section.block { padding-top: 72px; }
     .sec-head { flex-direction: column; align-items: flex-start; gap: 16px; }
-    .sec-head h2, .why h2, .market h2, .faq-wrap h2 { font-size: 30px; }
+    .sec-head h2, .why h2, .faq-wrap h2 { font-size: 30px; }
     .list-tools .link-more { display: none; }
     .grid { grid-template-columns: minmax(0, 1fr); gap: 36px; }
     .rail { grid-auto-columns: 78%; gap: 14px; }
@@ -339,8 +336,6 @@
     .hood-t { left: 16px; bottom: 14px; }
     .hood-t b { font-size: 19px; }
     .hood:first-child .hood-t b { font-size: 26px; }
-    .mtable td:first-child { width: 36%; }
-    .bar { margin-right: 12px; }
     .guides { grid-template-columns: minmax(0, 1fr); gap: 32px; }
     summary { font-size: 16px; }
     .contact-info { padding: 28px 20px; }
@@ -392,7 +387,7 @@
     <nav class="menu" aria-label="Ana menü">
       <a href="#ilanlar" data-go="satilik">Satılık</a>
       <a href="#ilanlar" data-go="kiralik">Kiralık</a>
-      <a href="#semtler">Semtler</a>
+      <a href="#semtler">Bölgeler</a>
       <a href="#">Evinizi verin</a>
       <a href="#iletisim">İletişim</a>
     </nav>
@@ -401,7 +396,7 @@
   </div>
 </header>
 <nav class="drawer" id="drawer" aria-label="Mobil menü">
-  <a href="#ilanlar" data-go="satilik">Satılık</a><a href="#ilanlar" data-go="kiralik">Kiralık</a><a href="#semtler">Semtler</a><a href="#">Evinizi verin</a><a href="#iletisim">İletişim</a>
+  <a href="#ilanlar" data-go="satilik">Satılık</a><a href="#ilanlar" data-go="kiralik">Kiralık</a><a href="#semtler">Bölgeler</a><a href="#">Evinizi verin</a><a href="#iletisim">İletişim</a>
   <a class="btn btn-o" href="https://wa.me/905322864617?text=Merhaba%2C%20ev%20g%C3%B6rmek%20i%C3%A7in%20randevu%20almak%20istiyorum.">Randevu alın</a>
 </nav>
 
@@ -411,8 +406,8 @@
     <div class="hero-media">
       <img src="img/hero-mavisehir.jpg" alt="Mavişehir sahili ve konutları" fetchpriority="high">
       <div class="hero-inner">
-        <h1>Karşıyaka'da evinizi bulun.</h1>
-        <p class="hero-sub">Bostanlı'dan Mavişehir'e, semti bilen bir ofisten satılık ve kiralık ilanlar.</p>
+        <h1>İzmir'de evinizi bulun.</h1>
+        <p class="hero-sub">Bostanlı'daki ofisimizden İzmir genelinde satılık ve kiralık daire, iş yeri ve arsa.</p>
         <form class="finder" id="finder" role="search" autocomplete="off">
           <div class="finder-tabs" role="tablist">
             <button type="button" role="tab" aria-selected="true" data-type="satilik">Satılık</button>
@@ -421,7 +416,7 @@
           <div class="finder-box">
             <div class="ff">
               <label for="f-where">Konum</label>
-              <input id="f-where" placeholder="Semt, mahalle veya ilan no" aria-autocomplete="list" aria-controls="suggest">
+              <input id="f-where" placeholder="İlçe, semt veya ilan no" aria-autocomplete="list" aria-controls="suggest">
               <div class="suggest" id="suggest" role="listbox"></div>
             </div>
             <div class="ff"><label for="f-type">Emlak tipi</label><select id="f-type"><option>Daire</option><option>Müstakil ev</option><option>Villa</option><option>İş yeri</option><option>Arsa</option></select></div>
@@ -436,14 +431,15 @@
   </section>
 
   <!-- CATEGORIES -->
-  <section>
-    <div class="wrap cats">
-      <a class="cat" href="#ilanlar" data-go="satilik"><span class="ci"><svg class="ico"><use href="#i-apt"/></svg></span><span><b>Satılık daire</b><span>20 ilan</span></span></a>
-      <a class="cat" href="#ilanlar" data-go="kiralik"><span class="ci"><svg class="ico"><use href="#i-key2"/></svg></span><span><b>Kiralık daire</b><span>6 ilan</span></span></a>
-      <a class="cat" href="#ilanlar"><span class="ci"><svg class="ico"><use href="#i-home"/></svg></span><span><b>Müstakil ev</b><span>3 ilan</span></span></a>
-      <a class="cat" href="#ilanlar"><span class="ci"><svg class="ico"><use href="#i-villa"/></svg></span><span><b>Villa</b><span>1 ilan</span></span></a>
-      <a class="cat" href="#ilanlar"><span class="ci"><svg class="ico"><use href="#i-shop"/></svg></span><span><b>İş yeri</b><span>5 ilan</span></span></a>
-      <a class="cat" href="#ilanlar"><span class="ci"><svg class="ico"><use href="#i-land"/></svg></span><span><b>Arsa</b><span>2 ilan</span></span></a>
+  <section class="block">
+    <div class="wrap">
+      <div class="sec-head"><div><h2>Ne arıyorsunuz?</h2><p>Daireden arsaya, portföyümüzdeki 37 ilan dört başlıkta.</p></div></div>
+      <div class="kats">
+        <a class="kat" href="#ilanlar" data-go="satilik"><span class="kp"><img src="img/kat-daire.jpg" alt="Balkonlu apartman cephesi" loading="lazy"></span><span class="kb"><span><b>Daire</b><small>20 satılık · 6 kiralık</small></span><span class="ka"><svg class="ico"><use href="#i-arrow"/></svg></span></span></a>
+        <a class="kat" href="#ilanlar"><span class="kp"><img src="img/kat-villa.jpg" alt="Havuzlu modern villa" loading="lazy"></span><span class="kb"><span><b>Müstakil ve villa</b><small>4 ilan</small></span><span class="ka"><svg class="ico"><use href="#i-arrow"/></svg></span></span></a>
+        <a class="kat" href="#ilanlar"><span class="kp"><img src="img/kat-isyeri.jpg" alt="Geniş camlı ofis katı" loading="lazy"></span><span class="kb"><span><b>İş yeri ve ofis</b><small>5 ilan</small></span><span class="ka"><svg class="ico"><use href="#i-arrow"/></svg></span></span></a>
+        <a class="kat" href="#ilanlar"><span class="kp"><img src="img/kat-arsa.jpg" alt="Gün batımında tarla" loading="lazy"></span><span class="kb"><span><b>Arsa ve tarla</b><small>2 ilan</small></span><span class="ka"><svg class="ico"><use href="#i-arrow"/></svg></span></span></a>
+      </div>
     </div>
   </section>
 
@@ -478,40 +474,40 @@
           <div class="card-b"><div class="card-top"><span class="price">32.000 TL <small>/ ay</small></span><span class="ref">No 1051</span></div><h3>Çarşıya 3 dakika, eşyasız daire</h3><div class="facts"><span><svg class="ico"><use href="#i-bed"/></svg>2+1</span><span><svg class="ico"><use href="#i-area"/></svg>95 m²</span><span><svg class="ico"><use href="#i-floor"/></svg>2. kat</span><span class="where">Merkez</span></div></div>
         </article>
         <article class="card" data-t="satilik">
-          <a class="ph" href="#"><img src="img/ilan-atakent.jpg" alt="Atakent'te güney cepheli salon" loading="lazy"></a>
+          <a class="ph" href="#"><img src="img/ilan-atakent.jpg" alt="Bayraklı'da güney cepheli salon" loading="lazy"></a>
           <button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg class="ico"><use href="#i-heart"/></svg></button>
-          <div class="card-b"><div class="card-top"><span class="price">11.900.000 TL</span><span class="ref">No 1029</span></div><h3>Güney cephe, gün boyu güneş alan daire</h3><div class="facts"><span><svg class="ico"><use href="#i-bed"/></svg>3+1</span><span><svg class="ico"><use href="#i-area"/></svg>130 m²</span><span><svg class="ico"><use href="#i-floor"/></svg>5. kat</span><span class="where">Atakent</span></div></div>
+          <div class="card-b"><div class="card-top"><span class="price">11.900.000 TL</span><span class="ref">No 1029</span></div><h3>Güney cephe, gün boyu güneş alan daire</h3><div class="facts"><span><svg class="ico"><use href="#i-bed"/></svg>3+1</span><span><svg class="ico"><use href="#i-area"/></svg>130 m²</span><span><svg class="ico"><use href="#i-floor"/></svg>5. kat</span><span class="where">Bayraklı</span></div></div>
         </article>
         <article class="card" data-t="satilik">
-          <a class="ph" href="#"><img src="img/ilan-semikler.jpg" alt="Şemikler'de bahçeli müstakil ev" loading="lazy"><span class="tags"><span class="tag">Müstakil</span></span></a>
+          <a class="ph" href="#"><img src="img/ilan-semikler.jpg" alt="Narlıdere'de bahçeli müstakil ev" loading="lazy"><span class="tags"><span class="tag">Müstakil</span></span></a>
           <button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg class="ico"><use href="#i-heart"/></svg></button>
-          <div class="card-b"><div class="card-top"><span class="price">16.500.000 TL</span><span class="ref">No 1017</span></div><h3>300 m² arsa içinde bahçeli ev</h3><div class="facts"><span><svg class="ico"><use href="#i-bed"/></svg>4+1</span><span><svg class="ico"><use href="#i-area"/></svg>220 m²</span><span><svg class="ico"><use href="#i-floor"/></svg>2 katlı</span><span class="where">Şemikler</span></div></div>
+          <div class="card-b"><div class="card-top"><span class="price">16.500.000 TL</span><span class="ref">No 1017</span></div><h3>300 m² arsa içinde bahçeli ev</h3><div class="facts"><span><svg class="ico"><use href="#i-bed"/></svg>4+1</span><span><svg class="ico"><use href="#i-area"/></svg>220 m²</span><span><svg class="ico"><use href="#i-floor"/></svg>2 katlı</span><span class="where">Narlıdere</span></div></div>
         </article>
         <article class="card" data-t="kiralik">
-          <a class="ph" href="#"><img src="img/ilan-donanmaci.jpg" alt="Donanmacı'da eşyalı kiralık daire" loading="lazy"><span class="tags"><span class="tag k">Kiralık</span><span class="tag">Eşyalı</span></span></a>
+          <a class="ph" href="#"><img src="img/ilan-donanmaci.jpg" alt="Alsancak'ta eşyalı kiralık daire" loading="lazy"><span class="tags"><span class="tag k">Kiralık</span><span class="tag">Eşyalı</span></span></a>
           <button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg class="ico"><use href="#i-heart"/></svg></button>
-          <div class="card-b"><div class="card-top"><span class="price">22.500 TL <small>/ ay</small></span><span class="ref">No 1055</span></div><h3>İskeleye yürüme mesafesinde daire</h3><div class="facts"><span><svg class="ico"><use href="#i-bed"/></svg>1+1</span><span><svg class="ico"><use href="#i-area"/></svg>60 m²</span><span><svg class="ico"><use href="#i-floor"/></svg>1. kat</span><span class="where">Donanmacı</span></div></div>
+          <div class="card-b"><div class="card-top"><span class="price">22.500 TL <small>/ ay</small></span><span class="ref">No 1055</span></div><h3>Kordon'a iki sokak, eşyalı daire</h3><div class="facts"><span><svg class="ico"><use href="#i-bed"/></svg>1+1</span><span><svg class="ico"><use href="#i-area"/></svg>60 m²</span><span><svg class="ico"><use href="#i-floor"/></svg>1. kat</span><span class="where">Alsancak</span></div></div>
         </article>
       </div>
     </div>
   </section>
 
   <!-- PRICE DROPS -->
-  <section class="block">
+  <section class="block band">
     <div class="wrap">
       <div class="sec-head">
         <div><h2>Fiyatı düşenler</h2><p>Son 30 günde fiyatı güncellenen ilanlar.</p></div>
         <div class="arrows"><button type="button" id="rail-prev" aria-label="Önceki"><svg class="ico"><use href="#i-left"/></svg></button><button type="button" id="rail-next" aria-label="Sonraki"><svg class="ico"><use href="#i-right"/></svg></button></div>
       </div>
       <div class="rail" id="rail">
-        <article class="card"><a class="ph" href="#"><img src="img/ilan-alaybey.jpg" alt="Alaybey'de yenilenmiş mutfak" loading="lazy"><span class="tags"><span class="tag g">%5 indirim</span></span></a><button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg class="ico"><use href="#i-heart"/></svg></button>
-          <div class="card-b"><div class="card-top"><span class="price">6.950.000 TL</span></div><div class="old" style="margin:0">7.300.000 TL</div><h3>Mutfağı yenilenmiş 2+1 · Alaybey</h3></div></article>
+        <article class="card"><a class="ph" href="#"><img src="img/ilan-alaybey.jpg" alt="Bornova'da yenilenmiş mutfak" loading="lazy"><span class="tags"><span class="tag g">%5 indirim</span></span></a><button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg class="ico"><use href="#i-heart"/></svg></button>
+          <div class="card-b"><div class="card-top"><span class="price">6.950.000 TL</span></div><div class="old" style="margin:0">7.300.000 TL</div><h3>Mutfağı yenilenmiş 2+1 · Bornova</h3></div></article>
         <article class="card"><a class="ph" href="#"><img src="img/ilan-mavisehir-4.jpg" alt="Mavişehir'de geniş salon" loading="lazy"><span class="tags"><span class="tag g">%4 indirim</span></span></a><button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg class="ico"><use href="#i-heart"/></svg></button>
           <div class="card-b"><div class="card-top"><span class="price">13.250.000 TL</span></div><div class="old" style="margin:0">13.800.000 TL</div><h3>Ebeveyn banyolu 4+1 · Mavişehir</h3></div></article>
         <article class="card"><a class="ph" href="#"><img src="img/ilan-dubleks.jpg" alt="Dubleks dairede ahşap merdiven" loading="lazy"><span class="tags"><span class="tag g">%6 indirim</span></span></a><button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg class="ico"><use href="#i-heart"/></svg></button>
           <div class="card-b"><div class="card-top"><span class="price">15.900.000 TL</span></div><div class="old" style="margin:0">16.900.000 TL</div><h3>Çatı dubleksi 5+2 · Bostanlı</h3></div></article>
         <article class="card"><a class="ph" href="#"><img src="img/ilan-modern-salon.jpg" alt="Yenilenmiş salon" loading="lazy"><span class="tags"><span class="tag g">%3 indirim</span></span></a><button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg class="ico"><use href="#i-heart"/></svg></button>
-          <div class="card-b"><div class="card-top"><span class="price">9.700.000 TL</span></div><div class="old" style="margin:0">10.000.000 TL</div><h3>Yeni binada 3+1 · Atakent</h3></div></article>
+          <div class="card-b"><div class="card-top"><span class="price">9.700.000 TL</span></div><div class="old" style="margin:0">10.000.000 TL</div><h3>Yeni binada 3+1 · Çiğli</h3></div></article>
         <article class="card"><a class="ph" href="#"><img src="img/semt-bostanli.jpg" alt="Bostanlı sahil yolu" loading="lazy"><span class="tags"><span class="tag g">%4 indirim</span></span></a><button class="save" type="button" aria-pressed="false" aria-label="Kaydet"><svg class="ico"><use href="#i-heart"/></svg></button>
           <div class="card-b"><div class="card-top"><span class="price">12.400.000 TL</span></div><div class="old" style="margin:0">12.900.000 TL</div><h3>Sahile bir sokak 3+1 · Bostanlı</h3></div></article>
       </div>
@@ -521,41 +517,20 @@
   <!-- NEIGHBORHOODS -->
   <section class="block" id="semtler">
     <div class="wrap">
-      <div class="sec-head"><div><h2>Semt semt Karşıyaka</h2><p>Ev bakarken sokağa, okula, iskeleye de bakarsınız. Hangi semtte ne olduğunu biliyoruz.</p></div></div>
+      <div class="sec-head"><div><h2>Bölge bölge İzmir</h2><p>Karşıyaka'da başladık, bugün körfezin iki yakasında da ilanımız var. Ev bakarken sokağa, okula, ulaşıma da bakarsınız.</p></div><a class="link-more" href="#">Tüm bölgeler <svg class="ico"><use href="#i-arrow"/></svg></a></div>
       <div class="hoods">
-        <a class="hood" href="#"><img src="img/semt-bostanli.jpg" alt="Bostanlı sahil yolu" loading="lazy"><span class="hood-t"><b>Bostanlı</b><span>12 ilan · Sahil, vapur iskelesi, semt pazarı</span></span></a>
+        <a class="hood" href="#"><img src="img/semt-bostanli.jpg" alt="Bostanlı sahil yolu" loading="lazy"><span class="hood-t"><b>Karşıyaka</b><span>21 ilan · Bostanlı, Mavişehir, Çarşı, Donanmacı</span></span></a>
         <a class="hood" href="#"><img src="img/semt-mavisehir.jpg" alt="Mavişehir akşam" loading="lazy"><span class="hood-t"><b>Mavişehir</b><span>8 ilan · Siteler, İZBAN</span></span></a>
-        <a class="hood" href="#"><img src="img/semt-carsi.jpg" alt="Karşıyaka Çarşı" loading="lazy"><span class="hood-t"><b>Çarşı</b><span>9 ilan · Her şey yürüme mesafesinde</span></span></a>
-        <a class="hood" href="#"><img src="img/semt-donanmaci.jpg" alt="Denizden Donanmacı" loading="lazy" style="object-position:50% 62%"><span class="hood-t"><b>Donanmacı</b><span>6 ilan · Sakin, sahile paralel</span></span></a>
-        <div class="hood hood-all"><b>Diğer semtler</b><ul><li><a href="#">Atakent <span>4</span></a></li><li><a href="#">Yalı <span>2</span></a></li><li><a href="#">Şemikler <span>2</span></a></li><li><a href="#">Demirköprü <span>1</span></a></li><li><a href="#">Alaybey <span>1</span></a></li></ul></div>
+        <a class="hood" href="#"><img src="img/bolge-bayrakli.jpg" alt="Bayraklı Altınyol" loading="lazy" style="object-position:50% 30%"><span class="hood-t"><b>Bayraklı</b><span>6 ilan · Yeni rezidanslar, metro</span></span></a>
+        <a class="hood" href="#"><img src="img/bolge-alsancak.jpg" alt="Alsancak Kordon" loading="lazy"><span class="hood-t"><b>Alsancak</b><span>3 ilan · Kordon, şehir merkezi</span></span></a>
+        <div class="hood hood-all"><b>Diğer bölgeler</b><ul><li><a href="#">Çiğli <span>5</span></a></li><li><a href="#">Bornova <span>4</span></a></li><li><a href="#">Narlıdere <span>2</span></a></li><li><a href="#">Buca <span>2</span></a></li><li><a href="#">Menemen <span>1</span></a></li></ul></div>
       </div>
     </div>
   </section>
 
-  <!-- MARKET -->
-  <section class="block">
-    <div class="wrap market">
-      <div class="market-intro">
-        <h2>Karşıyaka'da m² fiyatları</h2>
-        <p>Ev bakmaya başlamadan önce semtlere göre ortalama fiyatları görün. Portföyümüzdeki ve son aylardaki satışlardan derliyoruz.</p>
-        <a class="btn btn-line" href="#iletisim">Evim ne kadar eder?</a>
-        <div class="market-note">Örnek verilerdir, ofis verileriyle güncellenecektir.</div>
-      </div>
-      <div>
-        <div class="mtabs" role="group" aria-label="Fiyat türü">
-          <button type="button" aria-pressed="true" data-m="sat">Satılık (TL / m²)</button>
-          <button type="button" aria-pressed="false" data-m="kira">Kiralık (TL / ay, 2+1)</button>
-        </div>
-        <table class="mtable">
-          <thead><tr><th>Semt</th><th>Ortalama</th><th>Yıllık</th></tr></thead>
-          <tbody id="mbody"></tbody>
-        </table>
-      </div>
-    </div>
-  </section>
 
   <!-- WHY -->
-  <section class="block">
+  <section class="block band">
     <div class="wrap why">
       <div class="why-photo">
         <img src="img/hero-bostanli-barinak.jpg" alt="Bostanlı Balıkçı Barınağı" loading="lazy">
@@ -563,7 +538,7 @@
       </div>
       <div>
         <h2>Evi satana da, alana da doğru bilgi.</h2>
-        <p>Karşıyaka'da ev alan, satan ve kiralayanlarla çalışıyoruz. İşimizin büyük kısmı tavsiyeyle geliyor, bu yüzden her ilanı kendi evimiz gibi takip ediyoruz.</p>
+        <p>İzmir'de ev alan, satan ve kiralayanlarla çalışıyoruz. İşimizin büyük kısmı tavsiyeyle geliyor, bu yüzden her ilanı kendi evimiz gibi takip ediyoruz.</p>
         <div class="points">
           <div class="point"><span class="pi"><svg class="ico"><use href="#i-cam"/></svg></span><span><b>Fotoğraflar gerçek, fiyatlar güncel</b><span>Her ilanı yerinde görüp kendimiz fotoğraflıyoruz.</span></span></div>
           <div class="point"><span class="pi"><svg class="ico"><use href="#i-key"/></svg></span><span><b>Size uyan saatte gösterim</b><span>Randevuyla, hafta sonu dahil yerinde gezdiriyoruz.</span></span></div>
@@ -580,7 +555,7 @@
       <div class="guides">
         <a class="guide" href="#"><div class="gp"><img src="img/blog-evrak.jpg" alt="Sözleşme imzalayan kişi" loading="lazy"></div><small>Satın alma · 5 dk</small><h3>Tapu masrafları 2026'da ne kadar, kim öder?</h3><p>Tapu harcı, döner sermaye ve diğer kalemleri örnek bir hesapla anlattık.</p></a>
         <a class="guide" href="#"><div class="gp"><img src="img/blog-kira.jpg" alt="Kiralık dairede salon" loading="lazy"></div><small>Kiralama · 4 dk</small><h3>Kira sözleşmesinde dikkat edilecek 7 madde</h3><p>Depozito, aidat, tadilat ve tahliye konularında sonradan sorun yaşamamak için.</p></a>
-        <a class="guide" href="#"><div class="gp"><img src="img/blog-anahtar.jpg" alt="Ev maketi ve anahtar" loading="lazy"></div><small>Rehber · 6 dk</small><h3>Karşıyaka'da hangi semt size uygun?</h3><p>Bostanlı'dan Şemikler'e ulaşım, okul ve günlük yaşam açısından karşılaştırma.</p></a>
+        <a class="guide" href="#"><div class="gp"><img src="img/blog-anahtar.jpg" alt="Ev maketi ve anahtar" loading="lazy"></div><small>Rehber · 6 dk</small><h3>İzmir'de hangi semt size uygun?</h3><p>Karşıyaka'dan Bornova'ya ulaşım, okul ve günlük yaşam açısından karşılaştırma.</p></a>
       </div>
     </div>
   </section>
@@ -598,7 +573,7 @@
         <details><summary>Hizmet bedeli ne kadar?<span class="pm"><svg class="ico"><use href="#i-plus"/></svg></span></summary><p>Satışta ve kiralamada yasal oranlar geçerlidir. Bedeli işlemden önce açıkça konuşuruz, sonradan sürpriz çıkmaz.</p></details>
         <details><summary>Evimi satışa çıkarmak istiyorum, ne yapmalıyım?<span class="pm"><svg class="ico"><use href="#i-plus"/></svg></span></summary><p>Bizi arayın ya da "Evinizi verin" sayfasından bilgileri gönderin. Evi yerinde görüp semtteki benzer satışlara göre gerçekçi bir fiyat öneriyoruz.</p></details>
         <details><summary>Kredi ile ev alabilir miyim?<span class="pm"><svg class="ico"><use href="#i-plus"/></svg></span></summary><p>Evet. Krediye uygun ilanları belirtiyoruz ve ekspertiz sürecinde bankayla iletişimde size yardımcı oluyoruz.</p></details>
-        <details><summary>Sadece Karşıyaka'da mı çalışıyorsunuz?<span class="pm"><svg class="ico"><use href="#i-plus"/></svg></span></summary><p>Ağırlıklı olarak Karşıyaka ve çevresinde çalışıyoruz: Bostanlı, Mavişehir, Atakent, Donanmacı, Şemikler ve diğer mahalleler.</p></details>
+        <details><summary>Sadece Karşıyaka'da mı çalışıyorsunuz?<span class="pm"><svg class="ico"><use href="#i-plus"/></svg></span></summary><p>Hayır. Ofisimiz Bostanlı'da ama İzmir genelinde çalışıyoruz: Karşıyaka, Bayraklı, Çiğli, Bornova, Konak, Narlıdere ve çevresi.</p></details>
       </div>
     </div>
   </section>
@@ -629,7 +604,7 @@
 <footer class="footer">
   <div class="wrap">
     <div class="foot-cta">
-      <h2>Karşıyaka'da ev mi arıyorsunuz? <span>Birlikte bakalım.</span></h2>
+      <h2>İzmir'de ev mi arıyorsunuz? <span>Birlikte bakalım.</span></h2>
       <div class="acts">
         <a class="btn btn-o" href="https://wa.me/905322864617?text=Merhaba%2C%20ev%20g%C3%B6rmek%20i%C3%A7in%20randevu%20almak%20istiyorum.">Randevu alın</a>
         <a class="btn btn-line btn-dark" style="background:transparent" href="tel:+902323309911"><svg class="ico"><use href="#i-phone"/></svg>0232 330 99 11</a>
@@ -638,10 +613,10 @@
     <div class="foot-grid">
       <div>
         <a class="logo" href="#"><svg><use href="#logo"/></svg><span class="logo-text"><b>Özkal</b> <span>Emlak</span></span></a>
-        <p>Karşıyaka'da satılık ve kiralık konut, iş yeri ve arsa. Bostanlı'daki ofisimizden.</p>
+        <p>İzmir genelinde satılık ve kiralık konut, iş yeri ve arsa. Ofisimiz Bostanlı, Karşıyaka'da.</p>
       </div>
       <div><h4>İlanlar</h4><ul><li><a href="#ilanlar">Satılık daireler</a></li><li><a href="#ilanlar">Kiralık daireler</a></li><li><a href="#ilanlar">İş yerleri</a></li><li><a href="#ilanlar">Müstakil ve villa</a></li></ul></div>
-      <div><h4>Semtler</h4><ul><li><a href="#semtler">Bostanlı</a></li><li><a href="#semtler">Mavişehir</a></li><li><a href="#semtler">Atakent</a></li><li><a href="#semtler">Donanmacı</a></li></ul></div>
+      <div><h4>Bölgeler</h4><ul><li><a href="#semtler">Karşıyaka</a></li><li><a href="#semtler">Bayraklı</a></li><li><a href="#semtler">Alsancak</a></li><li><a href="#semtler">Bornova</a></li></ul></div>
       <div><h4>İletişim</h4><ul class="foot-contact">
         <li><svg class="ico"><use href="#i-pin"/></svg><span>Bostanlı Mah., Karşıyaka / İzmir</span></li>
         <li><svg class="ico"><use href="#i-phone"/></svg><span><a href="tel:+902323309911">0232 330 99 11</a><br><a href="tel:+905322864617">0532 286 46 17</a></span></li>
@@ -650,7 +625,7 @@
     </div>
     <div class="foot-bottom">
       <span>© 2026 Özkal Emlak · Önizleme, ilanlar ve veriler örnektir</span>
-      <span>Fotoğraflar: Wikimedia Commons (CC BY / CC BY-SA), Unsplash</span>
+      <span>Fotoğraflar: Denham35, BSRF, Dosseman, Michael ksk, ilker arslantürk, sorkin / Wikimedia Commons (CC BY, CC BY-SA) ve Unsplash</span>
     </div>
   </div>
 </footer>
@@ -672,13 +647,13 @@
   function setMode(m) { mode = m; document.querySelectorAll('.finder-tabs button').forEach(b => b.setAttribute('aria-selected', String(b.dataset.type === m))); priceSel.innerHTML = prices[m].map(p => `<option>${p}</option>`).join(''); }
   document.querySelectorAll('.finder-tabs button').forEach(b => b.addEventListener('click', () => setMode(b.dataset.type))); setMode('satilik');
 
-  const semts = [['Bostanlı', 12], ['Mavişehir', 8], ['Karşıyaka Merkez', 9], ['Donanmacı', 6], ['Atakent', 4], ['Yalı', 2], ['Şemikler', 2], ['Demirköprü', 1], ['Alaybey', 1]];
+  const semts = [['Karşıyaka', 21], ['Bostanlı', 9], ['Mavişehir', 8], ['Bayraklı', 6], ['Çiğli', 5], ['Bornova', 4], ['Alsancak', 3], ['Narlıdere', 2], ['Buca', 2], ['Menemen', 1]];
   const where = document.getElementById('f-where'), sug = document.getElementById('suggest'), norm = s => s.toLocaleLowerCase('tr');
   function renderSug() {
     const q = norm(where.value.trim());
     if (/^\d+$/.test(q)) { sug.innerHTML = `<button type="button" data-v="İlan no ${q}">İlan no <b>${q}</b> ile ara<small>Numara</small></button>`; sug.classList.add('open'); return; }
     const list = semts.filter(([n]) => !q || norm(n).includes(q));
-    sug.innerHTML = `<div class="head">${q ? 'Eşleşen semtler' : 'Karşıyaka semtleri'}</div>` + (list.length ? list.map(([n, c]) => `<button type="button" data-v="${n}">${n}<small>${c} ilan</small></button>`).join('') : '<div class="head">Sonuç yok, farklı bir semt deneyin</div>');
+    sug.innerHTML = `<div class="head">${q ? 'Eşleşen bölgeler' : 'Popüler bölgeler'}</div>` + (list.length ? list.map(([n, c]) => `<button type="button" data-v="${n}">${n}<small>${c} ilan</small></button>`).join('') : '<div class="head">Sonuç yok, farklı bir bölge deneyin</div>');
     sug.classList.add('open');
   }
   where.addEventListener('focus', renderSug); where.addEventListener('input', renderSug);
@@ -700,18 +675,6 @@
   // save
   document.querySelectorAll('.save').forEach(s => s.addEventListener('click', () => s.setAttribute('aria-pressed', String(s.getAttribute('aria-pressed') !== 'true'))));
 
-  // market table (sample data)
-  const market = {
-    sat: [['Bostanlı', 95000, '+%31'], ['Mavişehir', 88000, '+%28'], ['Donanmacı', 85000, '+%30'], ['Atakent', 82000, '+%27'], ['Karşıyaka Merkez', 78000, '+%26'], ['Şemikler', 65000, '+%24']],
-    kira: [['Mavişehir', 32000, '+%38'], ['Bostanlı', 30000, '+%35'], ['Atakent', 28000, '+%33'], ['Donanmacı', 27000, '+%34'], ['Karşıyaka Merkez', 26000, '+%30'], ['Şemikler', 22000, '+%29']],
-  };
-  const fmt = n => n.toLocaleString('tr-TR');
-  function renderMarket(k) {
-    const rows = market[k], max = Math.max(...rows.map(r => r[1]));
-    document.getElementById('mbody').innerHTML = rows.map(([n, v, t]) => `<tr><td>${n}</td><td><span class="val">${fmt(v)} TL</span><div class="bar"><i style="width:${Math.round(v / max * 100)}%"></i></div></td><td><span class="trend">${t}</span></td></tr>`).join('');
-    document.querySelectorAll('.mtabs button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.m === k)));
-  }
-  document.querySelectorAll('.mtabs button').forEach(b => b.addEventListener('click', () => renderMarket(b.dataset.m))); renderMarket('sat');
 
   // open now
   const tr = new Date(new Date().toLocaleString('en-US', { timeZone: 'Europe/Istanbul' }));
